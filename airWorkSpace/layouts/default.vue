@@ -1,7 +1,7 @@
 <template>
-  <v-app dark>
+  <v-app>
     <v-app-bar
-      v-if="$vuetify.breakpoint.lg"
+      v-if="$vuetify.breakpoint.md"
       :clipped-left="clipped"
       fixed
       app
@@ -41,7 +41,7 @@
     </v-main>
     <v-bottom-navigation
       v-if="$vuetify.breakpoint.xs"
-      :absolute="!fixed"
+      fixed
       app
     >
       <v-btn>
@@ -69,8 +69,6 @@
     >
       <span>&copy; {{ new Date().getFullYear() }}</span>
     </v-footer>
-    </v-bottom-navigation>
-    </v-bottom-navigation>
   </v-app>
 </template>
 

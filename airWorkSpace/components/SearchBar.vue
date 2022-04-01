@@ -6,15 +6,25 @@
       rounded
       dense
       filled
+      @keydown.enter.prevent="searchCenter"
     />
   </v-form>
 </template>
 
 <script>
+import Api from '@/services/search.service.js'
+
 export default {
   data () {
     return {
-      query: ''
+      query: '',
+      data: ''
+    }
+  },
+  methods: {
+    async searchCenter () {
+      this.data = await Api.search(this.query)
+      this.$store.commit('addCenters', this.data)
     }
   }
 }
