@@ -41,13 +41,41 @@ export default {
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/axios
-    '@nuxtjs/axios'
-  ],
+    '@nuxtjs/axios',
+    '@nuxtjs/auth'
 
+  ],
+  auth: {
+    redirect: {
+      login: '/login',
+      home: '/',
+      logout: '/'
+    },
+    strategies: {
+      local: {
+        endpoints: {
+          login: {
+            url: '/auth/login',
+            method: 'post',
+            propertyName: 'token'
+          },
+          logout: false,
+          user: {
+            url: '/users/profile',
+            method: 'get',
+            propertyName: false
+          }
+        },
+        tokenType: '',
+        tokenName: 'token',
+        autoFetchUser: true
+      }
+    }
+  },
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-    baseURL: '/'
+    baseURL: 'https://airworkspace-api.herokuapp.com/api'
   },
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify

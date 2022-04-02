@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <v-app-bar
-      v-if="$vuetify.breakpoint.md"
+      v-if="$vuetify.breakpoint.mdAndUp"
       :clipped-left="clipped"
       fixed
       app
@@ -44,6 +44,12 @@
       fixed
       app
     >
+      <v-btn to="/">
+        <span>Search</span>
+
+        <v-icon>mdi-magnify</v-icon>
+      </v-btn>
+
       <v-btn>
         <span>Bookings</span>
 
@@ -56,10 +62,22 @@
         <v-icon>mdi-heart-outline</v-icon>
       </v-btn>
 
-      <v-btn>
+      <v-btn
+        v-if="!Window.localStorage.auth_token.local"
+        to="/login"
+      >
         <span>Login</span>
 
         <v-icon>mdi-account-outline</v-icon>
+      </v-btn>
+
+      <v-btn
+        v-else
+        to="/profile"
+      >
+        <span>Profile</span>
+
+        <v-icon>mdi-account-circle-outline</v-icon>
       </v-btn>
     </v-bottom-navigation>
     <v-footer
