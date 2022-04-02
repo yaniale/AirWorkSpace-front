@@ -3,6 +3,7 @@
     <v-col cols="12" sm="8" md="6">
       <v-card elevation="0">
         <SearchBar />
+        <SearchResult v-if="$store.state.centers.length > 0" />
       </v-card>
       <v-card />
     </v-col>
