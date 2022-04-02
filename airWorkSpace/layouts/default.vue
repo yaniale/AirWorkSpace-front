@@ -50,20 +50,20 @@
         <v-icon>mdi-magnify</v-icon>
       </v-btn>
 
-      <v-btn>
+      <v-btn to="/bookings">
         <span>Bookings</span>
 
         <v-icon>mdi-book-marker-outline</v-icon>
       </v-btn>
 
-      <v-btn>
+      <v-btn to="/favourites">
         <span>Favorites</span>
 
         <v-icon>mdi-heart-outline</v-icon>
       </v-btn>
 
       <v-btn
-        v-if="!Window.localStorage.auth_token.local"
+        v-if="!$auth.$state.loggedIn"
         to="/login"
       >
         <span>Login</span>

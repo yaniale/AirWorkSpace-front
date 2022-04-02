@@ -61,9 +61,8 @@ export default {
           },
           logout: false,
           user: {
-            url: '/users/profile',
-            method: 'get',
-            propertyName: false
+            url: '/user/profile',
+            method: 'get'
           }
         },
         tokenType: '',
