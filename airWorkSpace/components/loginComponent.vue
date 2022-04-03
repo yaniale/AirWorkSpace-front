@@ -26,7 +26,7 @@
         <v-row>
           <v-col class="text-right">
             <v-btn
-              @click="login"
+              @click.prevent="login"
             >
               Login
             </v-btn>

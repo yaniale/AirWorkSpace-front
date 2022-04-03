@@ -24,7 +24,9 @@
           color="orange lighten-2"
           text
         >
-          Más
+          <v-icon @click.prevent="addFavourite(center._id)">
+            mdi-heart-outline
+          </v-icon>
         </v-btn>
 
         <v-spacer />
@@ -33,6 +35,7 @@
           icon
           @click="updateShow(idx)"
         >
+          {{ showDescription[idx] ? 'Menos': 'Más' }}
           <v-icon>{{ showDescription[idx] ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
         </v-btn>
       </v-card-actions>
@@ -51,6 +54,7 @@
 </template>
 
 <script>
+
 export default {
   name: 'SearchResult',
   data () {
@@ -62,6 +66,14 @@ export default {
     updateShow (idx) {
       const boolean = !this.showDescription[idx]
       this.$set(this.showDescription, idx, boolean)
+    },
+    async addFavourite (id) {
+      if (!this.$auth.loggedIn) {
+        this.$router.push('/login')
+      } else {
+        await this.$axios.put(`/user/profile/favourites/${id}`)
+        await this.$auth.fetchUser()
+      }
     }
   }
 }

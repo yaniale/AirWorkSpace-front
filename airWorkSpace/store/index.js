@@ -1,7 +1,7 @@
 export const state = () => ({
   centers: [],
-  showDescription: []
-  // token: ''
+  showDescription: [],
+  monthShortName: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 })
 
 export const mutations = {
@@ -12,9 +12,6 @@ export const mutations = {
       state.showDescription.push(false)
     })
   }
-  // addToken (state, token) {
-  //   state.token = token
-  // }
 }
 
 export const actions = {
