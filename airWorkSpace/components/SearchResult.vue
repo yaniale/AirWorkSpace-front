@@ -9,9 +9,10 @@
       <v-img
         :src="center.photos[0]"
         height="200px"
+        @click="$router.push({ path:`/center/`, query:{id: center._id}, component:'CenterPage'})"
       />
 
-      <v-card-title>
+      <v-card-title @click="$router.push({ path:`/center/`, query:{id: center._id}, component:'CenterPage'})">
         {{ center.name }}
       </v-card-title>
 
