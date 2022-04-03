@@ -16,6 +16,14 @@
             {{ new Date($auth.$state.user.created).getFullYear() }}
             <v-divider />
           </div>
+          <div v-if="$auth.$state.user.role !== 'host'" class="my-2">
+            <span>Become a host today and start earning!</span>
+            <v-btn>
+              <v-icon>mdi-arrow-up-thick</v-icon>
+              Upgrade
+            </v-btn>
+          </div>
+          <v-divider />
           <div class="my-10">
             <div class="city">
               <v-icon>mdi-home</v-icon>
@@ -23,11 +31,17 @@
             </div>
           </div>
         </v-card-text>
-        <div class="text-right mx-2 py-2">
+        <v-card-actions>
+          <v-spacer />
+          <v-btn to="/profile/update">
+            <v-icon>mdi-pencil-outline</v-icon>
+            Edit
+          </v-btn>
           <v-btn @click.prevent="logout">
+            <v-icon>mdi-account-arrow-right-outline</v-icon>
             Logout
           </v-btn>
-        </div>
+        </v-card-actions>
       </v-card>
     </v-col>
   </v-row>

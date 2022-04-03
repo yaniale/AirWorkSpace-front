@@ -54,7 +54,6 @@
 </template>
 
 <script>
-
 export default {
   name: 'SearchResult',
   data () {
