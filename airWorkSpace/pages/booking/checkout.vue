@@ -22,11 +22,13 @@
             <v-text-field outilned disabled label="Total: " :value="booking.totalRate - booking.totalDiscount + booking.totalTax" />
           </v-card-text>
         </v-card-text>
+        <v-card-text>
+          <v-input>
+            <v-checkbox v-model="modal" :label="disclaimer" @click="submitBooking" />
+          </v-input>
+        </v-card-text>
         <v-card-actions>
           <v-spacer />
-          <v-input>
-            <v-checkbox label="I confirm" />
-          </v-input>
           <v-btn>confirm</v-btn>
         </v-card-actions>
       </v-card>
@@ -40,6 +42,8 @@ export default {
   name: 'BookingCheckOut',
   data () {
     return {
+      modal: false,
+      disclaimer: 'Confirmo que la información de reserva es correcta y que he leído y acepto los términos y condiciones.',
       center: {},
       ratePlan: {},
       booking: this.$store.state.createBooking
@@ -58,6 +62,17 @@ export default {
     },
     formatDate (date) {
       return utils.formatDate(date)
+    },
+    async submitBooking () {
+      try {
+        if (this.modal) {
+          await this.$axios.post(`/center/${this.center._id}/bookings`, this.booking)
+          await this.$auth.fetchUser()
+          this.$router.push('/bookings')
+        }
+      } catch (error) {
+        console.log(error)
+      }
     }
 
   }
