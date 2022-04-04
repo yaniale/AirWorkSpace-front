@@ -1,7 +1,17 @@
 export const state = () => ({
   centers: [],
   showDescription: [],
-  monthShortName: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+  monthShortName: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+  createBooking: {
+    fromTime: '',
+    toTime: '',
+    type: '',
+    ratePlan: '',
+    bookedQuantity: '',
+    totalRate: '',
+    totalDiscount: '',
+    totalTax: ''
+  }
 })
 
 export const mutations = {
@@ -11,6 +21,9 @@ export const mutations = {
     state.centers.forEach((element) => {
       state.showDescription.push(false)
     })
+  },
+  createBooking (state, createBooking) {
+    state.createBooking = createBooking
   }
 }
 

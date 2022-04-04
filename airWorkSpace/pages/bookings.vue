@@ -4,6 +4,9 @@
       <v-card v-if="$auth.$state.user.bookings.length === 0">
         <v-card-text>You don't have any booking yet.</v-card-text>
       </v-card>
+      <v-card v-for="(booking, idx) in $auth.$state.user.bookings" v-else :key="idx">
+        <v-card-title>{{ booking.center }}</v-card-title>
+      </v-card>
     </v-col>
   </v-row>
 </template>
@@ -11,7 +14,15 @@
 <script>
 export default {
   name: 'BookingsPage',
-  middleware: 'auth'
+  middleware: 'auth',
+  data () {
+    return {
+      bookings: []
+    }
+  },
+  methods: {
+
+  }
 }
 </script>
 
