@@ -14,7 +14,7 @@
         v-for="(rate, idx) in ratePlan"
         :key="idx"
         width="90%"
-        class="ma-auto"
+        class="mx-auto my-2"
       >
         <v-card-title>{{ ratePlan[idx].name }}</v-card-title>
         <v-card-subtitle>{{ getType(idx) }}</v-card-subtitle>
@@ -61,24 +61,6 @@ export default {
     getRatePlan () {
       this.center = this.$store.state.centers.find(e => e._id === this.$route.query.id)
       this.ratePlan = this.center.ratePlan.filter(e => e.appliesTo === this.$route.query.type)
-    },
-    getType (idx) {
-      switch (this.ratePlan[idx].appliesTo) {
-        case 'fixedDesk':
-          return 'Mesa Fija'
-        case 'hotDesk':
-          return 'Mesa flexible'
-        case 'office':
-          return 'Oficina'
-        case 'meetingRoom':
-          return 'Sala de conferencias'
-      }
-    },
-    formatDate (date) {
-      const month = this.$store.state.monthShortName[new Date(date).getMonth()]
-      const year = new Date(date).getFullYear()
-      const day = new Date(date).getDate()
-      return `${day}, ${month} ${year}`
     }
   }
 }
