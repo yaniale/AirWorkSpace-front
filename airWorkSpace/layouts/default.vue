@@ -50,13 +50,13 @@
         <v-icon>mdi-magnify</v-icon>
       </v-btn>
 
-      <v-btn to="/bookings">
+      <v-btn to="/profile/bookings">
         <span>Bookings</span>
 
         <v-icon>mdi-book-marker-outline</v-icon>
       </v-btn>
 
-      <v-btn to="/favourites">
+      <v-btn to="/profile/favourites">
         <span>Favorites</span>
 
         <v-icon>mdi-heart-outline</v-icon>

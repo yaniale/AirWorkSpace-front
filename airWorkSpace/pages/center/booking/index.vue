@@ -122,10 +122,11 @@
 </template>
 
 <script>
-import utils from '../../services/utils.services'
+import utils from '@/services/utils.services'
 
 export default {
   name: 'BookingPage',
+  middleware: 'auth',
   data () {
     return {
       ratePlan: {},
@@ -173,7 +174,7 @@ export default {
 
       if (this.dateFrom && this.dateTo && this.inputQuantity) {
         this.$store.commit('createBooking', booking)
-        this.$router.push({ path: '/booking/checkout', query: { id: this.center._id, rate: this.ratePlan._id }, component: 'BookingCheckOut' })
+        this.$router.push({ path: '/center/booking/checkout', query: { id: this.center._id, rate: this.ratePlan._id }, component: 'BookingCheckOut' })
       } else {
         return false
       }
