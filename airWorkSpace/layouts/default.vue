@@ -64,7 +64,7 @@
 
       <v-btn
         v-if="!$auth.$state.loggedIn"
-        to="/login"
+        to="/auth"
       >
         <span>Login</span>
 
