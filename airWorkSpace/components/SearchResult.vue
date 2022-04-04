@@ -34,6 +34,7 @@
           <v-spacer />
 
           <v-btn
+            class="mx-4"
             icon
             @click="updateShow(idx)"
           >
@@ -68,8 +69,8 @@ export default {
   },
   methods: {
     isFavourite (id) {
-      if (this.$auth.state.user) {
-        return !!this.$auth.state.user.favourites.find(e => e._id === id)
+      if (this.$auth.$state.user) {
+        return !!this.$auth.$state.user.favourites.find(e => e._id === id)
       } else {
         return false
       }

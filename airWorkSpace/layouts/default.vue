@@ -44,7 +44,7 @@
       fixed
       app
     >
-      <v-btn to="/">
+      <v-btn @click="clearState">
         <span>Search</span>
 
         <v-icon>mdi-magnify</v-icon>
@@ -114,6 +114,12 @@ export default {
       right: true,
       rightDrawer: false,
       title: 'Vuetify.js'
+    }
+  },
+  methods: {
+    clearState () {
+      this.$store.commit('clearState')
+      this.$router.push('/')
     }
   }
 }

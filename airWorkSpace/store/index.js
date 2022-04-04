@@ -24,6 +24,9 @@ export const mutations = {
   },
   createBooking (state, createBooking) {
     state.createBooking = createBooking
+  },
+  clearState (state) {
+    state.centers = []
   }
 }
 

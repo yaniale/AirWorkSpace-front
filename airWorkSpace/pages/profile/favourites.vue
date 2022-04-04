@@ -37,6 +37,7 @@
           <v-spacer />
 
           <v-btn
+            class="mx-4"
             icon
             @click="updateShow(idx)"
           >
