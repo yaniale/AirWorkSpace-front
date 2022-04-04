@@ -12,7 +12,8 @@ const utils = {
     }
   },
   formatDate (date) {
-    const month = this.$store.state.monthShortName[new Date(date).getMonth()]
+    const monthShortName = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+    const month = monthShortName[new Date(date).getMonth()]
     const year = new Date(date).getFullYear()
     const day = new Date(date).getDate()
     return `${day}, ${month} ${year}`

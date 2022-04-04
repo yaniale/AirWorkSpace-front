@@ -108,6 +108,14 @@
         />
       </v-card-text>
     </v-card>
+    <v-card class="my-2">
+      <v-card-actions>
+        <v-spacer />
+        <v-btn @click="setBooking">
+          Siguiente
+        </v-btn>
+      </v-card-actions>
+    </v-card>
   </div>
 </template>
 
@@ -147,6 +155,24 @@ export default {
       for (let i = 1; i <= this.allotment.quantity; i++) {
         const element = i
         this.quantity.push(element)
+      }
+    },
+    setBooking () {
+      const booking = {
+        fromTime: new Date(this.dateFrom),
+        toTime: new Date(this.dateTo),
+        type: this.ratePlan.appliesTo,
+        ratePlan: this.ratePlan._id,
+        bookedQuantity: this.inputQuantity,
+        totalRate: this.ratePlan.price * this.inputQuantity,
+        totalDiscount: this.ratePlan.price * this.ratePlan.discount / 100 * this.inputQuantity,
+        totalTax: this.ratePlan.price * this.ratePlan.discount / 100 * this.ratePlan.tax / 100 * this.inputQuantity
+      }
+
+      if (this.dateFrom && this.dateTo && this.inputQuantity) {
+        this.$store.commit('createBooking', booking)
+      } else {
+        return false
       }
     }
   }

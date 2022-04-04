@@ -17,7 +17,7 @@
         class="mx-auto my-2"
       >
         <v-card-title>{{ ratePlan[idx].name }}</v-card-title>
-        <v-card-subtitle>{{ getType(idx) }}</v-card-subtitle>
+        <v-card-subtitle>{{ getType(ratePlan[idx].appliesTo) }}</v-card-subtitle>
         <v-card-text>
           <v-input>{{ ratePlan[idx].description }}</v-input>
           <v-input label="Disponible desde: ">
@@ -46,6 +46,8 @@
 </template>
 
 <script>
+import utils from '../../services/utils.services'
+
 export default {
   name: 'RatePlanPage',
   data () {
@@ -61,6 +63,12 @@ export default {
     getRatePlan () {
       this.center = this.$store.state.centers.find(e => e._id === this.$route.query.id)
       this.ratePlan = this.center.ratePlan.filter(e => e.appliesTo === this.$route.query.type)
+    },
+    getType (type) {
+      return utils.getType(type)
+    },
+    formatDate (date) {
+      return utils.formatDate(date)
     }
   }
 }

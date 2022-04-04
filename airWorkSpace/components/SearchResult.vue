@@ -27,7 +27,7 @@
             text
           >
             <v-icon @click.prevent="addFavourite(center._id)">
-              mdi-heart-outline
+              {{ isFavourite(center._id) ? 'mdi-heart' : 'mdi-heart-outline' }}
             </v-icon>
           </v-btn>
 
@@ -64,7 +64,16 @@ export default {
       showDescription: []
     }
   },
+  computed: {
+  },
   methods: {
+    isFavourite (id) {
+      if (this.$auth.state.user) {
+        return !!this.$auth.state.user.favourites.find(e => e._id === id)
+      } else {
+        return false
+      }
+    },
     updateShow (idx) {
       const boolean = !this.showDescription[idx]
       this.$set(this.showDescription, idx, boolean)
