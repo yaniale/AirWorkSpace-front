@@ -80,7 +80,7 @@ export default {
     },
     async addFavourite (id) {
       if (!this.$auth.loggedIn) {
-        this.$router.push('/login')
+        this.$router.push('/auth')
       } else {
         await this.$axios.put(`/user/profile/favourites/${id}`)
         await this.$auth.fetchUser()

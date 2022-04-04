@@ -70,7 +70,7 @@ export default {
         if (this.modal) {
           await this.$axios.post(`/center/${this.center._id}/bookings`, this.booking)
           await this.$auth.fetchUser()
-          this.$router.push('/bookings')
+          this.$router.push('/profile/bookings')
         }
       } catch (error) {
         console.log(error)

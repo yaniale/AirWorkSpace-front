@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import loginComponent from '../components/loginComponent.vue'
+import loginComponent from '@/components/loginComponent.vue'
 export default {
   name: 'LoginPage',
   components: { loginComponent }
@@ -15,8 +15,5 @@ export default {
 }
 </script>
 
-<style lang="
-              scss"
-              scoped
-            >
+<style lang="scss" scoped>
 </style>
