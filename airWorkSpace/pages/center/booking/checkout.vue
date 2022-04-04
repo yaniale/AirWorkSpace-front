@@ -24,12 +24,14 @@
         </v-card-text>
         <v-card-text>
           <v-input>
-            <v-checkbox v-model="modal" :label="disclaimer" @click="submitBooking" />
+            <v-checkbox v-model="modal" :label="disclaimer" />
           </v-input>
         </v-card-text>
         <v-card-actions>
           <v-spacer />
-          <v-btn>confirm</v-btn>
+          <v-btn @click="submitBooking">
+            confirm
+          </v-btn>
         </v-card-actions>
       </v-card>
     </v-col>
@@ -37,7 +39,7 @@
 </template>
 
 <script>
-import utils from '../../services/utils.services'
+import utils from '@/services/utils.services'
 export default {
   name: 'BookingCheckOut',
   data () {

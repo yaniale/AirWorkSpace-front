@@ -36,7 +36,7 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer />
-          <v-btn @click="$router.push({ path:`/booking`, query:{id: center._id, rate: ratePlan[idx]._id}, component:'BookingPage'})">
+          <v-btn @click="$router.push({ path:`/center/booking`, query:{id: center._id, rate: ratePlan[idx]._id}, component:'BookingPage'})">
             Reservar
           </v-btn>
         </v-card-actions>
@@ -46,7 +46,7 @@
 </template>
 
 <script>
-import utils from '../../services/utils.services'
+import utils from '@/services/utils.services'
 
 export default {
   name: 'RatePlanPage',
