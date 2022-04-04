@@ -7,15 +7,28 @@
         </v-card-title>
         <v-card-text>
           <v-text-field outilned disabled label="Centro: " :value="center.name" />
-          <v-text-field outilned disabled label="Tipo: " :value="setType()" />
-          <v-text-field outilned disabled label="Tarifa: " :value="ratePlan.name" />
-          <v-text-field outilned disabled label="Desde: " :value="booking.fromDate" />
-          <v-text-field outilned disabled label="Hasta: " :value="booking.fromDate" />
-          <v-text-field outilned disabled label="Tarifa: " :value="booking.totalRate" />
-          <v-text-field outilned disabled label="Descuento: " :value="booking.totalDiscount" />
-          <v-text-field outilned disabled label="Impuestos: " :value="booking.totalTax * -1" />
-          <v-text-field outilned disabled label="Total: " :value="booking.totalRate - booking.totalDiscount + booking.totalTax" />
+          <v-input>
+            <v-text-field outilned disabled label="Tipo: " :value="setType()" />
+            <v-text-field outilned disabled label="Tarifa: " :value="ratePlan.name" />
+          </v-input>
+          <v-input hide-details>
+            <v-text-field outilned disabled label="Desde: " :value="formatDate(booking.fromTime)" />
+            <v-text-field outilned disabled label="Hasta: " :value="formatDate(booking.toTime)" />
+          </v-input>
+          <v-card-text>
+            <v-text-field right outilned disabled label="Tarifa: " :value="booking.totalRate" />
+            <v-text-field outilned disabled label="Descuento: " :value="booking.totalDiscount" />
+            <v-text-field outilned disabled label="Impuestos: " :value="booking.totalTax * -1" />
+            <v-text-field outilned disabled label="Total: " :value="booking.totalRate - booking.totalDiscount + booking.totalTax" />
+          </v-card-text>
         </v-card-text>
+        <v-card-actions>
+          <v-spacer />
+          <v-input>
+            <v-checkbox label="I confirm" />
+          </v-input>
+          <v-btn>confirm</v-btn>
+        </v-card-actions>
       </v-card>
     </v-col>
   </v-row>
@@ -42,6 +55,9 @@ export default {
     },
     setType () {
       return utils.getType(this.booking.type)
+    },
+    formatDate (date) {
+      return utils.formatDate(date)
     }
 
   }
