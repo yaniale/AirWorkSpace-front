@@ -1,122 +1,124 @@
 <template>
-  <div>
-    <v-card class="my-2">
-      <v-card-title class="justify-center">
-        Completa tu reserva
-      </v-card-title>
-      <v-card-text>
-        <v-text-field outilned disabled label="Centro: " :value="center.name" />
-        <v-text-field outilned disabled label="Tipo: " :value="setType()" />
-        <v-text-field outilned disabled label="Tarifa: " :value="ratePlan.name" />
-      </v-card-text>
-    </v-card>
-    <v-card class="my-2">
-      <v-card-title>
-        Elige tus fechas
-      </v-card-title>
-      <v-card-text>
-        <v-dialog
-          ref="from"
-          v-model="from"
-          :return-value.sync="dateFrom"
-          persistent
-          width="290px"
-        >
-          <template #activator="{ on, attrs }">
-            <v-text-field
+  <v-row justify="center" align="center">
+    <v-col cols="12" sm="8" md="6">
+      <v-card class="my-2">
+        <v-card-title class="justify-center">
+          Completa tu reserva
+        </v-card-title>
+        <v-card-text>
+          <v-text-field outilned disabled label="Centro: " :value="center.name" />
+          <v-text-field outilned disabled label="Tipo: " :value="setType()" />
+          <v-text-field outilned disabled label="Tarifa: " :value="ratePlan.name" />
+        </v-card-text>
+      </v-card>
+      <v-card class="my-2">
+        <v-card-title>
+          Elige tus fechas
+        </v-card-title>
+        <v-card-text>
+          <v-dialog
+            ref="from"
+            v-model="from"
+            :return-value.sync="dateFrom"
+            persistent
+            width="290px"
+          >
+            <template #activator="{ on, attrs }">
+              <v-text-field
+                v-model="dateFrom"
+                label="From..."
+                prepend-icon="mdi-calendar"
+                readonly
+                v-bind="attrs"
+                v-on="on"
+              />
+            </template>
+            <v-date-picker
               v-model="dateFrom"
-              label="From..."
-              prepend-icon="mdi-calendar"
-              readonly
-              v-bind="attrs"
-              v-on="on"
-            />
-          </template>
-          <v-date-picker
-            v-model="dateFrom"
-            scrollable
-          >
-            <v-spacer />
-            <v-btn
-              text
-              color="primary"
-              @click="from = false"
+              scrollable
             >
-              Cancel
-            </v-btn>
-            <v-btn
-              text
-              color="primary"
-              @click="$refs.from.save(dateFrom)"
-            >
-              OK
-            </v-btn>
-          </v-date-picker>
-        </v-dialog>
+              <v-spacer />
+              <v-btn
+                text
+                color="primary"
+                @click="from = false"
+              >
+                Cancel
+              </v-btn>
+              <v-btn
+                text
+                color="primary"
+                @click="$refs.from.save(dateFrom)"
+              >
+                OK
+              </v-btn>
+            </v-date-picker>
+          </v-dialog>
 
-        <v-dialog
-          ref="to"
-          v-model="to"
-          :return-value.sync="dateTo"
-          persistent
-          width="290px"
-        >
-          <template #activator="{ on, attrs }">
-            <v-text-field
-              v-model="dateTo"
-              label="To..."
-              prepend-icon="mdi-calendar"
-              readonly
-              v-bind="attrs"
-              v-on="on"
-            />
-          </template>
-          <v-date-picker
-            v-model="dateTo"
-            scrollable
+          <v-dialog
+            ref="to"
+            v-model="to"
+            :return-value.sync="dateTo"
+            persistent
+            width="290px"
           >
-            <v-spacer />
-            <v-btn
-              text
-              color="primary"
-              @click="to = false"
+            <template #activator="{ on, attrs }">
+              <v-text-field
+                v-model="dateTo"
+                label="To..."
+                prepend-icon="mdi-calendar"
+                readonly
+                v-bind="attrs"
+                v-on="on"
+              />
+            </template>
+            <v-date-picker
+              v-model="dateTo"
+              scrollable
             >
-              Cancel
-            </v-btn>
-            <v-btn
-              text
-              color="primary"
-              @click="$refs.to.save(dateTo)"
-            >
-              OK
-            </v-btn>
-          </v-date-picker>
-        </v-dialog>
-      </v-card-text>
-    </v-card>
-    <v-card class="my-2">
-      <v-card-title>
-        ¿Cuántas necesitas?
-      </v-card-title>
-      <v-card-text>
-        <v-select
-          v-model="inputQuantity"
-          :items="quantity"
-          filled
-          label="Número de personas..."
-          dense
-        />
-      </v-card-text>
-    </v-card>
-    <v-card class="my-2">
-      <v-card-actions>
-        <v-spacer />
-        <v-btn @click="setBooking">
-          Siguiente
-        </v-btn>
-      </v-card-actions>
-    </v-card>
-  </div>
+              <v-spacer />
+              <v-btn
+                text
+                color="primary"
+                @click="to = false"
+              >
+                Cancel
+              </v-btn>
+              <v-btn
+                text
+                color="primary"
+                @click="$refs.to.save(dateTo)"
+              >
+                OK
+              </v-btn>
+            </v-date-picker>
+          </v-dialog>
+        </v-card-text>
+      </v-card>
+      <v-card class="my-2">
+        <v-card-title>
+          ¿Cuántas necesitas?
+        </v-card-title>
+        <v-card-text>
+          <v-select
+            v-model="inputQuantity"
+            :items="quantity"
+            filled
+            label="Número de personas..."
+            dense
+          />
+        </v-card-text>
+      </v-card>
+      <v-card class="my-2">
+        <v-card-actions>
+          <v-spacer />
+          <v-btn @click="setBooking">
+            Siguiente
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-col>
+  </v-row>
 </template>
 
 <script>
@@ -171,6 +173,7 @@ export default {
 
       if (this.dateFrom && this.dateTo && this.inputQuantity) {
         this.$store.commit('createBooking', booking)
+        this.$router.push({ path: '/booking/checkout', query: { id: this.center._id, rate: this.ratePlan._id }, component: 'BookingCheckOut' })
       } else {
         return false
       }
