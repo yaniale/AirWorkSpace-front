@@ -34,6 +34,7 @@
           <v-spacer />
 
           <v-btn
+            class="mx-4"
             icon
             @click="updateShow(idx)"
           >
@@ -68,8 +69,8 @@ export default {
   },
   methods: {
     isFavourite (id) {
-      if (this.$auth.state.user) {
-        return !!this.$auth.state.user.favourites.find(e => e._id === id)
+      if (this.$auth.$state.user) {
+        return !!this.$auth.$state.user.favourites.find(e => e._id === id)
       } else {
         return false
       }
@@ -80,7 +81,7 @@ export default {
     },
     async addFavourite (id) {
       if (!this.$auth.loggedIn) {
-        this.$router.push('/login')
+        this.$router.push('/auth')
       } else {
         await this.$axios.put(`/user/profile/favourites/${id}`)
         await this.$auth.fetchUser()

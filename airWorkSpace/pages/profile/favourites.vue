@@ -6,17 +6,17 @@
       </v-card>
       <v-card
         v-for="(center, idx) in $auth.$state.user.favourites"
-        v-else
         :key="idx"
-        class="mx-auto"
+        class="mx-auto my-2"
         max-width="344"
       >
         <v-img
           :src="center.photos[0]"
           height="200px"
+          @click="getCenter(center._id)"
         />
 
-        <v-card-title>
+        <v-card-title @click="getCenter(center._id)">
           {{ center.name }}
         </v-card-title>
 
@@ -37,6 +37,7 @@
           <v-spacer />
 
           <v-btn
+            class="mx-4"
             icon
             @click="updateShow(idx)"
           >
@@ -65,13 +66,14 @@ export default {
   middleware: 'auth',
   data () {
     return {
-      showDescription: []
+      showDescription: [],
+      data: {}
     }
   },
   methods: {
     isFavourite (id) {
-      if (this.$auth.state.user) {
-        return !!this.$auth.state.user.favourites.find(e => e._id === id)
+      if (this.$auth.$state.user) {
+        return !!this.$auth.$state.user.favourites.find(e => e._id === id)
       } else {
         return false
       }
@@ -87,6 +89,12 @@ export default {
         await this.$axios.put(`/user/profile/favourites/${id}`)
         await this.$auth.fetchUser()
       }
+    },
+    async getCenter (id) {
+      this.data = await this.$axios.get(`/center/${id}`)
+      const load = [this.data.data]
+      this.$store.commit('addCenters', load)
+      this.$router.push({ path: '/center/', query: { id }, component: 'CenterPage' })
     }
   }
 }

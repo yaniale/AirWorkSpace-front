@@ -16,7 +16,8 @@ export default {
   data () {
     return {
       query: '',
-      data: ''
+      data: '',
+      isFirstLoad: true
     }
   },
   methods: {
