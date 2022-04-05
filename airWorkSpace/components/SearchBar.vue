@@ -2,10 +2,12 @@
   <v-form>
     <v-text-field
       v-model="query"
-      label="search"
+      class="white text-align-center"
+      placeholder="Search"
+      type="text"
       rounded
-      dense
-      filled
+      light
+      hide-details
       @keydown.enter.prevent="searchCenter"
     />
   </v-form>
@@ -30,5 +32,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+.centered-input input {
+  text-align: center
+}
 </style>

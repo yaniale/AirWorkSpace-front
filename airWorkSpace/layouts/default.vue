@@ -44,19 +44,25 @@
       fixed
       app
     >
-      <v-btn @click="clearState">
+      <v-btn v-if="$store.state.userView" @click="clearState">
         <span>Search</span>
 
         <v-icon>mdi-magnify</v-icon>
       </v-btn>
 
-      <v-btn to="/profile/bookings">
+      <v-btn v-else @click="clearState">
+        <span>Home</span>
+
+        <v-icon>mdi-home-outline</v-icon>
+      </v-btn>
+
+      <v-btn v-if="$store.state.userView" to="/profile/bookings">
         <span>Bookings</span>
 
         <v-icon>mdi-book-marker-outline</v-icon>
       </v-btn>
 
-      <v-btn to="/profile/favourites">
+      <v-btn v-if="$store.state.userView" to="/profile/favourites">
         <span>Favorites</span>
 
         <v-icon>mdi-heart-outline</v-icon>
@@ -113,7 +119,7 @@ export default {
       miniVariant: false,
       right: true,
       rightDrawer: false,
-      title: 'Vuetify.js'
+      title: 'AirWorkSpace'
     }
   },
   methods: {
