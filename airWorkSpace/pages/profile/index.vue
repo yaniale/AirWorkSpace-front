@@ -10,6 +10,9 @@
             Hello, i'm {{ $auth.$state.user.firstName }}
           </span>
         </v-card-title>
+        <v-card-subtitle>
+          {{ $auth.$state.user.role }}
+        </v-card-subtitle>
         <v-card-text>
           <div class="mx-2">
             User since {{ $store.state.monthShortName[new Date($auth.$state.user.created).getMonth()] }}
@@ -18,7 +21,7 @@
           </div>
           <div v-if="$auth.$state.user.role !== 'host'" class="my-2">
             <span>Become a host today and start earning!</span>
-            <v-btn>
+            <v-btn @click="promoteHost">
               <v-icon>mdi-arrow-up-thick</v-icon>
               Upgrade
             </v-btn>
@@ -53,6 +56,11 @@ export default {
   methods: {
     async logout () {
       await this.$auth.logout()
+      this.$store.commit('checkHost', 'user')
+    },
+    async promoteHost () {
+      await this.$axios.put('/user/profile', { role: 'host' })
+      await this.$auth.fetchUser()
     }
   }
 }

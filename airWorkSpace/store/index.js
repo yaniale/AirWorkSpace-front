@@ -11,7 +11,8 @@ export const state = () => ({
     totalRate: '',
     totalDiscount: '',
     totalTax: ''
-  }
+  },
+  userView: true
 })
 
 export const mutations = {
@@ -27,6 +28,13 @@ export const mutations = {
   },
   clearState (state) {
     state.centers = []
+  },
+  checkHost (state, userView) {
+    if (userView === 'host') {
+      state.userView = false
+    } else {
+      state.userView = true
+    }
   }
 }
 

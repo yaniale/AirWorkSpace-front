@@ -68,6 +68,7 @@ export default {
     async login () {
       try {
         const { data } = await this.$auth.loginWith('local', { data: { email: this.email, password: this.password } })
+        this.$store.commit('checkHost', this.$auth.$state.user.role)
         return data
       } catch (error) {
         if (error.response) {
