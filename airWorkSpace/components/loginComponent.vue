@@ -37,6 +37,13 @@
         Login
       </v-btn>
     </v-card-actions>
+    <v-spacer />
+    <v-input class="mx-2">
+      Not a member?
+      <v-btn depressed color="transparent" to="/auth/signup" class="text-capitalize">
+        Register now!
+      </v-btn>
+    </v-input>
     <v-card />
   </v-card>
 </template>
