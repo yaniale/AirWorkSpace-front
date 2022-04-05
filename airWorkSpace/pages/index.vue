@@ -1,5 +1,5 @@
 <template>
-  <v-row v-if="pageModel === 'user'" justify="center" align="center">
+  <v-row v-if="$store.state.userView" justify="center" align="center">
     <v-col class="grey" cols="12" sm="8" md="6">
       <v-card v-if="$store.state.centers.length === 0" elevation="0">
         <v-overlay class="indexPage" style="z-index:0">

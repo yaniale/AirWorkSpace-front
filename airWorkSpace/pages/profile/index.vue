@@ -10,21 +10,21 @@
             Hello, i'm {{ $auth.$state.user.firstName }}
           </span>
         </v-card-title>
-        <v-card-subtitle>
-          {{ $auth.$state.user.role }}
-        </v-card-subtitle>
         <v-card-text>
           <div class="mx-2">
             User since {{ $store.state.monthShortName[new Date($auth.$state.user.created).getMonth()] }}
             {{ new Date($auth.$state.user.created).getFullYear() }}
-            <v-divider />
           </div>
-          <div v-if="$auth.$state.user.role !== 'host'" class="my-2">
+          <v-divider />
+          <div v-if="$auth.$state.user.role === 'user'" class="my-2">
             <span>Become a host today and start earning!</span>
             <v-btn @click="promoteHost">
               <v-icon>mdi-arrow-up-thick</v-icon>
               Upgrade
             </v-btn>
+          </div>
+          <div v-if="$auth.$state.user.role==='host'" class="my-2">
+            <span>Switch to <a @click="switchView">{{ currentView }}</a> view</v-btndepressed></span>
           </div>
           <v-divider />
           <div class="my-10">
@@ -53,6 +53,11 @@
 <script>
 export default {
   name: 'ProfilePage',
+  data () {
+    return {
+      currentView: this.$store.state.userView ? 'host' : 'user'
+    }
+  },
   methods: {
     async logout () {
       await this.$auth.logout()
@@ -61,6 +66,10 @@ export default {
     async promoteHost () {
       await this.$axios.put('/user/profile', { role: 'host' })
       await this.$auth.fetchUser()
+    },
+    switchView () {
+      this.$store.commit('checkHost', this.currentView)
+      this.currentView = this.currentView === 'user' ? 'host' : 'user'
     }
   }
 }
