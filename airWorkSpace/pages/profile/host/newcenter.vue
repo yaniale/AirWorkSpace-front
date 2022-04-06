@@ -57,7 +57,7 @@ export default {
     return {
       center: {
         name: '', // req
-        type: 'Coworking', // req
+        type: '', // req
         description: '', // req,
         photos: '',
         address1: '', // req
