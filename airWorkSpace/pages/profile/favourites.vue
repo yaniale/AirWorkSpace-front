@@ -26,7 +26,7 @@
 
         <v-card-actions>
           <v-btn
-            color="orange lighten-2"
+            color="red lighten-2"
             text
           >
             <v-icon @click.prevent="addFavourite(center._id)">

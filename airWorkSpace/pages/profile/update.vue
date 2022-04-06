@@ -1,10 +1,10 @@
 <template>
-  <v-card>
+  <v-card elevation="0">
     <v-card-title>Update profile</v-card-title>
     <v-card-text>
       <v-form>
         <v-divider class="my-2" />
-        <v-card>
+        <v-card class="my-5" elevation="3">
           <v-card-title class="px-2">
             Basic Info
           </v-card-title>
@@ -13,8 +13,7 @@
             <v-text-field v-model="user.firstName" class="mx-2" label="First Name" />
             <v-text-field v-model="user.lastName" class="mx-2" label="Last Name" />
           </v-card-text>
-        </v-card>
-        <v-card class="my-2">
+
           <v-card-title class="px-2">
             Address
           </v-card-title>
@@ -26,13 +25,14 @@
             <v-text-field v-model="user.country" label="Country" />
           </v-card-text>
           <span v-if="messageHandling.updated[0]" class="green--text mx-5">{{ messageHandling.updated[1] }}</span>
+          <v-card-actions>
+            <v-spacer />
+            <v-btn @click="updateProfile">
+              Update Profile
+            </v-btn>
+          </v-card-actions>
         </v-card>
-        <v-card-actions>
-          <v-btn @click="updateProfile">
-            Update Profile
-          </v-btn>
-        </v-card-actions>
-        <v-card>
+        <v-card v-card class="my-5" elevation="3">
           <v-card-title>
             Login Details
           </v-card-title>

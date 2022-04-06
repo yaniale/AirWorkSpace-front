@@ -2,12 +2,14 @@
   <v-form>
     <v-text-field
       v-model="query"
-      class="white text-align-center"
       placeholder="Search"
-      type="text"
+      type="search"
+      :style="$vuetify.breakpoint.mdAndUp ? 'width:800px' : 'width:330px'"
       rounded
-      light
+      filled
+      dense
       hide-details
+      append-icon="mdi-magnify"
       @keydown.enter.prevent="searchCenter"
     />
   </v-form>
