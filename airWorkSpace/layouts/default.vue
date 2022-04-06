@@ -83,7 +83,7 @@
       </v-btn>
 
       <v-btn v-else @click="clearState">
-        <span>Home</span>
+        <span class="teal--text">Home</span>
 
         <v-icon color="teal lighten-2">
           mdi-home-outline
@@ -99,9 +99,11 @@
       </v-btn>
 
       <v-btn v-else to="/profile/host/center">
-        <span>My Centers</span>
+        <span class="teal--text">My Centers</span>
 
-        <v-icon>mdi-office-building-outline</v-icon>
+        <v-icon color="teal lighten-2">
+          mdi-office-building-outline
+        </v-icon>
       </v-btn>
 
       <v-btn v-if="$store.state.userView" to="/profile/favourites">
@@ -112,10 +114,12 @@
         </v-icon>
       </v-btn>
 
-      <v-btn v-else to="/profile/host/center">
-        <span>Notifications</span>
+      <v-btn v-else>
+        <span class="teal--text">Notifications</span>
 
-        <v-icon>mdi-bell-outline</v-icon>
+        <v-icon color="teal lighten-2">
+          mdi-bell-outline
+        </v-icon>
       </v-btn>
 
       <v-btn
