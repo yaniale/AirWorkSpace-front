@@ -12,7 +12,8 @@ export const state = () => ({
     totalDiscount: '',
     totalTax: ''
   },
-  userView: true
+  userView: true,
+  googleapikey: 'AIzaSyCiLXGaYak900xP8DJXqsslSxLBFRD_hb0'
 })
 
 export const mutations = {

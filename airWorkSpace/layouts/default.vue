@@ -1,37 +1,21 @@
 <template>
   <v-app>
     <v-app-bar
-      v-if="$vuetify.breakpoint.mdAndUp"
-      :clipped-left="clipped"
       fixed
       app
     >
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
+      <v-toolbar-title v-if="$vuetify.breakpoint.mdAndUp" v-text="title" />
+      <v-spacer v-if="$vuetify.breakpoint.mdAndUp" />
+      <SearchBar />
+      <v-spacer v-if="$vuetify.breakpoint.mdAndUp" />
       <v-btn
-        icon
-        @click.stop="miniVariant = !miniVariant"
-      >
-        <v-icon>mdi-{{ `chevron-${miniVariant ? 'right' : 'left'}` }}</v-icon>
-      </v-btn>
-      <v-btn
-        icon
-        @click.stop="clipped = !clipped"
-      >
-        <v-icon>mdi-application</v-icon>
-      </v-btn>
-      <v-btn
-        icon
-        @click.stop="fixed = !fixed"
-      >
-        <v-icon>mdi-minus</v-icon>
-      </v-btn>
-      <v-toolbar-title v-text="title" />
-      <v-spacer />
-      <v-btn
+        v-if="$vuetify.breakpoint.mdAndUp"
         icon
         @click.stop="rightDrawer = !rightDrawer"
       >
-        <v-icon>mdi-menu</v-icon>
+        <v-icon v-if="$vuetify.breakpoint.mdAndUp">
+          mdi-menu
+        </v-icon>
       </v-btn>
     </v-app-bar>
     <v-main>
