@@ -1,9 +1,9 @@
 <template>
-  <v-row v-if="$store.state.userView" justify="center" align="center">
-    <v-col class="grey" cols="12" sm="8" md="6">
+  <v-row v-if="$store.state.userView" justify="start" align="center" no-gutters>
+    <v-col v-if="$store.state.centers.length===0" cols="12" sm="8" md="6">
       <v-card v-if="$store.state.centers.length === 0" elevation="0">
         <v-overlay class="indexPage" style="z-index:0">
-          <v-card class="transparent" elevation="0">
+          <v-card v-if="!$vuetify.breakpoint.mdAndUp" class="transparent" elevation="0">
             <v-card-title>
               Where do you wana...
             </v-card-title>
@@ -13,10 +13,9 @@
           </v-card>
         </v-overlay>
       </v-card>
-      <v-card v-else elevation="0" class="grey">
-        <SearchResult />
-      </v-card>
-      <v-card />
+    </v-col>
+    <v-col v-else cols="12" sm="6" md="6">
+      <SearchResult />
     </v-col>
   </v-row>
   <v-row v-else>
@@ -66,6 +65,7 @@ export default {
 <style lang="scss" scoped>
   .indexPage {
     z-index:0;
-    background-image:url('https://334045-1026637-1-raikfcquaxqncofqfm.stackpathdns.com/wp-content/uploads/2020/11/Grand_Opening_TAGVienna293-1024x683.jpg')
+    background-image:url('https://334045-1026637-1-raikfcquaxqncofqfm.stackpathdns.com/wp-content/uploads/2020/11/Grand_Opening_TAGVienna293-1024x683.jpg');
+    background-size:cover;
   }
 </style>

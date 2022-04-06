@@ -1,6 +1,6 @@
 <template>
-  <v-row justify="center" align="center">
-    <v-col cols="12" sm="8" md="6">
+  <v-row>
+    <v-col v-if="!$vuetify.breakpoint.mdAndUp" cols="12" sm="6" md="6">
       <v-card
         v-for="(center, idx) in $store.state.centers"
         :key="idx"
@@ -23,7 +23,7 @@
 
         <v-card-actions>
           <v-btn
-            color="orange lighten-2"
+            color="red lighten-2"
             text
           >
             <v-icon @click.prevent="addFavourite(center._id)">
@@ -52,6 +52,51 @@
             </v-card-text>
           </div>
         </v-expand-transition>
+      </v-card>
+    </v-col>
+    <v-col v-else cols="12" sm="12" md="12">
+      <v-card
+        v-for="(center, idx) in $store.state.centers"
+        :key="idx"
+        elevation="0"
+        class="mx-auto my-2"
+        width="100%"
+      >
+        <v-list-item>
+          <v-list-item-avatar tile size="300" color="grey">
+            <v-img
+              :src="center.photos[0]"
+              cover
+              @click="$router.push({ path:`/center/`, query:{id: center._id}, component:'CenterPage'})"
+            />
+          </v-list-item-avatar>
+          <v-list-item-content style="height:300px">
+            <v-list-item-title class="headline" @click="$router.push({ path:`/center/`, query:{id: center._id}, component:'CenterPage'})">
+              {{ center.name }}
+            </v-list-item-title>
+            <v-list-item-title class="title">
+              {{ center.type }}
+            </v-list-item-title>
+            <v-list-item-subtitle class="subtitle text-wrap">
+              {{ center.address1 }} {{ center.address2 ? ` - ${center.address2} - ` : '' }} , {{ center.postalCode }} {{ center.city }} , {{ center.country }}
+            </v-list-item-subtitle>
+            <div>
+              {{ center.description }}
+            </div>
+            <v-list-item-action>
+              <v-spacer />
+              <v-btn
+                color="red lighten-2"
+                text
+              >
+                <v-icon @click.prevent="addFavourite(center._id)">
+                  {{ isFavourite(center._id) ? 'mdi-heart' : 'mdi-heart-outline' }}
+                </v-icon>
+              </v-btn>
+            </v-list-item-action>
+          </v-list-item-content>
+        </v-list-item>
+        <v-divider />
       </v-card>
     </v-col>
   </v-row>
