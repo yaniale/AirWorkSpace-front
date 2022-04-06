@@ -12,12 +12,22 @@
       <SearchBar v-if="$route.name === 'index'" class="my-auto" />
       <v-spacer />
       <v-btn
-        icon
+        color="transparent"
+        depressed
+        rounded
+        class="mr-5"
         @click.stop="rightDrawer = !rightDrawer"
       >
-        <v-icon>
-          mdi-menu
-        </v-icon>
+        <v-list-item>
+          <v-list-item-content>
+            <v-icon>
+              mdi-menu
+            </v-icon>
+          </v-list-item-content>
+          <v-list-item-avatar>
+            <img :src="$auth.$state.user.avatar" alt="">
+          </v-list-item-avatar>
+        </v-list-item>
       </v-btn>
     </v-app-bar>
     <v-app-bar
