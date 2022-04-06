@@ -7,7 +7,7 @@
       fixed
       dark
     >
-      <v-toolbar-title class="my-auto" v-text="title" />
+      <v-toolbar-title class="my-auto" @click="clearState" v-text="title" />
       <v-spacer />
       <SearchBar v-if="$route.name === 'index'" class="my-auto" />
       <v-spacer />
@@ -39,7 +39,7 @@
       <SearchBar class="my-auto" />
     </v-app-bar>
     <v-main>
-      <v-container>
+      <v-container fluid>
         <Nuxt />
       </v-container>
     </v-main>

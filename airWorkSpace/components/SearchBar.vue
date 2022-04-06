@@ -7,6 +7,7 @@
       :style="$vuetify.breakpoint.mdAndUp ? 'width:800px' : 'width:330px'"
       rounded
       filled
+      dark
       dense
       hide-details
       append-icon="mdi-magnify"
