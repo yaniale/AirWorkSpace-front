@@ -7,7 +7,6 @@
             <v-card-title>
               Where do you wana...
             </v-card-title>
-            <SearchBar />
             <v-card-title class="justify-end">
               ...work today?
             </v-card-title>
@@ -15,7 +14,6 @@
         </v-overlay>
       </v-card>
       <v-card v-else elevation="0" class="grey">
-        <SearchBar />
         <SearchResult />
       </v-card>
       <v-card />
