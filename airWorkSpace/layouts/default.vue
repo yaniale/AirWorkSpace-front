@@ -56,7 +56,7 @@
     <v-card-text v-if="$store.state.userView=== false" style="height: 100px; position: relative">
       <v-fab-transition>
         <v-btn
-          to="/profile/host/newcenter"
+          to="/host/center/newcenter"
           color="teal lighten-2"
           dark
           absolute
@@ -98,7 +98,7 @@
         </v-icon>
       </v-btn>
 
-      <v-btn v-else to="/profile/host/center">
+      <v-btn v-else to="/host/center">
         <span class="teal--text">My Centers</span>
 
         <v-icon color="teal lighten-2">
@@ -114,7 +114,7 @@
         </v-icon>
       </v-btn>
 
-      <v-btn v-else>
+      <v-btn v-else to="/host/messages">
         <span class="teal--text">Notifications</span>
 
         <v-icon color="teal lighten-2">
