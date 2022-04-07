@@ -53,6 +53,21 @@
         <Nuxt />
       </v-container>
     </v-main>
+    <v-card-text v-if="$store.state.userView=== false" style="height: 100px; position: relative">
+      <v-fab-transition>
+        <v-btn
+          to="/profile/host/newcenter"
+          color="teal lighten-2"
+          dark
+          absolute
+          top
+          right
+          fab
+        >
+          <v-icon>mdi-plus</v-icon>
+        </v-btn>
+      </v-fab-transition>
+    </v-card-text>
     <v-bottom-navigation
       v-if="$vuetify.breakpoint.xs"
       color=""
@@ -68,7 +83,7 @@
       </v-btn>
 
       <v-btn v-else @click="clearState">
-        <span>Home</span>
+        <span class="teal--text">Home</span>
 
         <v-icon color="teal lighten-2">
           mdi-home-outline
@@ -83,11 +98,27 @@
         </v-icon>
       </v-btn>
 
+      <v-btn v-else to="/profile/host/center">
+        <span class="teal--text">My Centers</span>
+
+        <v-icon color="teal lighten-2">
+          mdi-office-building-outline
+        </v-icon>
+      </v-btn>
+
       <v-btn v-if="$store.state.userView" to="/profile/favourites">
         <span class="teal--text">Favorites</span>
 
         <v-icon color="teal lighten-2">
           mdi-heart-outline
+        </v-icon>
+      </v-btn>
+
+      <v-btn v-else>
+        <span class="teal--text">Notifications</span>
+
+        <v-icon color="teal lighten-2">
+          mdi-bell-outline
         </v-icon>
       </v-btn>
 
