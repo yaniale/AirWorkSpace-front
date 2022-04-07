@@ -11,24 +11,102 @@
       <v-spacer />
       <SearchBar v-if="$route.name === 'index'" class="my-auto" />
       <v-spacer />
-      <v-btn
-        color="transparent"
-        depressed
-        rounded
-        class="mr-5"
-        @click.stop="rightDrawer = !rightDrawer"
+      <v-menu
+        rounded="b-xl"
+        offset-y
       >
-        <v-list-item>
-          <v-list-item-content>
-            <v-icon>
-              mdi-menu
-            </v-icon>
-          </v-list-item-content>
-          <v-list-item-avatar>
-            <img :src="$auth.$state.user.avatar" alt="">
-          </v-list-item-avatar>
-        </v-list-item>
-      </v-btn>
+        <template #activator="{ attrs, on }">
+          <v-btn
+            color="transparent"
+            rounded
+            class="mr-5"
+            v-bind="attrs"
+            v-on="on"
+          >
+            <v-list-item>
+              <v-list-item-content>
+                <v-icon>
+                  mdi-menu
+                </v-icon>
+              </v-list-item-content>
+              <v-list-item-avatar v-if="$auth.$state.user">
+                <img :src="$auth.$state.user.avatar" alt="">
+              </v-list-item-avatar>
+            </v-list-item>
+          </v-btn>
+        </template>
+
+        <v-card
+          width="270"
+        >
+          <v-list v-if="$auth.$state.user" nav>
+            <v-list-item>
+              <v-list-item-avatar tile>
+                <v-img :src="$auth.$state.user.avatar" />
+              </v-list-item-avatar>
+              <v-list-item>
+                <v-list-item-content>
+                  <v-list-item-title class="text-h6">
+                    {{ $auth.$state.user.firstName }} {{ $auth.$state.user.lastName }}
+                  </v-list-item-title>
+                  <v-list-item-subtitle>{{ $auth.$state.user.email }}</v-list-item-subtitle>
+                </v-list-item-content>
+              </v-list-item>
+            </v-list-item>
+          </v-list>
+          <v-divider />
+          <v-list>
+            <v-card v-if="!$auth.$state.user" elevation="0">
+              <v-list>
+                <v-list-item v-for="[prop, route] in menus.notLogged" :key="prop" :to="route">
+                  {{ prop }}
+                </v-list-item>
+              </v-list>
+            </v-card>
+            <v-card v-if="$auth.$state.user" elevation="0">
+              <v-list v-if="$auth.$state.user.host==='user'">
+                <v-card-subtitle>User options</v-card-subtitle>
+                <v-list-item v-for="[prop, route] in menus.user" :key="prop" :to="route">
+                  {{ prop }}
+                </v-list-item>
+              </v-list>
+              <v-list v-else>
+                <v-card-subtitle dark class="teal lighten-2">
+                  <v-col>
+                    <v-row>
+                      <strong>
+                        User Options <v-icon>mdi-chevron-right</v-icon>
+                      </strong>
+                    </v-row>
+                  </v-col>
+                </v-card-subtitle>
+                <v-list-item v-for="[prop, route] in menus.user" :key="prop" :to="route">
+                  {{ prop }}
+                </v-list-item>
+                <v-divider />
+                <v-card-subtitle dark class="teal lighten-2">
+                  <v-col>
+                    <v-row>
+                      <strong>
+                        Host Options <v-icon>mdi-chevron-right</v-icon>
+                      </strong>
+                    </v-row>
+                  </v-col>
+                </v-card-subtitle>
+                <v-list-item v-for="[prop, route] in menus.host" :key="prop" :to="route">
+                  {{ prop }}
+                </v-list-item>
+              </v-list>
+              <v-list v-if="$auth.$state.user">
+                <v-list-item @click="$auth.logout()">
+                  LogOut
+                </v-list-item>
+              </v-list>
+            </v-card>
+          </v-list>
+        </v-card>
+      </v-menu>
+      </v-row>
     </v-app-bar>
     <v-app-bar
       v-if="!$vuetify.breakpoint.mdAndUp && $route.name=== 'index'"
@@ -51,23 +129,23 @@
     <v-main>
       <v-container fluid>
         <Nuxt />
+        <v-card-text v-if="$store.state.userView=== false" style="height: 100px; position: relative">
+          <v-fab-transition>
+            <v-btn
+              to="/host/center/newcenter"
+              color="teal lighten-2"
+              dark
+              absolute
+              top
+              right
+              fab
+            >
+              <v-icon>mdi-plus</v-icon>
+            </v-btn>
+          </v-fab-transition>
+        </v-card-text>
       </v-container>
     </v-main>
-    <v-card-text v-if="$store.state.userView=== false" style="height: 100px; position: relative">
-      <v-fab-transition>
-        <v-btn
-          to="/host/center/newcenter"
-          color="teal lighten-2"
-          dark
-          absolute
-          top
-          right
-          fab
-        >
-          <v-icon>mdi-plus</v-icon>
-        </v-btn>
-      </v-fab-transition>
-    </v-card-text>
     <v-bottom-navigation
       v-if="$vuetify.breakpoint.xs"
       color=""
@@ -146,7 +224,7 @@
     </v-bottom-navigation>
     <v-footer
       v-if="$vuetify.breakpoint.lg"
-      :absolute="!fixed"
+      :absolute="true"
       app
     >
       <span>&copy; {{ new Date().getFullYear() }}</span>
@@ -159,9 +237,20 @@ export default {
   name: 'DefaultLayout',
   data () {
     return {
-      clipped: false,
-      drawer: false,
-      fixed: false,
+      menus: {
+        notLogged: [
+          ['SignUp/Login', '/auth']
+        ],
+        user: [
+          ['Profile', '/profile'],
+          ['Favourites', '/profile/favourites'],
+          ['Bookings', '/profile/bookings']
+        ],
+        host: [
+          ['My Centers', '/host/center'],
+          ['Notifications', '/host/messages']
+        ]
+      },
       items: [
         {
           icon: 'mdi-apps',
@@ -174,9 +263,6 @@ export default {
           to: '/inspire'
         }
       ],
-      miniVariant: false,
-      right: true,
-      rightDrawer: false,
       title: 'AirWorkSpace'
     }
   },
@@ -188,3 +274,6 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+</style>
