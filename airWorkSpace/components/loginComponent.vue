@@ -6,7 +6,7 @@
         <v-input>
           <v-text-field
             v-model="email"
-            color="purple darken-2"
+            color="teal lighten-2"
             label="Email"
             type="email"
             prepend-icon="mdi-email"
@@ -18,7 +18,7 @@
           <v-text-field
             v-model="password"
             :type="passVisible ? 'text' : 'password'"
-            color="purple darken-2"
+            color="teal lighten-2"
             label="Password"
             prepend-icon="mdi-lock-outline"
             required

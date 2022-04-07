@@ -10,9 +10,9 @@
         <v-card class="my-2">
           <v-card-title>Basic Info</v-card-title>
           <v-card-text>
-            <v-text-field v-model="center.name" label="Center Name" :rules="rules().checkName()" />
-            <v-select label="Center Type" dense />
-            <v-text-field v-model="center.workingHours" label="Working Hours" hint="pe.: M-F from 8h to 20h" />
+            <v-text-field v-model="center.name" color="teal lighten-2" label="Center Name" :rules="rules().checkName()" />
+            <v-select v-model="center.type" color="teal lighten-2" label="Center Type" dense :items="centerType" />
+            <v-text-field v-model="center.workingHours" color="teal lighten-2" label="Working Hours" hint="pe.: M-F from 8h to 20h" />
 
             <v-textarea
 
@@ -22,18 +22,18 @@
 
           <v-card-title>Location</v-card-title>
           <v-card-text>
-            <v-text-field v-model="center.address1" label="Address 1" :rules="rules().checkAddress()" />
-            <v-text-field v-model="center.address2" label="Address 2" />
-            <v-text-field v-model="center.postalCode" label="Postal Code" :rules="rules().checkPostalCode()" />
-            <v-text-field v-model="center.city" label="City" :rules="rules().checkCity()" />
-            <v-text-field v-model="center.country" label="Country" :rules="rules().checkCountry()" />
+            <v-text-field v-model="center.address1" color="teal lighten-2" label="Address 1" :rules="rules().checkAddress()" />
+            <v-text-field v-model="center.address2" color="teal lighten-2" label="Address 2" />
+            <v-text-field v-model="center.postalCode" color="teal lighten-2" label="Postal Code" :rules="rules().checkPostalCode()" />
+            <v-text-field v-model="center.city" color="teal lighten-2" label="City" :rules="rules().checkCity()" />
+            <v-text-field v-model="center.country" color="teal lighten-2" label="Country" :rules="rules().checkCountry()" />
           </v-card-text>
 
           <v-card-title>Contact details</v-card-title>
           <v-card-text>
-            <v-text-field v-model="center.phone" label="Phone" :rules="rules().checkPhone()" />
-            <v-text-field v-model="center.mobile" label="Mobile" />
-            <v-text-field v-model="center.email" label="Email" type="email" :rules="rules().checkEmail()" />
+            <v-text-field v-model="center.phone" color="teal lighten-2" label="Phone" :rules="rules().checkPhone()" />
+            <v-text-field v-model="center.mobile" color="teal lighten-2" label="Mobile" />
+            <v-text-field v-model="center.email" color="teal lighten-2" label="Email" type="email" :rules="rules().checkEmail()" />
           </v-card-text>
           <v-card-actions>
             <v-card-text v-if="errorHandling.compulsoryFields[0]" class="red--text">
@@ -70,6 +70,7 @@ export default {
         mobile: '',
         email: ''// req
       },
+      centerType: ['Coworking', 'Oficina compartida', 'Centro de negocios', 'Centro de negocios con coworking'],
       errorHandling: {
         compulsoryFields: [false, 'Please, fill in all compulsory fields.']
       }

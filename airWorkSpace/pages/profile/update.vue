@@ -9,20 +9,20 @@
             Basic Info
           </v-card-title>
           <v-card-text>
-            <v-text-field v-model="user.avatar" class="mx-2" label="Profile Picture URL" />
-            <v-text-field v-model="user.firstName" class="mx-2" label="First Name" />
-            <v-text-field v-model="user.lastName" class="mx-2" label="Last Name" />
+            <v-text-field v-model="user.avatar" color="teal lighten-2" class="mx-2" label="Profile Picture URL" />
+            <v-text-field v-model="user.firstName" color="teal lighten-2" class="mx-2" label="First Name" />
+            <v-text-field v-model="user.lastName" color="teal lighten-2" class="mx-2" label="Last Name" />
           </v-card-text>
 
           <v-card-title class="px-2">
             Address
           </v-card-title>
           <v-card-text>
-            <v-text-field v-model="user.address" label="Address" />
-            <v-text-field v-model="user.postalCode" label="Postal Code" />
-            <v-text-field v-model="user.city" label="City" />
-            <v-text-field v-model="user.state" label="State/Province" />
-            <v-text-field v-model="user.country" label="Country" />
+            <v-text-field v-model="user.address" color="teal lighten-2" label="Address" />
+            <v-text-field v-model="user.postalCode" color="teal lighten-2" label="Postal Code" />
+            <v-text-field v-model="user.city" color="teal lighten-2" label="City" />
+            <v-text-field v-model="user.state" color="teal lighten-2" label="State/Province" />
+            <v-text-field v-model="user.country" color="teal lighten-2" label="Country" />
           </v-card-text>
           <span v-if="messageHandling.updated[0]" class="green--text mx-5">{{ messageHandling.updated[1] }}</span>
           <v-card-actions>
@@ -37,10 +37,10 @@
             Login Details
           </v-card-title>
           <v-card-text>
-            <v-text-field v-model="user.email" label="Email" :rules="rules().emailValidator()" />
-            <v-text-field v-model="user.confirmEmail" label="Confirm Email" :rules="rules().emailValidator()" />
-            <v-text-field v-model="user.password" label="Password" type="password" :rules="rules().passwordValidator()" />
-            <v-text-field v-model="user.confirmPassword" label="Confirm Password" type="password" :rules="rules().passwordValidator()" />
+            <v-text-field v-model="user.email" color="teal lighten-2" label="Email" :rules="rules().emailValidator()" />
+            <v-text-field v-model="user.confirmEmail" color="teal lighten-2" label="Confirm Email" :rules="rules().emailValidator()" />
+            <v-text-field v-model="user.password" color="teal lighten-2" label="Password" type="password" :rules="rules().passwordValidator()" />
+            <v-text-field v-model="user.confirmPassword" color="teal lighten-2" label="Confirm Password" type="password" :rules="rules().passwordValidator()" />
             <span v-if="errorHandling.noUpdateProfile[0]" class="red--text">{{ errorHandling.noUpdateProfile[1] }}</span>
           </v-card-text>
           <v-card-actions>
