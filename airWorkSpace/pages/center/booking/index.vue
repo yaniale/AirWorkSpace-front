@@ -3,20 +3,21 @@
     <v-col cols="12" sm="8" md="6">
       <v-card class="my-2">
         <v-card-title class="justify-center">
-          Completa tu reserva
+          Complete your booking
         </v-card-title>
         <v-card-text>
-          <v-text-field outilned disabled label="Centro: " :value="center.name" />
-          <v-text-field outilned disabled label="Tipo: " :value="setType()" />
-          <v-text-field outilned disabled label="Tarifa: " :value="ratePlan.name" />
+          <v-text-field outilned disabled label="Center: " :value="center.name" />
+          <v-text-field outilned disabled label="Type: " :value="setType()" />
+          <v-text-field outilned disabled label="Rate: " :value="ratePlan.name" />
         </v-card-text>
       </v-card>
       <v-card class="my-2">
         <v-card-title>
-          Elige tus fechas
+          Select the dates
         </v-card-title>
         <v-card-text>
           <v-dialog
+
             ref="from"
             v-model="from"
             :return-value.sync="dateFrom"
@@ -97,7 +98,7 @@
       </v-card>
       <v-card class="my-2">
         <v-card-title>
-          ¿Cuántas necesitas?
+          How many do you need?
         </v-card-title>
         <v-card-text>
           <v-select
@@ -113,7 +114,7 @@
         <v-card-actions>
           <v-spacer />
           <v-btn @click="setBooking">
-            Siguiente
+            Continue
           </v-btn>
         </v-card-actions>
       </v-card>
