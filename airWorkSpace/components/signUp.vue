@@ -1,5 +1,5 @@
 <template>
-  <v-row v-if="$vuetify.breakpoint.mdAndUpy">
+  <v-row v-if="$vuetify.breakpoint.mdAndUp">
     <v-dialog
       v-model="dialog"
       persistent
