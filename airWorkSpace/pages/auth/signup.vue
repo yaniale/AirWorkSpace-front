@@ -1,44 +1,40 @@
 <template>
   <v-row>
-    <v-col>
+    <v-col v-if="$vuetify.breakpoint.smAndDown">
       <v-card flat>
         <v-card-title class="justify-center">
           Become an AirWorker!
         </v-card-title>
       </v-card>
       <v-form>
-        <v-card class="my-2" elevation="5">
+        <v-card class="my-2 mx-auto" width="90%">
           <v-card-title>Basic Info</v-card-title>
           <v-card-text>
-            <v-text-field v-model="user.firstName" color="teal lighten-2" class="mx-2" label="First Name" :rules="rules().compFirstName()" />
-            <v-text-field v-model="user.lastName" color="teal lighten-2" class="mx-2" label="Last Name" :rules="rules().compLastName()" />
-            <v-text-field v-model="user.phone" color="teal lighten-2" class="mx-2" label="Phone" :rules="rules().compPhone()" />
+            <v-text-field v-model="user.firstName" class="mx-2" label="First Name*" :rules="rules().compFirstName()" />
+            <v-text-field v-model="user.lastName" class="mx-2" label="Last Name*" :rules="rules().compLastName()" />
+            <v-text-field v-model="user.phone" class="mx-2" label="Phone*" :rules="rules().compPhone()" />
           </v-card-text>
-        </v-card>
-        <v-card class="my-2" elevation="5">
+
           <v-card-title>
             Address
           </v-card-title>
           <v-card-text>
-            <v-text-field v-model="user.address" color="teal lighten-2" label="Address" />
-            <v-text-field v-model="user.postalCode" color="teal lighten-2" label="Postal Code" />
-            <v-text-field v-model="user.city" color="teal lighten-2" label="City" />
-            <v-text-field v-model="user.state" color="teal lighten-2" label="State/Province" />
-            <v-text-field v-model="user.country" color="teal lighten-2" label="Country" />
+            <v-text-field v-model="user.address" label="Address" />
+            <v-text-field v-model="user.postalCode" label="Postal Code" />
+            <v-text-field v-model="user.city" label="City" />
+            <v-text-field v-model="user.state" label="State/Province" />
+            <v-text-field v-model="user.country" label="Country" />
           </v-card-text>
-        </v-card>
-        <v-card class="my-2" elevation="5">
+
           <v-card-title>Login details</v-card-title>
           <v-card-text>
-            <v-text-field v-model="user.email" color="teal lighten-2" type="email" label="Email" :rules="rules().emailValidator()" />
-            <v-text-field v-model="user.confirmEmail" color="teal lighten-2" type="email" label="Confirm email" :rules="rules().emailValidator()" />
-            <v-text-field v-model="user.password" color="teal lighten-2" type="password" label="Password" :rules="rules().passwordValidator()" />
-            <v-text-field v-model="user.confirmPassword" color="teal lighten-2" type="password" label="Confirm password" :rules="rules().passwordValidator()" />
+            <v-text-field v-model="user.email" type="email" label="Email*" :rules="rules().emailValidator()" />
+            <v-text-field v-model="user.confirmEmail" type="email" label="Confirm email*" :rules="rules().emailValidator()" />
+            <v-text-field v-model="user.password" type="password" label="Password*" :rules="rules().passwordValidator()" />
+            <v-text-field v-model="user.confirmPassword" type="password" label="Confirm password*" :rules="rules().passwordValidator()" />
           </v-card-text>
-        </v-card>
-        <v-card flat>
           <v-card-actions>
-            <v-card-text v-if="errorHandling.compulsoryFields[0]" class="red--text">
+            <v-card-text v-if="errorHandling.compulsoryFields[0]" class="red--text py-0 my-0 caption">
               {{ errorHandling.compulsoryFields[1] }}
             </v-card-text>
             <v-spacer />

@@ -40,16 +40,22 @@
     <v-spacer />
     <v-input class="mx-2">
       Not a member?
-      <v-btn depressed color="transparent" to="/auth/signup" class="text-capitalize">
+      <v-btn v-if="$vuetify.breakpoint.smAndDown" depressed color="transparent" to="/auth/signup" class="text-capitalize">
         Register now!
       </v-btn>
+      <sign-up />
     </v-input>
     <v-card />
   </v-card>
 </template>
 
 <script>
+import signUp from '@/components/signUp.vue'
+
 export default {
+  components: {
+    signUp
+  },
   data () {
     return {
       email: '',

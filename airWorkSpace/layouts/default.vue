@@ -2,7 +2,7 @@
   <v-app>
     <v-app-bar
       v-if="$vuetify.breakpoint.mdAndUp"
-      color="teal lighten-2"
+      color="primary"
       app
       fixed
       dark
@@ -71,7 +71,7 @@
                 </v-list-item>
               </v-list>
               <v-list v-else>
-                <v-card-subtitle dark class="teal lighten-2">
+                <v-card-subtitle dark class="primary">
                   <v-col>
                     <v-row>
                       <strong>
@@ -84,7 +84,7 @@
                   {{ prop }}
                 </v-list-item>
                 <v-divider />
-                <v-card-subtitle dark class="teal lighten-2">
+                <v-card-subtitle dark class="primary">
                   <v-col>
                     <v-row>
                       <strong>
@@ -106,12 +106,11 @@
           </v-list>
         </v-card>
       </v-menu>
-      </v-row>
     </v-app-bar>
     <v-app-bar
       v-if="!$vuetify.breakpoint.mdAndUp && $route.name=== 'index'"
       app
-      color="teal lighten-2"
+      color="primary"
       dark
       shrink-on-scroll
       prominent
@@ -133,11 +132,10 @@
           <v-fab-transition>
             <v-btn
               to="/host/center/newcenter"
-              color="teal lighten-2"
-              dark
+              color="primary"
               absolute
               top
-              right
+              left
               fab
             >
               <v-icon>mdi-plus</v-icon>
@@ -155,7 +153,7 @@
       <v-btn v-if="$store.state.userView" @click="clearState">
         <span class="teal--text">Search</span>
 
-        <v-icon color="teal lighten-2">
+        <v-icon color="primary">
           mdi-magnify
         </v-icon>
       </v-btn>
@@ -163,7 +161,7 @@
       <v-btn v-else @click="clearState">
         <span class="teal--text">Home</span>
 
-        <v-icon color="teal lighten-2">
+        <v-icon color="primary">
           mdi-home-outline
         </v-icon>
       </v-btn>
@@ -171,7 +169,7 @@
       <v-btn v-if="$store.state.userView" to="/profile/bookings">
         <span class="teal--text">Bookings</span>
 
-        <v-icon color="teal lighten-2">
+        <v-icon color="primary">
           mdi-book-marker-outline
         </v-icon>
       </v-btn>
@@ -179,7 +177,7 @@
       <v-btn v-else to="/host/center">
         <span class="teal--text">My Centers</span>
 
-        <v-icon color="teal lighten-2">
+        <v-icon color="primary">
           mdi-office-building-outline
         </v-icon>
       </v-btn>
@@ -187,7 +185,7 @@
       <v-btn v-if="$store.state.userView" to="/profile/favourites">
         <span class="teal--text">Favorites</span>
 
-        <v-icon color="teal lighten-2">
+        <v-icon color="primary">
           mdi-heart-outline
         </v-icon>
       </v-btn>
@@ -195,7 +193,7 @@
       <v-btn v-else to="/host/messages">
         <span class="teal--text">Notifications</span>
 
-        <v-icon color="teal lighten-2">
+        <v-icon color="primary">
           mdi-bell-outline
         </v-icon>
       </v-btn>
@@ -206,7 +204,7 @@
       >
         <span class="teal--text">Login</span>
 
-        <v-icon color="teal lighten-2">
+        <v-icon color="primary">
           mdi-account-outline
         </v-icon>
       </v-btn>
@@ -217,7 +215,7 @@
       >
         <span class="teal--text">Profile</span>
 
-        <v-icon color="teal lighten-2">
+        <v-icon color="primary">
           mdi-account-circle-outline
         </v-icon>
       </v-btn>
