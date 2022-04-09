@@ -3,10 +3,13 @@
     <v-col>
       <v-card flat>
         <v-card-title>
-          "{{ center.name }}" Bookings
+          <v-icon class="mr-5" @click="$router.push({ path: '/host/center/', component:'MyCenterPage'})">
+            mdi-chevron-left
+          </v-icon>
+          Pending Bookings
         </v-card-title>
       </v-card>
-      <v-card v-for="(booking, idx) in bookings" :key="idx" class="my-2">
+      <v-card v-for="(booking, idx) in bookings" :key="idx" class=" mx-auto my-2" max-width="344">
         <v-list-item three-line>
           <v-list-item-content>
             <div :class="`text-overline mb-4 text-capitalize ${statusColor(booking.status)}--text`">

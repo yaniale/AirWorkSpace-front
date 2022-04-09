@@ -41,7 +41,7 @@
             icon
             @click="updateShow(idx)"
           >
-            {{ showDetails[idx] ? 'Menos': 'Más' }}
+            {{ showDetails[idx] ? 'Less': 'More' }}
             <v-icon>{{ showDetails[idx] ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
           </v-btn>
         </v-card-actions>
@@ -50,44 +50,55 @@
             <v-divider />
 
             <v-card-text>
-              <v-list-item three-line>
-                <v-list-item-content>
-                  <v-list-item-subtitle class="text-h7 mb-1 text-wrap">
+              <v-card-subtitle class="py-0">
+                <v-row>
+                  <v-col cols="8" class="py-2">
                     <v-icon class="warning--text">
                       mdi-clock
                     </v-icon>
                     Bookings to manage:
-                    <v-btn
-                      dense
-                      color="transparent"
-                      depressed
-                      class="text-decoration-underline "
-                      @click="$router.push({ path:`/host/center/bookings/`, query:{id: center._id}, component:'HostBookingsPage'})"
-                    >
-                      {{ center.bookings.filter(e => e.status === 'open').length }}
-                    </v-btn>
-                  </v-list-item-subtitle>
-                  <v-list-item-subtitle class="text-h7 mb-1 text-wrap ">
+                  </v-col>
+                  <v-col>
+                    <a class="text-decoration-underline " @click="$router.push({ path:`/host/center/bookings/`, query:{id: center._id}, component:'HostBookingsPage'})">{{ center.bookings.filter(e => e.status === 'open').length }} </a>
+                  </v-col>
+                </v-row>
+              </v-card-subtitle>
+              <v-card-subtitle class="py-0">
+                <v-row>
+                  <v-col cols="8" class="py-2">
                     <v-icon class="success--text">
                       mdi-check
                     </v-icon>
-                    Confirmed bookings: {{ center.bookings.filter(e => e.status === 'confirmed').length }}
-                  </v-list-item-subtitle>
-                  <v-list-item-subtitle class="text-h7 mb-1 text-wrap">
+                    Confirmed bookings:
+                  </v-col>
+                  <v-col>
+                    <a class="text-decoration-underline " @click="$router.push({ path:`/host/center/bookings/confirmed`, query:{id: center._id}, component:'ConfirmedBookings'})">{{ center.bookings.filter(e => e.status === 'confirmed').length }}</a>
+                  </v-col>
+                </v-row>
+              </v-card-subtitle>
+              <v-card-subtitle class="py-0">
+                <v-row>
+                  <v-col cols="8" class="py-2">
                     <v-icon>
                       mdi-book-outline
                     </v-icon>
-                    Total Bookings: {{ center.bookings.length }}
-                  </v-list-item-subtitle>
-                  <v-divider />
-                  <v-list-item-subtitle class="text-h7 mb-1 text-wrap">
+                    Total Bookings:
+                  </v-col>
+                  <v-col> <a class="text-decoration-underline " @click="$router.push({ path:`/host/center/bookings/total`, query:{id: center._id}, component:'TotalBookings'})">{{ center.bookings.length }}</a></v-col>
+                </v-row>
+              </v-card-subtitle>
+              <v-divider />
+              <v-card-subtitle class="pt-3">
+                <v-row>
+                  <v-col cols="8" class="py-2">
                     <v-icon>
                       mdi-currency-eur
                     </v-icon>
                     Earnings:
-                  </v-list-item-subtitle>
-                </v-list-item-content>
-              </v-list-item>
+                  </v-col>
+                  <v-col>€</v-col>
+                </v-row>
+              </v-card-subtitle>
             </v-card-text>
           </div>
         </v-expand-transition>
