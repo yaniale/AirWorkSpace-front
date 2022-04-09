@@ -115,7 +115,7 @@
         <v-card-actions>
           <v-spacer />
           <v-btn>Save & create more</v-btn>
-          <v-btn to="/host/center/allotment">
+          <v-btn @click="createRatePlans()">
             Continue
           </v-btn>
         </v-card-actions>
@@ -130,6 +130,7 @@ export default {
   data () {
     return {
       ratePlan: {},
+      center: this.$route.query.id,
       tableType: ['Fixed Desk', 'Flex Desk', 'Office', 'Conference Room'],
       from: false,
       to: false,
@@ -139,9 +140,10 @@ export default {
     }
   },
   methods: {
-    async createRatePlan () {
+    createRatePlans () {
       try {
-        await this.$axios.put('/center/:id/rateplan', this.ratePlan)
+        // await this.$axios.put(`/center/${this.center._id}/rateplan`, this.ratePlan)
+        // this.$router.push({ path: '/host/center/allotment', query: { id: this.center._id }, component: 'AllotmentPage' })
         console.log('añadido')
       } catch (error) {
         console.log(error)

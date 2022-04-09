@@ -30,17 +30,17 @@
           </v-card-text>
 
           <v-card-title>Contact details</v-card-title>
-          <v-card-text>
+          <v-card-text class="pb-0">
             <v-text-field v-model="center.phone" label="Phone" :rules="rules().checkPhone()" />
             <v-text-field v-model="center.mobile" label="Mobile" />
             <v-text-field v-model="center.email" label="Email" type="email" :rules="rules().checkEmail()" />
           </v-card-text>
+          <v-card-text v-if="errorHandling.compulsoryFields[0]" class="red--text py-0 my-0 caption">
+            {{ errorHandling.compulsoryFields[1] }}
+          </v-card-text>
           <v-card-actions>
-            <v-card-text v-if="errorHandling.compulsoryFields[0]" class="red--text">
-              {{ errorHandling.compulsoryFields[1] }}
-            </v-card-text>
             <v-spacer />
-            <v-btn class="text-capitalize" :to="`/host/center/ratePlans`" @click="submitCenter()">
+            <v-btn class="text-capitalize" @click="submitCenter()">
               Submit & continue
             </v-btn>
           </v-card-actions>
@@ -83,8 +83,10 @@ export default {
         if (this.$auth.user.role === 'host') {
           if (this.center.name === '' || this.center.address1 === '' || this.center.postalCode === '' || this.center.city === '' || this.center.country === '' || this.center.phone === '' || this.center.email === '') {
             this.$set(this.errorHandling.compulsoryFields, 0, true)
+            console.log('está todo vacío')
           } else {
             await this.$axios.post('/center/', this.center)
+            this.$router.push({ path: '/host/center/ratePlans', query: { id: this.center._id }, component: 'RatePlans' })
             await this.$auth.fetchUser()
           }
         }
