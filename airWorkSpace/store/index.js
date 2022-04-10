@@ -24,6 +24,9 @@ export const mutations = {
       state.showDescription.push(false)
     })
   },
+  addLocation (state, { location, index }) {
+    state.centers[index].location = location
+  },
   createBooking (state, createBooking) {
     state.createBooking = createBooking
   },

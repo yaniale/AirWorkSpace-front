@@ -2,6 +2,7 @@
   <v-row justify="center" align="center">
     <v-col cols="12" sm="8" md="6">
       <v-card
+        v-if="!$vuetify.breakpoint.mdAndUp"
         class="mx-auto"
         max-width="400"
       >
@@ -70,17 +71,33 @@
           </v-hover>
         </v-card-text>
       </v-card>
+      <v-card v-else />
+      {{ map }}
     </v-col>
   </v-row>
 </template>
 
 <script>
+const apikey = 'AIzaSyCiLXGaYak900xP8DJXqsslSxLBFRD_hb0'
 export default {
   name: 'CenterPage',
   data () {
     return {
       center: {},
-      show: false
+      show: false,
+      map: ''
+    }
+  },
+  head () {
+    return {
+      script: [
+        {
+          hid: 'maps-googleapis',
+          src: `https://maps.googleapis.com/maps/api/js?libraries=places&key=${apikey}`,
+          defer: true,
+          callback: this.googleAutocompleteInit
+        }
+      ]
     }
   },
   mounted () {
