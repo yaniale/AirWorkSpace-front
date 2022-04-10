@@ -1,12 +1,11 @@
 <template>
   <v-card elevation="5">
-    <v-card-title />
     <v-card-text>
       <v-form>
         <v-input>
           <v-text-field
             v-model="email"
-            color="teal lighten-2"
+            color="primary"
             label="Email"
             type="email"
             prepend-icon="mdi-email"
@@ -18,7 +17,7 @@
           <v-text-field
             v-model="password"
             :type="passVisible ? 'text' : 'password'"
-            color="teal lighten-2"
+            color="primary"
             label="Password"
             prepend-icon="mdi-lock-outline"
             required
@@ -40,16 +39,22 @@
     <v-spacer />
     <v-input class="mx-2">
       Not a member?
-      <v-btn depressed color="transparent" to="/auth/signup" class="text-capitalize">
+      <v-btn v-if="$vuetify.breakpoint.smAndDown" depressed color="transparent" to="/auth/signup" class="text-capitalize primary--text">
         Register now!
       </v-btn>
+      <sign-up />
     </v-input>
     <v-card />
   </v-card>
 </template>
 
 <script>
+import signUp from '@/components/signUp.vue'
+
 export default {
+  components: {
+    signUp
+  },
   data () {
     return {
       email: '',

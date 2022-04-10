@@ -6,8 +6,7 @@
           <v-icon @click="$router.push({ path:`/center/`, query:{id: center._id}, component:'CenterPage'})">
             mdi-chevron-left
           </v-icon>
-
-          Tarifas
+          Rate Plans
         </v-card-title>
       </v-card>
       <v-card
@@ -20,24 +19,24 @@
         <v-card-subtitle>{{ getType(ratePlan[idx].appliesTo) }}</v-card-subtitle>
         <v-card-text>
           <v-input>{{ ratePlan[idx].description }}</v-input>
-          <v-input label="Disponible desde: ">
+          <v-input label="Available from: ">
             <span class="ml-2">
               {{ formatDate(ratePlan[idx].fromDate) }}
             </span>
           </v-input>
-          <v-input label="Disponible hasta: ">
+          <v-input label="Available to: ">
             <span class="ml-2">
               {{ formatDate(ratePlan[idx].toDate) }}
             </span>
           </v-input>
-          <v-input label="Precio/día: ">
+          <v-input label="Rate/day: ">
             {{ ratePlan[idx].price }}€
           </v-input>
         </v-card-text>
         <v-card-actions>
           <v-spacer />
           <v-btn @click="$router.push({ path:`/center/booking`, query:{id: center._id, rate: ratePlan[idx]._id}, component:'BookingPage'})">
-            Reservar
+            Book
           </v-btn>
         </v-card-actions>
       </v-card>

@@ -10,38 +10,38 @@
         <v-card class="my-2">
           <v-card-title>Basic Info</v-card-title>
           <v-card-text>
-            <v-text-field v-model="center.name" color="teal lighten-2" label="Center Name" :rules="rules().checkName()" />
-            <v-select v-model="center.type" color="teal lighten-2" label="Center Type" dense :items="centerType" />
-            <v-text-field v-model="center.workingHours" color="teal lighten-2" label="Working Hours" hint="pe.: M-F from 8h to 20h" />
+            <v-text-field v-model="center.name" label="Center Name" :rules="rules().checkName()" />
+            <v-select v-model="center.type" label="Center Type" dense :items="centerType" />
+            <v-text-field v-model="center.workingHours" label="Working Hours" hint="pe.: M-F from 8h to 20h" />
 
             <v-textarea
-
+              rows="2"
               label="Description"
             />
           </v-card-text>
 
           <v-card-title>Location</v-card-title>
           <v-card-text>
-            <v-text-field v-model="center.address1" color="teal lighten-2" label="Address 1" :rules="rules().checkAddress()" />
-            <v-text-field v-model="center.address2" color="teal lighten-2" label="Address 2" />
-            <v-text-field v-model="center.postalCode" color="teal lighten-2" label="Postal Code" :rules="rules().checkPostalCode()" />
-            <v-text-field v-model="center.city" color="teal lighten-2" label="City" :rules="rules().checkCity()" />
-            <v-text-field v-model="center.country" color="teal lighten-2" label="Country" :rules="rules().checkCountry()" />
+            <v-text-field v-model="center.address1" label="Address 1" :rules="rules().checkAddress()" />
+            <v-text-field v-model="center.address2" label="Address 2" />
+            <v-text-field v-model="center.postalCode" label="Postal Code" :rules="rules().checkPostalCode()" />
+            <v-text-field v-model="center.city" label="City" :rules="rules().checkCity()" />
+            <v-text-field v-model="center.country" label="Country" :rules="rules().checkCountry()" />
           </v-card-text>
 
           <v-card-title>Contact details</v-card-title>
-          <v-card-text>
-            <v-text-field v-model="center.phone" color="teal lighten-2" label="Phone" :rules="rules().checkPhone()" />
-            <v-text-field v-model="center.mobile" color="teal lighten-2" label="Mobile" />
-            <v-text-field v-model="center.email" color="teal lighten-2" label="Email" type="email" :rules="rules().checkEmail()" />
+          <v-card-text class="pb-0">
+            <v-text-field v-model="center.phone" label="Phone" :rules="rules().checkPhone()" />
+            <v-text-field v-model="center.mobile" label="Mobile" />
+            <v-text-field v-model="center.email" label="Email" type="email" :rules="rules().checkEmail()" />
+          </v-card-text>
+          <v-card-text v-if="errorHandling.compulsoryFields[0]" class="red--text py-0 my-0 caption">
+            {{ errorHandling.compulsoryFields[1] }}
           </v-card-text>
           <v-card-actions>
-            <v-card-text v-if="errorHandling.compulsoryFields[0]" class="red--text">
-              {{ errorHandling.compulsoryFields[1] }}
-            </v-card-text>
             <v-spacer />
-            <v-btn class="text-capitalize" @click="submitCenter">
-              Submit
+            <v-btn class="text-capitalize" @click="submitCenter()">
+              Submit & continue
             </v-btn>
           </v-card-actions>
         </v-card>
@@ -56,21 +56,21 @@ export default {
   data () {
     return {
       center: {
-        name: '', // req
-        type: '', // req
-        description: '', // req,
+        name: '',
+        type: '',
+        description: '',
         photos: '',
-        address1: '', // req
+        address1: '',
         address2: '',
-        postalCode: '', // req
-        city: '', // req
-        country: '', // req
+        postalCode: '',
+        city: '',
+        country: '',
         workingHours: '',
-        phone: '', // req
+        phone: '',
         mobile: '',
-        email: ''// req
+        email: ''
       },
-      centerType: ['Coworking', 'Oficina compartida', 'Centro de negocios', 'Centro de negocios con coworking'],
+      centerType: ['Coworking', 'Shared Office', 'Business Center', 'Business center & Coworking'],
       errorHandling: {
         compulsoryFields: [false, 'Please, fill in all compulsory fields.']
       }
@@ -83,10 +83,11 @@ export default {
         if (this.$auth.user.role === 'host') {
           if (this.center.name === '' || this.center.address1 === '' || this.center.postalCode === '' || this.center.city === '' || this.center.country === '' || this.center.phone === '' || this.center.email === '') {
             this.$set(this.errorHandling.compulsoryFields, 0, true)
+            console.log('está todo vacío')
           } else {
             await this.$axios.post('/center/', this.center)
+            this.$router.push({ path: '/host/center/ratePlans', query: { id: this.center._id }, component: 'RatePlans' })
             await this.$auth.fetchUser()
-            this.$router.push('/profile/host/center')
           }
         }
       } catch (error) {
