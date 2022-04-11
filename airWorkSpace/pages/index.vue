@@ -1,22 +1,29 @@
 <template>
-  <v-row v-if="$store.state.userView" justify="start" align="center" no-gutters>
-    <v-col v-if="$store.state.centers.length===0" cols="12" sm="8" md="6">
-      <v-card v-if="$store.state.centers.length === 0" elevation="0">
-        <v-overlay class="indexPage" style="z-index:0">
-          <v-card v-if="!$vuetify.breakpoint.mdAndUp" class="transparent" elevation="0">
-            <v-card-title>
-              Where do you wana...
-            </v-card-title>
-            <v-card-title class="justify-end">
-              ...work today?
-            </v-card-title>
-          </v-card>
-        </v-overlay>
-      </v-card>
-    </v-col>
-    <v-col v-else cols="12" sm="6" md="6">
-      <SearchResult />
-    </v-col>
+  <v-row v-if="$store.state.userView">
+    <v-row v-if="$store.state.centers.length===0" justify="start" align="center" no-gutters>
+      <v-col cols="12" sm="8" md="6">
+        <v-card v-if="$store.state.centers.length === 0" elevation="0">
+          <v-overlay class="indexPage" style="z-index:0">
+            <v-card v-if="!$vuetify.breakpoint.mdAndUp" class="transparent" elevation="0">
+              <v-card-title>
+                Where do you wana...
+              </v-card-title>
+              <v-card-title class="justify-end">
+                ...work today?
+              </v-card-title>
+            </v-card>
+          </v-overlay>
+        </v-card>
+      </v-col>
+    </v-row>
+    <v-row v-else>
+      <v-col cols="12" sm="6" md="6">
+        <SearchResult />
+      </v-col>
+      <v-col cols="12" sm="6" md="6">
+        <GoogleMapsCenters />
+      </v-col>
+    </v-row>
   </v-row>
   <v-row v-else>
     <v-col>
@@ -26,6 +33,7 @@
 </template>
 
 <script>
+
 export default {
   name: 'IndexPage',
   data () {
