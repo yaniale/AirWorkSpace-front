@@ -19,9 +19,9 @@
     </v-col>
   </v-row>
   <v-row v-else>
-    <v-card>
-      Hola Host
-    </v-card>
+    <v-col>
+      <HomeHost />
+    </v-col>
   </v-row>
 </template>
 
