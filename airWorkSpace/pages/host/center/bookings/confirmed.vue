@@ -68,10 +68,10 @@ export default {
     }
   },
   mounted () {
-    this.getCenter()
+    this.getBookings()
   },
   methods: {
-    getCenter () {
+    getBookings () {
       this.center = this.$store.state.centers.find(e => e._id === this.$route.query.id)
       this.bookings = this.center.bookings.filter(e => e.status === 'confirmed')
     },
