@@ -115,7 +115,7 @@
         <v-card-actions>
           <v-spacer />
           <v-btn>Save & create more</v-btn>
-          <v-btn @click="createRatePlans()">
+          <v-btn>
             Continue
           </v-btn>
         </v-card-actions>
@@ -139,7 +139,16 @@ export default {
 
     }
   },
+  mounted () {
+    this.getCenter()
+  },
+
   methods: {
+    async getCenter () {
+      const centerId = this.$route.params.allotment
+      const centerObj = await this.$axios.get(`/center/${centerId}`)
+      this.center = centerObj.data
+    },
     createRatePlans () {
       try {
         // await this.$axios.put(`/center/${this.center._id}/rateplan`, this.ratePlan)
