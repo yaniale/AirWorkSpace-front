@@ -50,15 +50,10 @@
           v-if="booking.status === 'open'"
         >
           <v-spacer />
-          <v-btn
-            class="
-          red
-          lighten-2"
-            @click="rejectBooking"
-          >
+          <v-btn class="red lighten-2" @click="rejectBooking(booking._id )">
             Reject
           </v-btn>
-          <v-btn class="green lighten-2" @click="acceptBooking">
+          <v-btn class="green lighten-2" @click="acceptBooking(booking._id)">
             Accept
           </v-btn>
         </v-card-actions>
@@ -103,11 +98,17 @@ export default {
     formatDate (date) {
       return utils.formatDate(date)
     },
-    rejectBooking (id) {
-      console.log('cancelada')
+    async rejectBooking (id) {
+      const confirmed = await this.$axios.put(`/center/${this.center._id}/bookings/${id}`, { status: 'confirmed' })
+      window.location.reload(true)
+      this.$store.commit('checkHost', this.$auth.$state.user.role)
+      console.log(confirmed)
     },
-    acceptBooking (id) {
-      console.log('confirmada')
+    async acceptBooking (id) {
+      const confirmed = await this.$axios.put(`/center/${this.center._id}/bookings/${id}`, { status: 'confirmed' })
+      window.location.reload(true)
+      this.$store.commit('checkHost', this.$auth.$state.user.role)
+      console.log(confirmed)
     }
   }
 }

@@ -46,7 +46,7 @@
           <v-btn class="red lighten-2" @click="rejectBooking">
             Reject
           </v-btn>
-          <v-btn class="green lighten-2" @click="acceptBooking">
+          <v-btn class="green lighten-2" @click="acceptBooking(booking._id)">
             Accept
           </v-btn>
         </v-card-actions>
@@ -94,8 +94,10 @@ export default {
     rejectBooking (id) {
       console.log('cancelada')
     },
-    acceptBooking (id) {
-      console.log('confirmada')
+    async acceptBooking (id) {
+      this.booking.status = 'confirmed'
+      const confirmed = await this.$axios.put(`/center/${this.center.id}/bookings/${id}`, { status: 'confirmed' })
+      console.log(confirmed)
     }
   }
 }

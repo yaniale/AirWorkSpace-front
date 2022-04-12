@@ -2,13 +2,21 @@ const utils = {
   getType (type) {
     switch (type) {
       case 'fixedDesk':
-        return 'Mesa Fija'
+        return 'Fixed Desk'
       case 'hotDesk':
-        return 'Mesa flexible'
+        return 'Flex Desk'
       case 'office':
-        return 'Oficina'
+        return 'Office'
       case 'meetingRoom':
-        return 'Sala de conferencias'
+        return 'Conference Room'
+      case 'Fixed Desk':
+        return 'fixedDesk'
+      case 'Flex Desk':
+        return 'hotDesk'
+      case 'Office':
+        return 'office'
+      case 'Conference Room':
+        return 'meetingRoom'
     }
   },
   formatDate (date) {

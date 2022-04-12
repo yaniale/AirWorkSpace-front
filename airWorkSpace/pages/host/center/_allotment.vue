@@ -65,6 +65,7 @@
 </template>
 
 <script>
+import utils from '@/services/utils.services'
 export default {
   name: 'AllotmentPage',
 
@@ -91,13 +92,16 @@ export default {
     async addDesk () {
       const data = {
         name: this.allotment.name,
-        type: this.allotment.type,
+        type: utils.getType(this.allotment.type),
         quantity: this.allotment.quantity
       }
 
       if (data.name && data.type) {
         this.center.allotment.push(data)
         await this.$axios.put(`/center/${this.center._id}/allotment`, data)
+        this.allotment.name = ''
+        this.allotment.type = ''
+        this.allotment.quantity = ''
       } else {
         this.$set(this.errorHandling.compulsoryFields, 0, true)
       }
