@@ -40,10 +40,10 @@
         </v-list-item>
         <v-card-actions>
           <v-spacer />
-          <v-btn class="red lighten-2" @click="rejectBooking">
+          <v-btn class="red lighten-2" @click="rejectBooking(booking._id )">
             Reject
           </v-btn>
-          <v-btn class="green lighten-2" @click="acceptBooking">
+          <v-btn class="green lighten-2" @click="acceptBooking(booking._id)">
             Accept
           </v-btn>
         </v-card-actions>
@@ -61,14 +61,13 @@ export default {
     return {
       center: {},
       bookings: []
-
     }
   },
   mounted () {
-    this.getCenter()
+    this.getBookings()
   },
   methods: {
-    getCenter () {
+    getBookings () {
       this.center = this.$store.state.centers.find(e => e._id === this.$route.query.id)
       this.bookings = this.center.bookings.filter(e => e.status === 'open')
     },
@@ -88,11 +87,17 @@ export default {
     formatDate (date) {
       return utils.formatDate(date)
     },
-    rejectBooking (id) {
-      console.log('cancelada')
+    async rejectBooking (id) {
+      const confirmed = await this.$axios.put(`/center/${this.center._id}/bookings/${id}`, { status: 'confirmed' })
+      window.location.reload(true)
+      this.$store.commit('checkHost', this.$auth.$state.user.role)
+      console.log(confirmed)
     },
-    acceptBooking (id) {
-      console.log('confirmada')
+    async acceptBooking (id) {
+      const confirmed = await this.$axios.put(`/center/${this.center._id}/bookings/${id}`, { status: 'confirmed' })
+      window.location.reload(true)
+      this.$store.commit('checkHost', this.$auth.$state.user.role)
+      console.log(confirmed)
     }
   }
 }

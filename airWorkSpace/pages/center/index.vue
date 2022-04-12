@@ -1,6 +1,6 @@
 <template>
   <v-row justify="center" align="center">
-    <v-col cols="12" sm="8" md="6">
+    <v-col cols="12" sm="8" md="6" class="pa-0">
       <v-card
         v-if="!$vuetify.breakpoint.mdAndUp"
         class="mx-auto"
@@ -8,8 +8,8 @@
       >
         <v-img
           class="white--text align-end"
-          height="200px"
-          src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
+          height="220px"
+          :src="center.photos[0]"
         >
           <v-card-title>
             {{ center.name }}

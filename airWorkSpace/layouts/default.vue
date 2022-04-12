@@ -19,6 +19,7 @@
           <v-btn
             color="transparent"
             rounded
+            text
             class="mr-5"
             v-bind="attrs"
             v-on="on"
@@ -128,20 +129,6 @@
     <v-main>
       <v-container fluid>
         <Nuxt />
-        <v-card-text v-if="$store.state.userView=== false" style="height: 100px; position: relative">
-          <v-fab-transition>
-            <v-btn
-              to="/host/center/newcenter"
-              color="primary"
-              absolute
-              top
-              left
-              fab
-            >
-              <v-icon>mdi-plus</v-icon>
-            </v-btn>
-          </v-fab-transition>
-        </v-card-text>
       </v-container>
     </v-main>
     <v-bottom-navigation

@@ -20,7 +20,7 @@
       <v-col cols="12" sm="6" md="6">
         <SearchResult />
       </v-col>
-      <v-col cols="12" sm="6" md="6">
+      <v-col cols="12" sm="6" md="6" class="px-0">
         <GoogleMapsCenters />
       </v-col>
     </v-row>
