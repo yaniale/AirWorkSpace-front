@@ -9,8 +9,10 @@
         <v-img
           class="white--text align-end"
           height="220px"
-          :src="center.photos[0]"
+          src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
         >
+          <!-- no sé por qué peta cuando bindeamos la foto -->
+
           <v-card-title>
             {{ center.name }}
           </v-card-title>
