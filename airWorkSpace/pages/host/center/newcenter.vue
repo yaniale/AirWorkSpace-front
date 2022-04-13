@@ -93,14 +93,12 @@ export default {
     const autocomplete = new window.google.maps.places.Autocomplete(
       input, options
     )
-    // const geocoder = new window.google.maps.Geocoder()
 
     window.google.maps.event.addListener(autocomplete, 'place_changed', function () {
       const place = autocomplete.getPlace()
-      console.log(place)
       if (place.address_components) {
         const postalCode = place.address_components.find(e => e.types.includes('postal_code')).long_name
-        const address1 = place.address_components.find(e => e.types.includes('route')).long_name
+        const address1 = place.address_components.find(e => e.types.includes('street_number')).long_name + ', ' + place.address_components.find(e => e.types.includes('route')).long_name
         const city = place.address_components.find(e => e.types.includes('locality')).long_name
         const country = place.address_components.find(e => e.types.includes('country')).long_name
         const location = { lat: place.geometry.location.lat(), lng: place.geometry.location.lng() }
