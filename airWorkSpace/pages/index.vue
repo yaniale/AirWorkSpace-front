@@ -17,8 +17,8 @@
           </v-card>
         </v-col>
       </v-row>
-      <v-row v-else style="max-height: 90vh; overflow: hidden;">
-        <v-col cols="12" sm="6" md="6" style="max-height: 90vh; overflow: auto;">
+      <v-row v-else class="mx-0 px-0" style="max-height: 100vh; overflow: hidden; width:100%;">
+        <v-col class="mx-0 px-0" cols="12" sm="6" md="6" style="max-height: 100vh; overflow: auto;">
           <SearchResult />
         </v-col>
         <v-col cols="12" sm="6" md="6">
@@ -26,11 +26,11 @@
         </v-col>
       </v-row>
     </v-row>
-    <v-row v-else
-    <v-col>
-      <HomeHost />
-    </v-col>
-  </v-row>
+    <v-row v-else>
+      <v-col>
+        <HomeHost />
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 
