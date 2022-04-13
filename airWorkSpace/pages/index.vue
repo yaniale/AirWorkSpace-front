@@ -22,7 +22,7 @@
           <SearchResult />
         </v-col>
         <v-col cols="12" sm="6" md="6">
-          <GoogleMapsCenters />
+          <GoogleMapsCenters :centers="$store.state.centers" />
         </v-col>
       </v-row>
     </v-row>

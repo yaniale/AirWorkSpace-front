@@ -73,7 +73,7 @@ export default {
           this.$router.push('/profile/bookings')
         }
       } catch (error) {
-        console.log(error)
+        return error
       }
     }
 
