@@ -1,5 +1,5 @@
 <template>
-  <v-card>
+  <v-card :style="`height: ${height};`">
     <div id="map" />
   </v-card>
 </template>
@@ -7,12 +7,26 @@
 <script>
 export default {
   name: 'GoogleMapsCenters',
+  props: {
+    centers: {
+      type: Array,
+      default () {
+        return []
+      }
+    },
+    height: {
+      type: String,
+      default () {
+        return '90vh'
+      }
+    }
+  },
   mounted () {
     this.drawMap()
   },
   methods: {
     drawMap () {
-      const markers = this.$store.state.centers.filter(e => e.location)
+      const markers = this.centers.filter(e => e.location)
       const myStyle = [
         {
           featureType: 'administrative.neighborhood',
@@ -106,7 +120,7 @@ export default {
 
 <style lang="scss" scoped>
 #map {
-    height: 90vh;
+  height: 100%;
     width: 100%;
 }
 </style>
