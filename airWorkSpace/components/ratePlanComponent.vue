@@ -5,7 +5,7 @@
       :key="idx"
       width="100%"
       elevation="0"
-      class="mx-auto my-2"
+      class="ma-0"
     >
       <v-card-title>{{ rate.name }}</v-card-title>
       <v-card-subtitle>{{ getType(rate.appliesTo) }}</v-card-subtitle>
