@@ -15,7 +15,6 @@
           {{ center.name }}
         </v-card-title>
       </v-img>
-
       <v-card-subtitle class="pb-0">
         {{ center.type }}
       </v-card-subtitle>

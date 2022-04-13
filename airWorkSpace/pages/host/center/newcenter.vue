@@ -83,10 +83,9 @@ export default {
         if (this.$auth.user.role === 'host') {
           if (this.center.name === '' || this.center.address1 === '' || this.center.postalCode === '' || this.center.city === '' || this.center.country === '' || this.center.phone === '' || this.center.email === '') {
             this.$set(this.errorHandling.compulsoryFields, 0, true)
-            console.log('está todo vacío')
           } else {
-            await this.$axios.post('/center/', this.center)
-            this.$router.push({ path: '/host/center/ratePlans', query: { id: this.center._id }, component: 'RatePlans' })
+            const center = await this.$axios.post('/center/', this.center)
+            this.$router.push({ path: `/host/center/${center.data.data._id}`, component: 'AllotmentPage' })
             await this.$auth.fetchUser()
           }
         }

@@ -26,11 +26,11 @@
         </v-col>
       </v-row>
     </v-row>
-    <v-row v-else>
-      <v-card>
-        Hola Host
-      </v-card>
-    </v-row>
+    <v-row v-else
+    <v-col>
+      <HomeHost />
+    </v-col>
+  </v-row>
   </v-container>
 </template>
 
@@ -78,4 +78,11 @@ export default {
     background-image:url('https://334045-1026637-1-raikfcquaxqncofqfm.stackpathdns.com/wp-content/uploads/2020/11/Grand_Opening_TAGVienna293-1024x683.jpg');
     background-size:cover;
   }
+</style>
+<style >
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+#app {
+  font-family: 'Roboto', sans-serif;
+}
+
 </style>
