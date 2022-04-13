@@ -4,6 +4,21 @@
       <v-card flat>
         <v-card-title class="justify-center">
           My Centers
+
+          <v-card-text v-if="$store.state.userView=== false" class="pa-0" style="height: 50px; position: relative">
+            <v-fab-transition>
+              <v-btn
+                to="/host/center/newcenter"
+                color="primary"
+                absolute
+                top
+                right
+                fab
+              >
+                <v-icon>mdi-plus</v-icon>
+              </v-btn>
+            </v-fab-transition>
+          </v-card-text>
         </v-card-title>
       </v-card>
       <v-card v-if="centers.length === 0">

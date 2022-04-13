@@ -1,9 +1,19 @@
 <template>
-  <v-row justify="start" align="center">
-    <v-col cols="12" sm="8" md="6">
+  <v-row align="center">
+    <v-col v-if="$vuetify.breakpoint.mdAndUp" cols="3" offset="2">
+      <v-card height="500">
+        <v-avatar
+          size="200"
+          justify="center"
+        >
+          <v-img alt="avatar" :src="$auth.$state.user.avatar" />
+        </v-avatar>
+      </v-card>
+    </v-col>
+    <v-col cols="12" sm="8" md="5">
       <v-card>
         <v-card-title>
-          <v-avatar size="56">
+          <v-avatar v-if="$vuetify.breakpoint.smAndDown" size="56">
             <v-img alt="avatar" :src="$auth.$state.user.avatar" />
           </v-avatar>
           <span class="ml-5">
@@ -24,15 +34,10 @@
             </v-btn>
           </div>
           <div v-if="$auth.$state.user.role==='host'" class="my-2">
-            <span>Switch to <a @click="switchView">{{ currentView }}</a> view</v-btndepressed></span>
+            <span>Switch to <a @click="switchView">{{ currentView }}</a> view </span>
           </div>
           <v-divider />
-          <div class="my-10">
-            <div class="city">
-              <v-icon>mdi-home</v-icon>
-              Lives in {{ $auth.$state.user.city }}, {{ $auth.$state.user.country }}
-            </div>
-          </div>
+          Lives in {{ $auth.$state.user.city }}, {{ $auth.$state.user.country }}
         </v-card-text>
         <v-card-actions>
           <v-spacer />
