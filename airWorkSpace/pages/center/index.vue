@@ -89,6 +89,7 @@
                       <v-card-subtitle class>
                         {{ center.allotment[idx].name }}
                       </v-card-subtitle>
+                      <!-- añadir foto?? -->
                       <v-divider />
                     </v-card>
                   </v-hover>
@@ -118,7 +119,7 @@
       </v-container>
     </v-col>
     <v-col v-else>
-      <v-card elevation="0">
+      <v-card elevation="0" width="90%" class="mx-auto">
         <v-card-title class="text-h4">
           {{ center.name }}
         </v-card-title>
@@ -171,9 +172,10 @@
                     <v-stepper-step
                       :complete="e6 > 1"
                       step="1"
+                      class="title"
                     >
-                      Select your accomodation
-                      <small>These are our current allotments</small>
+                      Select your desk
+                      <small class="subtitle-2">These are our current allotments</small>
                     </v-stepper-step>
 
                     <v-stepper-content step="1">
@@ -202,6 +204,7 @@
                     <v-stepper-step
                       :complete="e6 > 2"
                       step="2"
+                      class="title"
                     >
                       Select your Rate Plan
                     </v-stepper-step>
@@ -222,6 +225,7 @@
                     <v-stepper-step
                       :complete="e6 > 3"
                       step="3"
+                      class="title"
                     >
                       Complete your reservation
                     </v-stepper-step>

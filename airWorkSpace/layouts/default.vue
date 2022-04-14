@@ -132,7 +132,7 @@
       </v-container>
     </v-main>
     <v-bottom-navigation
-      v-if="$vuetify.breakpoint.xs"
+      v-if="$vuetify.breakpoint.smAndDown"
       color=""
       fixed
       app
