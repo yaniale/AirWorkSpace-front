@@ -13,7 +13,7 @@
         @click="$router.push({ path:`/center/`, query:{id: center._id}, component:'CenterPage'})"
       />
 
-      <v-card-title class="subtitle-1 font-weight-bold" @click="$router.push({ path:`/center/`, query:{id: center._id}, component:'CenterPage'})">
+      <v-card-title class="font-weight-bold" @click="$router.push({ path:`/center/`, query:{id: center._id}, component:'CenterPage'})">
         {{ center.name }}
       </v-card-title>
 
