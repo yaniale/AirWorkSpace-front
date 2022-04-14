@@ -12,8 +12,12 @@ export const state = () => ({
     totalDiscount: '',
     totalTax: ''
   },
-  userView: true,
-  googleapikey: 'AIzaSyCiLXGaYak900xP8DJXqsslSxLBFRD_hb0'
+  bookingSelect: {
+    centerId: '',
+    rateId: ''
+  },
+  bookingReview: false,
+  userView: true
 })
 
 export const mutations = {
@@ -23,6 +27,9 @@ export const mutations = {
     state.centers.forEach((element) => {
       state.showDescription.push(false)
     })
+  },
+  selectBooking (state, { centerId, rateId }) {
+    state.bookingSelect = { centerId, rateId }
   },
   addLocation (state, { location, index }) {
     state.centers[index].location = location

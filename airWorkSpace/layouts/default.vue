@@ -169,6 +169,23 @@
         </v-icon>
       </v-btn>
 
+      <v-fab-transition v-if="$store.state.userView === false && $route.name === 'host-center'" class="mx-0 px-0">
+        <v-btn
+          class="mx-0 px-0"
+          to="/host/center/newcenter"
+          color="primary"
+          absolute
+          top
+          fab
+          style="border-radius:50px;"
+          elevation="2"
+        >
+          <v-icon class="mx-0 px-0 text-h6" color="white">
+            mdi-plus
+          </v-icon>
+        </v-btn>
+      </v-fab-transition>
+
       <v-btn v-if="$store.state.userView" to="/profile/favourites">
         <span class="teal--text">Favorites</span>
 

@@ -7,7 +7,7 @@
         </v-card-title>
       </v-card>
       <v-form>
-        <v-card class="my-2">
+        <v-card class="my-2" flat>
           <v-card-title>Basic Info</v-card-title>
           <v-card-text>
             <v-text-field v-model="center.name" label="Center Name" :rules="rules().checkName()" />
@@ -22,7 +22,7 @@
 
           <v-card-title>Location</v-card-title>
           <v-card-text>
-            <v-text-field v-model="center.address1" label="Address 1" :rules="rules().checkAddress()" />
+            <v-text-field id="searchTextField" v-model="center.address1" type="text" label="Address 1" :rules="rules().checkAddress()" />
             <v-text-field v-model="center.address2" label="Address 2" />
             <v-text-field v-model="center.postalCode" label="Postal Code" :rules="rules().checkPostalCode()" />
             <v-text-field v-model="center.city" label="City" :rules="rules().checkCity()" />
@@ -40,7 +40,7 @@
           </v-card-text>
           <v-card-actions>
             <v-spacer />
-            <v-btn class="text-capitalize" @click="submitCenter()">
+            <v-btn color="primary" class="text-capitalize" @click="submitCenter()">
               Submit & continue
             </v-btn>
           </v-card-actions>
@@ -63,6 +63,10 @@ export default {
         address1: '',
         address2: '',
         postalCode: '',
+        location: {
+          lat: '',
+          lng: ''
+        },
         city: '',
         country: '',
         workingHours: '',
@@ -76,6 +80,31 @@ export default {
       }
 
     }
+  },
+  mounted () {
+    const defaultBounds = new window.google.maps.LatLngBounds(
+      new window.google.maps.LatLng(-33.8902, 151.1759),
+      new window.google.maps.LatLng(-33.8474, 151.2631))
+    const input = document.getElementById('searchTextField')
+    const options = {
+      bounds: defaultBounds,
+      types: ['establishment']
+    }
+    const autocomplete = new window.google.maps.places.Autocomplete(
+      input, options
+    )
+
+    window.google.maps.event.addListener(autocomplete, 'place_changed', function () {
+      const place = autocomplete.getPlace()
+      if (place.address_components) {
+        const postalCode = place.address_components.find(e => e.types.includes('postal_code')).long_name
+        const address1 = place.address_components.find(e => e.types.includes('street_number')).long_name + ', ' + place.address_components.find(e => e.types.includes('route')).long_name
+        const city = place.address_components.find(e => e.types.includes('locality')).long_name
+        const country = place.address_components.find(e => e.types.includes('country')).long_name
+        const location = { lat: place.geometry.location.lat(), lng: place.geometry.location.lng() }
+        this.setCenterData(address1, postalCode, city, country, location)
+      }
+    }.bind(this))
   },
   methods: {
     async submitCenter () {
@@ -154,6 +183,13 @@ export default {
         }
 
       }
+    },
+    setCenterData (address1, postalCode, city, country, location) {
+      this.center.address1 = address1
+      this.center.postalCode = postalCode
+      this.center.city = city
+      this.center.country = country
+      this.center.location = location
     }
   }
 

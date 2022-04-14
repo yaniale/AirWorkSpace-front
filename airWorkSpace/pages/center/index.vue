@@ -1,11 +1,13 @@
 <template>
-  <v-container fluid>
+  <v-container fluid class="mx-0 px-0">
     <v-card
       v-if="!$vuetify.breakpoint.mdAndUp"
-      class="mx-auto"
+      elevation="0"
+      class="mx-0 px-0"
     >
       <v-img
         class="white--text align-end"
+        style="border-top-left-radius:25px; border-top-right-radius:25px"
         height="200px"
         src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
       >
@@ -16,7 +18,8 @@
       <v-card-subtitle class="pb-0">
         {{ center.type }}
       </v-card-subtitle>
-      <v-card-text class="text--primary">
+
+      <v-card-text class="text--primary mx-0">
         <div>{{ center.description }}</div>
         <!-- Ubicación -->
         <v-input
@@ -44,27 +47,79 @@
         </v-input>
         <v-divider />
         <!-- Tipos de mesa -->
-        <v-card-title>
-          Elige tu espacio
-        </v-card-title>
-        <v-hover
-          v-for="(allotment, idx) in center.allotment"
-          v-slot="{ hover }"
-          :key="idx"
-          class="ma-2"
-          open-delay="200"
-        >
-          <v-card
-            :elevation="hover ? 16 : 2"
-            :class="{ 'on-hover': hover }"
-            flat
-            @click="$router.push({ path:`/center/rateplan`, query:{type: allotment.type, id: center._id}, component:'RatePlanPage'})"
+        <v-card elevation="0" width="100%" class="mx-0 px-0">
+          <v-card-title class="mx-0">
+            Start your reservation
+          </v-card-title>
+          <v-stepper
+            v-model="e6"
+            elevation="0"
+            class="mx-0 px-0"
           >
-            <v-card-subtitle>{{ center.allotment[idx].name }}</v-card-subtitle>
-            <!-- añadir foto?? -->
-            <v-divider />
-          </v-card>
-        </v-hover>
+            <v-stepper-header>
+              <v-stepper-step
+                :complete="e6 > 1"
+                step="1"
+              >
+                Select your accomodation
+                <small>These are our current allotments</small>
+              </v-stepper-step>
+              <v-divider />
+              <v-stepper-step
+                :complete="e6 > 2"
+                step="2"
+              >
+                Select your Rate Plan
+              </v-stepper-step>
+              <v-divider />
+              <v-stepper-step
+                :complete="e6 > 3"
+                step="3"
+              >
+                Complete your reservation
+              </v-stepper-step>
+            </v-stepper-header>
+
+            <v-stepper-content step="1">
+              <v-hover
+                v-for="(allotment, idx) in center.allotment"
+                v-slot="{ hover }"
+                :key="idx"
+                class="ma-2"
+                open-delay="200"
+              >
+                <v-card
+                  :elevation="hover ? 16 : 2"
+                  :class="{ 'on-hover': hover }"
+                  flat
+                  @click="stepperRate(allotment.type)"
+                >
+                  <v-card-subtitle>{{ center.allotment[idx].name }}</v-card-subtitle>
+                  <!-- añadir foto?? -->
+                  <v-divider />
+                </v-card>
+              </v-hover>
+            </v-stepper-content>
+
+            <v-stepper-content class="mx-0 px-0" step="2">
+              <RatePlanComponent :rate-plan="stepperPlan" :center="center" @rateSelected="bookingStep($store.state.bookingSelect.rateId)" />
+            </v-stepper-content>
+
+            <v-stepper-content class="mx-0 px-0" step="3">
+              <BookingFormComponent :center-id="center._id" :rate-id="rateId">
+                <v-btn
+                  color="primary"
+                  @click="e6 = 4"
+                >
+                  Continue
+                </v-btn>
+                <v-btn text>
+                  Cancel
+                </v-btn>
+              </bookingformcomponent>
+            </v-stepper-content>
+          </v-stepper>
+        </v-card>
       </v-card-text>
     </v-card>
     <v-card v-else elevation="0">
@@ -213,7 +268,6 @@ export default {
       rateId: ''
     }
   },
-
   beforeMount () {
     this.getCenter()
   },
