@@ -104,7 +104,7 @@
           v-model="inputQuantity"
           :items="quantity"
           filled
-          label="Número de personas..."
+          label="Nº of workers..."
           dense
         />
       </v-card-text>

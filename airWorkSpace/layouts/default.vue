@@ -124,7 +124,7 @@
           gradient="to top right, rgba(55,236,186,.7), rgba(25,32,72,.7)"
         />
       </template>
-      <SearchBar class="my-auto" />
+      <SearchBar class="ma-auto" />
     </v-app-bar>
     <v-main>
       <v-container fluid>

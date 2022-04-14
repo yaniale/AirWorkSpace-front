@@ -7,8 +7,12 @@
       elevation="0"
       class="ma-0"
     >
-      <v-card-title>{{ rate.name }}</v-card-title>
-      <v-card-subtitle>{{ getType(rate.appliesTo) }}</v-card-subtitle>
+      <v-card-title class="pb-2">
+        {{ rate.name }}
+      </v-card-title>
+      <v-chip outlined class="mx-2">
+        {{ getType(rate.appliesTo) }}
+      </v-chip>
       <v-card-text>
         <v-input>{{ rate.description }}</v-input>
         <v-input label="Available from: ">
