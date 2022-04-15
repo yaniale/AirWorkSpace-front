@@ -13,6 +13,42 @@
                   ...work today?
                 </v-card-title>
               </v-card>
+              <v-container v-else>
+                <v-card class="my-30" color="red lighten-2" light elevation="2" style="width:100em; height: 20em;display:flex; flex-direction: column;">
+                  <v-spacer />
+                  <v-card-text class="text-h3 white--text" justify="end" align="center">
+                    Tired of working at your own place? Try one of ours!
+                  </v-card-text>
+                  <v-spacer />
+                  <v-card-actions>
+                    <v-spacer />
+                    <v-btn color="primary">
+                      Search around you
+                    </v-btn>
+                    <v-spacer />
+                  </v-card-actions>
+                  <v-spacer />
+                </v-card>
+                <v-card style="margin-top: 50px" color="transparent" elevation="0">
+                  <v-row cols="12">
+                    <v-col v-for="(center, idx) in randomCenters" :key="idx" cols="3">
+                      <v-card light>
+                        <v-card-title>
+                          {{ center.name }}
+                        </v-card-title>
+                        <v-card-text>
+                          {{ center.description }}
+                        </v-card-text>
+                        <v-card-actions>
+                          <v-btn>
+                            Más info
+                          </v-btn>
+                        </v-card-actions>
+                      </v-card>
+                    </v-col>
+                  </v-row>
+                </v-card>
+              </v-container>
             </v-overlay>
           </v-card>
         </v-col>
@@ -54,10 +90,12 @@ export default {
         'Fourth',
         'Fifth'
       ],
-      pageModel: 'user'
+      pageModel: 'user',
+      randomCenters: []
     }
   },
   mounted () {
+    this.getRandom()
     this.checkHost()
   },
   methods: {
@@ -66,6 +104,13 @@ export default {
         this.pageModel = 'user'
       } else {
         this.pageModel = 'host'
+      }
+    },
+    async getRandom () {
+      const allCenters = await this.$axios.get('/center')
+      for (let i = 0; i < 4; i++) {
+        const element = allCenters.data[Math.floor(Math.random() * allCenters.data.length)]
+        this.$set(this.randomCenters, i, element)
       }
     }
   }
