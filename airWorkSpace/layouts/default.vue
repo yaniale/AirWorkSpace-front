@@ -133,11 +133,10 @@
     </v-main>
     <v-bottom-navigation
       v-if="$vuetify.breakpoint.smAndDown"
-      color=""
       fixed
       app
     >
-      <v-btn v-if="$store.state.userView" class="pt-2" @click="clearState">
+      <v-btn v-if="$store.state.userView" @click="clearState">
         <span class="teal--text">Search</span>
 
         <v-icon color="primary">
@@ -153,7 +152,7 @@
         </v-icon>
       </v-btn>
 
-      <v-btn v-if="$store.state.userView" class="pt-2" to="/profile/bookings">
+      <v-btn v-if="$store.state.userView" to="/profile/bookings">
         <span class="teal--text">Bookings</span>
 
         <v-icon color="primary">
@@ -161,7 +160,7 @@
         </v-icon>
       </v-btn>
 
-      <v-btn v-else to="/host/center" class="pt-2">
+      <v-btn v-else to="/host/center">
         <span class="teal--text">My Centers</span>
 
         <v-icon color="primary">
@@ -186,7 +185,7 @@
         </v-btn>
       </v-fab-transition>
 
-      <v-btn v-if="$store.state.userView" class="pt-2" to="/profile/favourites">
+      <v-btn v-if="$store.state.userView" to="/profile/favourites">
         <span class="teal--text">Favorites</span>
 
         <v-icon color="primary">
@@ -194,7 +193,7 @@
         </v-icon>
       </v-btn>
 
-      <v-btn v-else to="/host/messages" class="pt-2">
+      <v-btn v-else to="/host/messages">
         <span class="teal--text">Notifications</span>
 
         <v-icon color="primary">
@@ -205,7 +204,6 @@
       <v-btn
         v-if="!$auth.$state.loggedIn"
         to="/auth"
-        class="pt-2"
       >
         <span class="teal--text">Login</span>
 
@@ -216,7 +214,6 @@
 
       <v-btn
         v-else
-        class="pt-2"
         to="/profile"
       >
         <span class="teal--text">Profile</span>
