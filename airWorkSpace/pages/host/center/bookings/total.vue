@@ -12,7 +12,14 @@
       <v-card v-if="bookings.length === 0">
         You don't have any confirmed booking yet.
       </v-card>
-      <v-card v-for="(booking, idx) in bookings" :key="idx" class=" mx-auto my-2" max-width="344">
+      <v-card
+        v-for="(booking, idx) in bookings"
+        :key="idx"
+        class=" mx-auto my-2 rounded-xl"
+        width="90%"
+        elevation="2"
+        :class="booking.status === 'rejected' ? 'elevation-0' : '' || booking.status === 'cancelled' ? 'elevation-0' : '' "
+      >
         <v-list-item three-line>
           <v-list-item-content>
             <div :class="`text-overline mb-4 text-capitalize ${statusColor(booking.status)}--text`">
@@ -50,10 +57,10 @@
           v-if="booking.status === 'open'"
         >
           <v-spacer />
-          <v-btn class="red lighten-2" @click="rejectBooking(booking._id )">
+          <v-btn class="error" @click="rejectBooking(booking._id )">
             Reject
           </v-btn>
-          <v-btn class="green lighten-2" @click="acceptBooking(booking._id)">
+          <v-btn class="primary" @click="acceptBooking(booking._id)">
             Accept
           </v-btn>
         </v-card-actions>

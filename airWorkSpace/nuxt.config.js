@@ -87,7 +87,8 @@ export default {
       dark: false,
       themes: {
         light: {
-          primary: colors.teal.lighten2
+          primary: colors.teal.lighten2,
+          error: colors.red.lighten3
         },
         dark: {
           primary: colors.blue.darken2,

@@ -12,7 +12,7 @@
       <v-card v-if="bookings.length === 0">
         You don't have any confirmed booking yet.
       </v-card>
-      <v-card v-for="(booking, idx) in bookings" :key="idx" class=" mx-auto my-2" max-width="344">
+      <v-card v-for="(booking, idx) in bookings" :key="idx" class=" mx-auto my-2 rounded-xl" width="90%">
         <v-list-item three-line>
           <v-list-item-content>
             <div :class="`text-overline mb-4 text-capitalize ${statusColor(booking.status)}--text`">
@@ -22,7 +22,7 @@
               Customer: {{ booking.customerId.firstName }} {{ booking.customerId.lastName }}
             </v-list-item-subtitle>
             <v-list-item-subtitle>{{ getType(booking.type) }}</v-list-item-subtitle>
-            <v-list-item-subtitle>
+            <v-list-item-subtitle class="pb-2">
               Pending until: {{ formatDate(booking.fromTime) }}
             </v-list-item-subtitle>
             <v-divider />
@@ -41,15 +41,6 @@
             </v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
-        <v-card-actions>
-          <v-spacer />
-          <v-btn class="red lighten-2" @click="rejectBooking">
-            Reject
-          </v-btn>
-          <v-btn class="green lighten-2" @click="acceptBooking(booking._id)">
-            Accept
-          </v-btn>
-        </v-card-actions>
       </v-card>
     </v-col>
   </v-row>
@@ -90,15 +81,8 @@ export default {
     },
     formatDate (date) {
       return utils.formatDate(date)
-    },
-    rejectBooking (id) {
-      console.log('cancelada')
-    },
-    async acceptBooking (id) {
-      this.booking.status = 'confirmed'
-      const confirmed = await this.$axios.put(`/center/${this.center.id}/bookings/${id}`, { status: 'confirmed' })
-      console.log(confirmed)
     }
+
   }
 }
 </script>
