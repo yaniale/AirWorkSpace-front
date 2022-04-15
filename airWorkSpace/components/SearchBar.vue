@@ -4,11 +4,12 @@
       v-model="query"
       placeholder="Search"
       type="search"
-      :style="$vuetify.breakpoint.mdAndUp ? 'width:800px' : 'width:330px'"
+      :style="$vuetify.breakpoint.mdAndUp ? 'width:40vw' : 'width:70vw'"
       rounded
       filled
       dark
       dense
+      class="teal darken-1"
       hide-details
       append-icon="mdi-magnify"
       @keydown.enter.prevent="searchCenter"

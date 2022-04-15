@@ -3,22 +3,22 @@
     <v-col cols="12" sm="8" md="6">
       <v-card class="my-2">
         <v-card-title class="justify-left">
-          Revisa antes de confirmar
+          Check before confirm
         </v-card-title>
         <v-card-text>
-          <v-text-field outilned disabled label="Centro: " :value="center.name" />
+          <v-text-field outilned disabled label="Center: " :value="center.name" />
           <v-input>
-            <v-text-field outilned disabled label="Tipo: " :value="setType()" />
-            <v-text-field outilned disabled label="Tarifa: " :value="ratePlan.name" />
+            <v-text-field outilned disabled label="Type: " :value="setType()" />
+            <v-text-field outilned disabled label="Rate Plan: " :value="ratePlan.name" />
           </v-input>
           <v-input hide-details>
-            <v-text-field outilned disabled label="Desde: " :value="formatDate(booking.fromTime)" />
-            <v-text-field outilned disabled label="Hasta: " :value="formatDate(booking.toTime)" />
+            <v-text-field outilned disabled label="From: " :value="formatDate(booking.fromTime)" />
+            <v-text-field outilned disabled label="To: " :value="formatDate(booking.toTime)" />
           </v-input>
           <v-card-text>
-            <v-text-field right outilned disabled label="Tarifa: " :value="booking.totalRate" />
-            <v-text-field outilned disabled label="Descuento: " :value="booking.totalDiscount" />
-            <v-text-field outilned disabled label="Impuestos: " :value="booking.totalTax * -1" />
+            <v-text-field right outilned disabled label="Rate: " :value="booking.totalRate" />
+            <v-text-field outilned disabled label="Discount: " :value="booking.totalDiscount" />
+            <v-text-field outilned disabled label="Tax: " :value="booking.totalTax * -1" />
             <v-text-field outilned disabled label="Total: " :value="booking.totalRate - booking.totalDiscount + booking.totalTax" />
           </v-card-text>
         </v-card-text>
@@ -29,7 +29,7 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer />
-          <v-btn @click="submitBooking">
+          <v-btn color="primary" @click="submitBooking">
             confirm
           </v-btn>
         </v-card-actions>
@@ -45,7 +45,7 @@ export default {
   data () {
     return {
       modal: false,
-      disclaimer: 'Confirmo que la información de reserva es correcta y que he leído y acepto los términos y condiciones.',
+      disclaimer: 'I confirm that the reservation information is correct and I have read and accept terms and conditions.',
       center: {},
       ratePlan: {},
       booking: this.$store.state.createBooking

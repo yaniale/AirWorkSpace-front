@@ -1,14 +1,18 @@
 <template>
   <v-row justify="center" align="center">
     <v-col cols="12" sm="8" md="6">
+      <v-card-title class="font-weight-bold mx-5 headline">
+        Favourites
+      </v-card-title>
       <v-card v-if="$auth.$state.user.favourites.length === 0">
         <v-card-text>You don't have any favourite yet.</v-card-text>
       </v-card>
       <v-card
         v-for="(center, idx) in $auth.$state.user.favourites"
         :key="idx"
-        class="mx-auto my-2"
-        max-width="344"
+        class="mx-auto my-2 rounded-xl"
+        width="90%"
+        elevation="0"
       >
         <v-img
           :src="center.photos[0]"
@@ -16,7 +20,7 @@
           @click="getCenter(center._id)"
         />
 
-        <v-card-title @click="getCenter(center._id)">
+        <v-card-title class="font-weight-bold" @click="getCenter(center._id)">
           {{ center.name }}
         </v-card-title>
 

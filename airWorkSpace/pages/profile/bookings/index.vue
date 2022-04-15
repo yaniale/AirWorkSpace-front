@@ -1,15 +1,20 @@
 <template>
   <v-row justify="center" align="center">
-    <v-col cols="12" sm="8" md="6">
+    <v-col v-if="$vuetify.breakpoint.smAndDown">
+      <v-card-title width="90%" class="px-10 font-weight-bold headline">
+        Bookings
+      </v-card-title>
       <v-card v-if="$auth.$state.user.bookings.filter(e => e.status !== 'cancelled').length === 0">
         <v-card-text>You don't have any booking yet.</v-card-text>
       </v-card>
       <v-card
         v-for="(booking, idx) in $auth.$state.user.bookings.filter(e => e.status !== 'cancelled')"
         :key="idx"
-        class="mx-auto my-2"
-        max-width="344"
+        class="mx-auto my-2 rounded-xl"
+        width="90%"
         outlined
+        elevation="2"
+        :class="booking.status === 'rejected' ? 'elevation-0' : '' "
       >
         <v-list-item three-line>
           <v-list-item-content>
@@ -33,8 +38,9 @@
 
           <v-list-item-avatar
             tile
-            size="80"
+            size="100"
             color="grey"
+            class="rounded-xl"
           >
             <v-img :src="booking.center.photos[0]" />
           </v-list-item-avatar>
@@ -42,10 +48,76 @@
 
         <v-card-actions>
           <v-spacer />
-          <v-btn :to="`/profile/bookings/manage/?id=${booking._id}`">
+          <v-btn v-if="booking.status === 'rejected' ? false : true" class="mr-2" :to="`/profile/bookings/manage/?id=${booking._id}`" color="primary">
             Manage Booking
           </v-btn>
         </v-card-actions>
+      </v-card>
+    </v-col>
+    <v-col v-else>
+      <v-card-title width="90%" class="px-16 mx-12 font-weight-bold headline">
+        Bookings
+      </v-card-title>
+      <v-card v-if="$auth.$state.user.bookings.filter(e => e.status !== 'cancelled').length === 0">
+        <v-card-text>You don't have any booking yet.</v-card-text>
+      </v-card>
+      <v-card
+        v-for="(booking, idx) in $auth.$state.user.bookings.filter(e => e.status !== 'cancelled')"
+        :key="idx"
+        flat
+        class="mx-auto my-2 rounded-xl"
+        width="90%"
+      >
+        <v-list-item three-line>
+          <v-col>
+            <v-list-item-content style="height:300px">
+              <div :class="`text-overline mb-4 ${statusColor(booking.status)}--text`">
+                {{ capitalize(booking.status) }}
+              </div>
+              <v-list-item-title class="headline font-weight-bold mb-1 text-wrap">
+                {{ booking.center.name }}
+              </v-list-item-title>
+              <v-list-item-subtitle class="subtitle text-wrap">
+                <v-icon>mdi-map-marker-outline</v-icon>
+                {{ booking.center.address1 }} {{ booking.center.address2 ? ` - ${booking.center.address2} - ` : '' }} , {{ booking.center.postalCode }} {{ booking.center.city }} , {{ booking.center.country }}
+              </v-list-item-subtitle>
+              <v-list-item-title class="title">
+                <v-chip outlined>
+                  {{ booking.center.type }}
+                </v-chip>
+              </v-list-item-title>
+              <v-divider />
+              <v-list-item-subtitle>{{ getType(booking.type) }}</v-list-item-subtitle>
+              <v-list-item-subtitle v-if="booking.status === 'confirmed'">
+                Termina en: {{ formatDate(booking.toTime) }}
+              </v-list-item-subtitle>
+              <v-list-item-subtitle v-if="booking.status === 'open'">
+                Pendiente hasta: {{ formatDate(booking.fromTime) }}
+              </v-list-item-subtitle>
+              <v-list-item-subtitle v-else>
+                Finalizado desde: {{ formatDate(booking.toTime) }}
+              </v-list-item-subtitle>
+
+              <v-list-item-action>
+                <v-spacer />
+                <v-btn v-if="booking.status === 'rejected' ? false : true" class="mr-2" :to="`/profile/bookings/manage/?id=${booking._id}`" color="primary">
+                  Manage Booking
+                </v-btn>
+              </v-list-item-action>
+            </v-list-item-content>
+          </v-col>
+          <v-col>
+            <v-list-item-avatar
+              tile
+              size="300"
+              color="grey"
+              class="rounded-xl mx-10"
+            >
+              <v-img :src="booking.center.photos[0]" cover />
+            </v-list-item-avatar>
+          </v-col>
+        </v-list-item>
+        <v-divider width="75%" />
       </v-card>
     </v-col>
   </v-row>
