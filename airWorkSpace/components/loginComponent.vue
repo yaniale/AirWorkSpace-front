@@ -1,5 +1,5 @@
 <template>
-  <v-card elevation="5">
+  <v-card elevation="5" class="mt-15">
     <v-card-text>
       <v-form>
         <v-input>
@@ -38,13 +38,12 @@
     </v-card-actions>
     <v-spacer />
     <v-input class="mx-2">
-      Not a member?
+      Still not a member?
       <v-btn v-if="$vuetify.breakpoint.smAndDown" depressed color="transparent" to="/auth/signup" class="text-capitalize primary--text">
-        Register now!
+        Join now!
       </v-btn>
       <sign-up />
     </v-input>
-    <v-card />
   </v-card>
 </template>
 
@@ -86,5 +85,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+.grow {
+  transition: all .2s ease-in-out;
+}
+.grow:hover {
+  transform: scale(1.1);
+}
 </style>

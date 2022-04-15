@@ -13,7 +13,7 @@
           v-bind="attrs"
           v-on="on"
         >
-          Register now!
+          Join now!
         </v-btn>
       </template>
       <v-card>

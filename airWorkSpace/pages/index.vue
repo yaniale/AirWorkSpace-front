@@ -14,7 +14,7 @@
                 </v-card-title>
               </v-card>
               <v-container v-else>
-                <v-card class="my-30" color="red lighten-2" light elevation="2" style="width:100em; height: 20em;display:flex; flex-direction: column;">
+                <v-card class="my-30 rounded-xl" color="red lighten-2" light elevation="2" style="width:100em; height: 20em;display:flex; flex-direction: column;">
                   <v-spacer />
                   <v-card-text class="text-h3 white--text" justify="end" align="center">
                     Tired of working at your own place? Try one of ours!
@@ -32,16 +32,31 @@
                 <v-card style="margin-top: 50px" color="transparent" elevation="0">
                   <v-row cols="12">
                     <v-col v-for="(center, idx) in randomCenters" :key="idx" cols="3">
-                      <v-card light>
+                      <v-card light class="rounded-xl">
+                        <v-list-item class="px-0">
+                          <v-list-item-avatar
+                            tile
+                            size="100"
+                            color="grey"
+                            class="rounded-xl mx-0"
+                          >
+                            <v-img
+                              :src="center.photos[0]"
+                              cover
+                              @click="$router.push({ path:`/center/`, query:{id: center._id}, component:'CenterPage'})"
+                            />
+                          </v-list-item-avatar>
+                        </v-list-item>
                         <v-card-title>
                           {{ center.name }}
                         </v-card-title>
-                        <v-card-text>
-                          {{ center.description }}
-                        </v-card-text>
-                        <v-card-actions>
+                        <v-chip outlined class="caption">
+                          {{ center.type }}
+                        </v-chip>
+
+                        <v-card-actions class="pt-0">
                           <v-btn>
-                            Más info
+                            More Info
                           </v-btn>
                         </v-card-actions>
                       </v-card>
