@@ -177,7 +177,7 @@
                         Bookings to manage:
                       </v-col>
                       <v-col>
-                        <a @click="getOneCenterBookings(center._id)">{{ center.bookings.filter(e => e.status === 'open').length }} </a>
+                        <a @click="$router.push({ path:`/host/center/bookings/`, query:{id: center._id}, component:'HostBookingsPage'})">{{ center.bookings.filter(e => e.status === 'open').length }}  </a>
                       </v-col>
                     </v-row>
                   </v-card-subtitle>
@@ -281,7 +281,7 @@
                       Bookings to manage:
                     </v-col>
                     <v-col>
-                      <a @click="getOneCenterBookings(center._id)">{{ center.bookings.filter(e => e.status === 'open').length }} </a>
+                      <a @click="$router.push({ path:`/host/center/bookings/`, query:{id: center._id}, component:'HostBookingsPage'})">{{ center.bookings.filter(e => e.status === 'open').length }}  </a>
                     </v-col>
                   </v-row>
                 </v-card-subtitle>
