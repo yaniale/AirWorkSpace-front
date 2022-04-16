@@ -9,8 +9,10 @@
           Total Bookings
         </v-card-title>
       </v-card>
-      <v-card v-if="bookings.length === 0">
-        You don't have any confirmed booking yet.
+      <v-card v-if="bookings.length === 0" flat>
+        <v-card-text class="subtitle1">
+          You don't have any booking yet.
+        </v-card-text>
       </v-card>
       <v-card
         v-for="(booking, idx) in bookings"
@@ -76,9 +78,14 @@
           Total Bookings in {{ center.name }}
         </v-card-title>
       </v-card>
-      <v-card v-if="bookings.length === 0">
-        You don't have any confirmed booking yet.
-      </v-card>
+      <v-col offset="1">
+        <v-card v-if="bookings.length === 0" flat>
+          <v-card-text class="headline">
+            You don't have any booking yet.
+          </v-card-text>
+        </v-card>
+      </v-col>
+
       <v-card
         v-for="(booking, idx) in bookings"
         :key="idx"
