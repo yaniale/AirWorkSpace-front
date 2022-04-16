@@ -5,6 +5,7 @@
       <v-avatar
         size="200"
         justify="center"
+        color="grey"
       >
         <v-img alt="avatar" :src="$auth.$state.user.avatar" />
       </v-avatar>

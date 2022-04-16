@@ -30,7 +30,7 @@
                   mdi-menu
                 </v-icon>
               </v-list-item-content>
-              <v-list-item-avatar v-if="$auth.$state.user">
+              <v-list-item-avatar v-if="$auth.$state.user" color="grey">
                 <img :src="$auth.$state.user.avatar" alt="">
               </v-list-item-avatar>
             </v-list-item>

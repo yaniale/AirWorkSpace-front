@@ -1,44 +1,50 @@
 <template>
   <v-row>
     <v-col v-if="$vuetify.breakpoint.smAndDown">
-      <v-card flat>
-        <v-card-title class="justify-center">
-          Become an AirWorker!
-        </v-card-title>
-      </v-card>
+      <v-row class="border">
+        <v-card width="100%" flat>
+          <v-card-title class="justify-center">
+            Become an AirWorker!
+          </v-card-title>
+        </v-card>
+      </v-row>
       <v-form>
-        <v-card class="my-2 mx-auto" width="90%">
-          <v-card-title>Basic Info</v-card-title>
+        <v-card class="my-5 mx-auto" flat width="100%">
+          <v-card-title class="py-0">
+            Basic Info
+          </v-card-title>
           <v-card-text>
-            <v-text-field v-model="user.firstName" class="mx-2" label="First Name*" :rules="rules().compFirstName()" />
-            <v-text-field v-model="user.lastName" class="mx-2" label="Last Name*" :rules="rules().compLastName()" />
-            <v-text-field v-model="user.phone" class="mx-2" label="Phone*" :rules="rules().compPhone()" />
+            <v-text-field v-model="user.firstName" class="mx-2 mt-0" label="First Name*" :rules="rules().compFirstName()" />
+            <v-text-field v-model="user.lastName" class="mx-2 mt-0 py-0" label="Last Name*" :rules="rules().compLastName()" />
+            <v-text-field v-model="user.phone" class="mx-2 mt-0 py-0" label="Phone*" :rules="rules().compPhone()" />
           </v-card-text>
 
-          <v-card-title>
+          <v-card-title class="py-0">
             Address
           </v-card-title>
           <v-card-text>
-            <v-text-field v-model="user.address" label="Address" />
-            <v-text-field v-model="user.postalCode" label="Postal Code" />
-            <v-text-field v-model="user.city" label="City" />
-            <v-text-field v-model="user.state" label="State/Province" />
-            <v-text-field v-model="user.country" label="Country" />
+            <v-text-field v-model="user.address" label="Address" class="py-0" />
+            <v-text-field v-model="user.postalCode" label="Postal Code" class="py-0" />
+            <v-text-field v-model="user.city" label="City" class="py-0" />
+            <v-text-field v-model="user.state" label="State/Province" class="py-0" />
+            <v-text-field v-model="user.country" label="Country" class="py-0" />
           </v-card-text>
 
-          <v-card-title>Login details</v-card-title>
-          <v-card-text>
-            <v-text-field v-model="user.email" type="email" label="Email*" :rules="rules().emailValidator()" />
-            <v-text-field v-model="user.confirmEmail" type="email" label="Confirm email*" :rules="rules().emailValidator()" />
-            <v-text-field v-model="user.password" type="password" label="Password*" :rules="rules().passwordValidator()" />
-            <v-text-field v-model="user.confirmPassword" type="password" label="Confirm password*" :rules="rules().passwordValidator()" />
+          <v-card-title class="py-0">
+            Login details
+          </v-card-title>
+          <v-card-text class="py-0">
+            <v-text-field v-model="user.email" type="email" label="Email*" class="py-0" :rules="rules().emailValidator()" />
+            <v-text-field v-model="user.confirmEmail" type="email" label="Confirm email*" class="py-0" :rules="rules().emailValidator()" />
+            <v-text-field v-model="user.password" type="password" label="Password*" class="py-0" :rules="rules().passwordValidator()" />
+            <v-text-field v-model="user.confirmPassword" type="password" label="Confirm password*" class="py-0" :rules="rules().passwordValidator()" />
           </v-card-text>
-          <v-card-actions>
+          <v-card-actions class="py-0">
             <v-card-text v-if="errorHandling.compulsoryFields[0]" class="red--text py-0 my-0 caption">
               {{ errorHandling.compulsoryFields[1] }}
             </v-card-text>
             <v-spacer />
-            <v-btn @click="signUp">
+            <v-btn color="primary" @click="signUp">
               Sign Up
             </v-btn>
           </v-card-actions>
@@ -143,5 +149,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+.border {
+  border-bottom: 1px solid grey
+}
 </style>

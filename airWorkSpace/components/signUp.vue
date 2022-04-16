@@ -23,103 +23,77 @@
               Basic Info
             </v-card-title>
             <v-row>
-              <v-col
-                cols="12"
-                sm="6"
-                md="4"
-              >
+              <v-col>
                 <v-text-field v-model="user.firstName" class="mx-2" label="First Name*" :rules="rules().compFirstName()" />
               </v-col>
-              <v-col
-                cols="12"
-                sm="6"
-                md="4"
-              >
+              <v-col>
                 <v-text-field v-model="user.lastName" class="mx-2" label="Last Name*" :rules="rules().compLastName()" />
               </v-col>
-              <v-col
-                cols="12"
-                sm="6"
-                md="4"
-              >
+              <v-col>
                 <v-text-field v-model="user.phone" class="mx-2" label="Phone*" :rules="rules().compPhone()" />
               </v-col>
-              <v-col cols="12" class="my-0 py-0">
-                <v-card-title class="pa-0">
-                  Address
-                </v-card-title>
+            </v-row>
+            <v-card-title class="pa-0">
+              Address
+            </v-card-title>
+            <v-row>
+              <v-col cols="9">
+                <v-text-field v-model="user.address" label="Address" hide-details />
               </v-col>
-              <v-col cols="12" sm="10" md="9">
-                <v-text-field v-model="user.address" label="Address" />
+              <v-col cols="3">
+                <v-text-field v-model="user.postalCode" label="Postal Code" hide-details />
               </v-col>
-              <v-col
-                cols="12"
-                sm="5"
-                md="3"
-              >
-                <v-text-field v-model="user.postalCode" label="Postal Code" />
+              <v-col cols="4">
+                <v-text-field v-model="user.city" label="City" class="py-2" />
               </v-col>
-              <v-col
-                cols="12"
-                sm="6"
-                md="4"
-              >
-                <v-text-field v-model="user.city" label="City" />
+              <v-col cols="4">
+                <v-text-field v-model="user.state" label="State/Province" class="py-2" />
               </v-col>
-              <v-col
-                cols="12"
-                sm="6"
-                md="4"
-              >
-                <v-text-field v-model="user.state" label="State/Province" />
+              <v-col cols="4">
+                <v-text-field v-model="user.state" label="Country" class="py-2" />
               </v-col>
-              <v-col
-                cols="12"
-                sm="6"
-                md="4"
-              >
-                <v-text-field v-model="user.state" label="Country" />
+            </v-row>
+            <v-card-title class="pa-0">
+              Login Details
+            </v-card-title>
+            <v-row>
+              <v-col cols="6">
+                <v-text-field v-model="user.email" type="email" label="Email*" hide-details :rules="rules().emailValidator()" />
               </v-col>
-              <v-col cols="12" class="my-0 py-0">
-                <v-card-title class="pa-0">
-                  Login Details
-                </v-card-title>
+              <v-col cols="6">
+                <v-text-field v-model="user.confirmEmail" type="email" label="Confirm email*" hide-details :rules="rules().emailValidator()" />
               </v-col>
-              <v-col
-                cols="12"
-                sm="6"
-              >
-                <v-text-field v-model="user.email" type="email" label="Email*" :rules="rules().emailValidator()" />
+              <v-col cols="6">
+                <v-text-field
+                  v-model="user.password"
+                  type="password"
+                  label="Password*"
+                  class="py-2 my-0"
+                  hide-details
+                  :rules="rules().passwordValidator()"
+                />
               </v-col>
-              <v-col
-                cols="12"
-                sm="6"
-              >
-                <v-text-field v-model="user.confirmEmail" type="email" label="Confirm email*" :rules="rules().emailValidator()" />
-              </v-col>
-              <v-col
-                cols="12"
-                sm="6"
-              >
-                <v-text-field v-model="user.password" type="password" label="Password*" :rules="rules().passwordValidator()" />
-              </v-col>
-              <v-col
-                cols="12"
-                sm="6"
-              >
-                <v-text-field v-model="user.confirmPassword" type="password" label="Confirm password*" :rules="rules().passwordValidator()" />
+              <v-col cols="6">
+                <v-text-field
+                  v-model="user.confirmPassword"
+                  type="password"
+                  label="Confirm password*"
+                  class="py-2 my-0"
+                  hide-details
+                  :rules="rules().passwordValidator()"
+                />
               </v-col>
             </v-row>
           </v-container>
           <small>*indicates required field</small>
         </v-card-text>
-        <v-card-actions>
-          <v-card-text v-if="errorHandling.compulsoryFields[0]" class="red--text py-0 my-0 caption">
+        <v-card-actions class="pt-0">
+          <v-card-text v-if="errorHandling.compulsoryFields[0]" class="red--text py-0 mb-0 caption">
             {{ errorHandling.compulsoryFields[1] }}
           </v-card-text>
           <v-spacer />
           <v-btn
-            color="primary"
+            color="black"
             text
             @click="dialog = false"
           >
