@@ -25,7 +25,7 @@
           <v-input
             prepend-icon="mdi-map-marker-outline"
           >
-            Dónde estamos
+            Location
             <v-btn
               icon
               @click="show = !show"
@@ -48,13 +48,13 @@
           <v-divider />
           <!-- Tipos de mesa -->
           <v-card-title>
-            Tu reserva
+            Your Booking
           </v-card-title>
           <v-card-text>
             <v-list-item three-line>
               <v-list-item-content>
                 <div :class="`text-overline mb-4 ${statusColor(booking.status)}--text`">
-                  {{ capitalize(booking.status) }}
+                  {{ booking.status }}
                 </div>
                 <v-list-item-title class="text-h7 mb-1 text-wrap">
                   {{ getType(booking.type) }}
@@ -110,9 +110,7 @@ export default {
     getType (type) {
       return utils.getType(type)
     },
-    capitalize (str) {
-      return utils.capitalize(str)
-    },
+
     statusColor (status) {
       switch (status) {
         case 'open':
