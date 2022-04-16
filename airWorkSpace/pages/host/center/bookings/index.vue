@@ -59,13 +59,15 @@
     </v-col>
     <!-- Breakpoint mdAndUp -->
     <v-col v-else offset="1">
+      <Breadcrumb :items="items" />
+
       <v-card flat>
-        <v-card-title class="px-16 mx-12 font-weight-bold headline">
+        <!-- <v-card-title class="px-16 mx-12 font-weight-bold headline">
           <v-icon class="mr-5" @click="$router.push({ path: '/host/center/', component:'MyCenterPage'})">
             mdi-chevron-left
           </v-icon>
           Pending Bookings in {{ center.name }}
-        </v-card-title>
+        </v-card-title> -->
         <v-col offset="1">
           <v-card v-if="bookings.length === 0" flat>
             <v-card-text class="headline">
@@ -142,13 +144,34 @@
 
 <script>
 import utils from '@/services/utils.services'
+import Breadcrumb from '@/components/Breadcrumb.vue'
 
 export default {
   name: 'HostBookingsPage',
+  components: {
+    Breadcrumb
+  },
   data () {
     return {
       center: {},
-      bookings: []
+      bookings: [],
+      items: [
+        {
+          text: 'Home',
+          disabled: false,
+          href: '/'
+        },
+        {
+          text: 'My Centers',
+          disabled: false,
+          href: '/host/center'
+        },
+        {
+          text: 'Pending Bookings',
+          disabled: true,
+          href: '/host/center/bookings'
+        }
+      ]
     }
   },
   mounted () {
