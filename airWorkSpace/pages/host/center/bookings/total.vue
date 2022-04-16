@@ -150,7 +150,7 @@
 
           <v-col>
             <v-list-item-subtitle>
-              Rate: {{ booking.ratePlan[0].price }}
+              Rate: {{ booking.ratePlan[0].price }} €
             </v-list-item-subtitle>
             <v-list-item-subtitle>
               Total Price: {{ booking.totalRate }} €

@@ -69,7 +69,7 @@
         width="90%"
       >
         <v-list-item three-line>
-          <v-col>
+          <v-col class="pr-0">
             <v-list-item-content style="height:300px">
               <div :class="`text-overline mb-4 text-capitalize ${statusColor(booking.status)}--text`">
                 {{ booking.status }}
@@ -100,7 +100,7 @@
 
               <v-list-item-action>
                 <v-spacer />
-                <v-btn v-if="booking.status === 'rejected' ? false : true" class="mr-2" :to="`/profile/bookings/manage/?id=${booking._id}`" color="primary">
+                <v-btn v-if="booking.status === 'rejected' ? false : true" class="mr-5 px-2" :to="`/profile/bookings/manage/?id=${booking._id}`" color="primary">
                   Manage Booking
                 </v-btn>
               </v-list-item-action>
