@@ -6,15 +6,23 @@
           elevation="0"
           class="mx-0 px-0"
         >
+          <v-carousel :show-arrows="false" height="40vh" class="ma-0 pa-0" hide-delimiter-background delimiter-icon="mdi-minus">
+            <v-carousel-item
+              v-for="(photo,idx) in center.photos"
+              :key="idx"
+              :src="photo"
+              position="center"
+            />
+          </v-carousel>
+          <!--
           <v-img
             class="white--text align-end"
             height="240px"
             :src="center.photos[0]"
-          >
-            <v-card-title>
-              {{ center.name }}
-            </v-card-title>
-          </v-img>
+          /> -->
+          <v-card-title class="pb-0">
+            {{ center.name }}
+          </v-card-title>
           <v-chip outlined class="pb-0 px-2 mx-3 my-1 caption">
             {{ center.type }}
           </v-chip>
@@ -52,7 +60,7 @@
                     :complete="e6 > 1"
                     step="1"
                   >
-                    Select your accomodation
+                    Select your desk
                     <small>These are our current allotments</small>
                   </v-stepper-step>
                   <v-divider />
@@ -83,13 +91,12 @@
                       :class="{ 'on-hover': hover }"
                       flat
                       class="mx-auto my-2"
-                      width="55vw"
+                      width="70vw"
                       @click="stepperRate(allotment.type)"
                     >
                       <v-card-subtitle class>
                         {{ center.allotment[idx].name }}
                       </v-card-subtitle>
-                      <!-- añadir foto?? -->
                       <v-divider />
                     </v-card>
                   </v-hover>
@@ -194,7 +201,6 @@
                             @click="stepperRate(allotment.type)"
                           >
                             <v-card-subtitle>{{ center.allotment[idx].name }}</v-card-subtitle>
-                            <!-- añadir foto?? -->
                             <v-divider />
                           </v-card>
                         </v-hover>
@@ -250,7 +256,6 @@
           </v-container>
         </v-card-text>
       </v-card>
-      </v-container>
     </v-col>
   </v-row>
 </template>

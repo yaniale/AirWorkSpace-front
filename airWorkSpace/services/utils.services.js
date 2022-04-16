@@ -25,9 +25,6 @@ const utils = {
     const year = new Date(date).getFullYear()
     const day = new Date(date).getDate()
     return `${day}, ${month} ${year}`
-  },
-  capitalize (str) {
-    return str.charAt(0).toUpperCase() + str.slice(1)
   }
 }
 

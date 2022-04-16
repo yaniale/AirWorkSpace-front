@@ -22,32 +22,37 @@
           </v-card-title>
         </v-card-title>
         <v-card-text>
-          <v-input class="mx-2">
-            User since {{ $store.state.monthShortName[new Date($auth.$state.user.created).getMonth()] }}
-            {{ new Date($auth.$state.user.created).getFullYear() }}
+          <v-input hide-details class="mb-2">
+            <v-icon class=" mr-2">
+              mdi-account-outline
+            </v-icon>
+            <span>
+              User since {{ $store.state.monthShortName[new Date($auth.$state.user.created).getMonth()] }}
+              {{ new Date($auth.$state.user.created).getFullYear() }}
+            </span>
           </v-input>
           <v-divider />
           <v-input v-if="$auth.$state.user.role === 'user'" class="my-2">
             <span>Become a host today and start earning!</span>
-            <v-btn @click="promoteHost">
+            <v-btn color="primary" class="px-1 ml-2" @click="promoteHost">
               <v-icon>mdi-arrow-up-thick</v-icon>
               Upgrade
             </v-btn>
           </v-input>
-          <v-input v-if="$auth.$state.user.role==='host'">
-            <v-icon class="my-2 mr-2">
+          <v-input v-if="$auth.$state.user.role==='host'" hide-details class="my-2">
+            <v-icon class=" mr-2">
               mdi-account-switch-outline
             </v-icon>
             <span>Switch to <a @click="switchView">{{ currentView }}</a> view </span>
           </v-input>
           <v-divider />
-          <v-input>
+          <v-input class="my-2" hide-details>
             <v-icon class="mr-2">
               mdi-home
             </v-icon>
             Lives in {{ $auth.$state.user.city }}, {{ $auth.$state.user.country }}
           </v-input>
-          <v-input v-if="$auth.$state.user.role === 'host'">
+          <v-input v-if="$auth.$state.user.role === 'host'" class="my-2" hide-details>
             <v-icon class="mr-2">
               mdi-office-building-outline
             </v-icon>

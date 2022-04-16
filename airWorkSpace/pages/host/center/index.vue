@@ -6,8 +6,10 @@
           My Centers
         </v-card-title>
       </v-card>
-      <v-card v-if="centers.length === 0">
-        <v-card-text>You don't have any center submited yet.</v-card-text>
+      <v-card v-if="centers.length === 0" flat>
+        <v-card-text class="subtitle1">
+          You don't have any center submited yet.
+        </v-card-text>
       </v-card>
       <v-card
         v-for="(center, idx) in centers"
@@ -115,14 +117,17 @@
         </v-card-title>
       </v-card>
       <v-col>
-        <v-card v-if="centers.length === 0">
-          <v-card-text>You don't have any center submited yet.</v-card-text>
+        <v-card v-if="centers.length === 0" flat>
+          <v-card-text class="subtitle1">
+            You don't have any center submited yet.
+          </v-card-text>
         </v-card>
         <v-col>
           <v-card
             v-for="(center, idx) in centers"
             :key="idx"
             class="mx-auto my-2 rounded-xl"
+            flat
             width="90%"
           >
             <v-list-item three-line>
@@ -220,19 +225,29 @@
                 </v-card-text>
               </div>
             </v-expand-transition>
+            <v-divider />
           </v-card>
         </v-col>
       </v-col>
     </v-col>
     <!-- Breakpoint mdAndUp -->
     <v-col v-if="$vuetify.breakpoint.mdAndUp" offset="1">
-      <v-card flat>
+      <v-card flat class="mb-0">
         <v-card-title class="px-16 mx-12 font-weight-bold headline">
           My Centers
         </v-card-title>
+        <v-col cols="1" offset="9">
+          <v-card-actions>
+            <v-btn color="primary" to="/host/center/newcenter">
+              Add a Center
+            </v-btn>
+          </v-card-actions>
+        </v-col>
       </v-card>
-      <v-card v-if="centers.length === 0">
-        <v-card-text>You don't have any center submited yet.</v-card-text>
+      <v-card v-if="centers.length === 0" flat>
+        <v-card-text class="headline">
+          You don't have any center submited yet.
+        </v-card-text>
       </v-card>
       <v-card
         v-for="(center, idx) in centers"
