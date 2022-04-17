@@ -23,9 +23,23 @@
           <v-card-title class="pb-0">
             {{ center.name }}
           </v-card-title>
-          <v-chip outlined class="pb-0 px-2 mx-3 my-1 caption">
-            {{ center.type }}
-          </v-chip>
+          <v-input hide-details>
+            <v-chip
+              outlined
+              class="pb-0 px-2 mx-3 my-1 caption"
+            >
+              {{ center.type }}
+            </v-chip>
+            <v-spacer />
+            <v-btn
+              color="red lighten-2"
+              text
+            >
+              <v-icon @click.prevent="addFavourite(center._id)">
+                {{ isFavourite(center._id) ? 'mdi-heart' : 'mdi-heart-outline' }}
+              </v-icon>
+            </v-btn>
+          </v-input>
 
           <v-card-text class="text--primary mx-0 pt-0">
             <div>
@@ -122,6 +136,7 @@
               </v-stepper>
             </v-card>
           </v-card-text>
+          </v-spacer>
         </v-card>
       </v-container>
     </v-col>
@@ -136,13 +151,22 @@
               {{ center.city }}, {{ center.country }}
             </v-col>
             <v-col justify="right" align="right">
-              <v-icon>mdi-heart</v-icon>
+              <v-btn
+                color="red lighten-2"
+                text
+              >
+                <v-icon @click.prevent="addFavourite(center._id)">
+                  {{ isFavourite(center._id) ? 'mdi-heart' : 'mdi-heart-outline' }}
+                </v-icon>
+              </v-btn>
             </v-col>
           </v-row>
         </v-card-subtitle>
         <v-carousel
           style="border-top-left-radius: 25px; border-top-right-radius: 25px"
           cycle
+          contain
+          size="300"
           height="40vh"
           hide-delimiter-background
           hide-delimiters
@@ -291,6 +315,22 @@ export default {
     bookingStep (rateId) {
       this.e6 = 3
       this.rateId = rateId
+    },
+    isFavourite (id) {
+      if (this.$auth.$state.user) {
+        return !!this.$auth.$state.user.favourites.find(e => e._id === id)
+      } else {
+        return false
+      }
+    },
+
+    async addFavourite (id) {
+      if (!this.$auth.loggedIn) {
+        this.$router.push('/auth')
+      } else {
+        await this.$axios.put(`/user/profile/favourites/${id}`)
+        await this.$auth.fetchUser()
+      }
     }
   }
 }
