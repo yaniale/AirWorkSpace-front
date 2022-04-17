@@ -10,7 +10,7 @@
         <v-img alt="avatar" :src="$auth.$state.user.avatar" />
       </v-avatar>
     </v-col>
-    <v-col cols="12" sm="8" md="5">
+    <v-col cols="12" sm="10" md="5">
       <v-row style="height:150px" />
 
       <v-card flat>

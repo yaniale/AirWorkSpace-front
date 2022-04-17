@@ -62,10 +62,12 @@
     <v-col v-else>
       <v-row>
         <v-col cols="5" offset="1">
-          y aquí el logo con el welcome
+          <v-card>
+            <v-card-title>aquí el logo y el welcome</v-card-title>
+            <img src="../assets/logo3.png" alt="">
+          </v-card>
         </v-col>
-
-        <v-col cols="5" class="pl-0">
+        <v-col cols="4" offset="1" class="pl-0">
           <v-card elevation="5" class="mt-15 rounded-xl">
             <v-card-title class="justify-center">
               Log in or Sign up
@@ -161,5 +163,8 @@ export default {
 <style lang="scss" scoped>
 .border {
   border-bottom: 1px solid grey
+}
+.bg{
+  background-image: url(../assets/logo_size.jpg);
 }
 </style>

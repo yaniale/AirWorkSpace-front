@@ -68,10 +68,10 @@
         </v-col>
       </v-row>
       <v-row v-else class="mx-0 px-0" style="max-height: 100vh; overflow: hidden; width:100%;">
-        <v-col class="mx-0 px-0" cols="12" sm="6" md="6" style="max-height: 100vh; overflow: auto;">
+        <v-col class="mx-0 px-0" cols="12" sm="6" md="7" style="max-height: 100vh; overflow: auto;">
           <SearchResult />
         </v-col>
-        <v-col cols="12" sm="6" md="6" class="px-0">
+        <v-col cols="12" sm="6" md="5" class="px-0">
           <GoogleMapsCenters :centers="$store.state.centers" />
         </v-col>
       </v-row>
