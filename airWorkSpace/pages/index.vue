@@ -29,33 +29,32 @@
                   </v-card-actions>
                   <v-spacer />
                 </v-card>
-                <v-card style="margin-top: 50px" color="transparent" elevation="0">
+                <v-card style="margin-top: 50px" color="transparent" flat>
                   <v-row cols="12">
                     <v-col v-for="(center, idx) in randomCenters" :key="idx" cols="3">
-                      <v-card light class="rounded-xl">
-                        <v-list-item class="px-0">
-                          <v-list-item-avatar
+                      <v-card light class="rounded-xl" height="230px">
+                        <!-- <v-list-item-avatar
                             tile
                             size="100"
                             color="grey"
                             class="rounded-xl mx-0"
                           >
-                            <v-img
-                              :src="center.photos[0]"
-                              cover
-                              @click="$router.push({ path:`/center/`, query:{id: center._id}, component:'CenterPage'})"
-                            />
-                          </v-list-item-avatar>
-                        </v-list-item>
-                        <v-card-title>
+                        </v-list-item-avatar> -->
+                        <v-img
+                          :src="center.photos[0]"
+                          cover
+                          height="130px"
+                          @click="getCenter(center._id)"
+                        />
+                        <v-input class="font-weight-bold px-2 pt-2" hide-details>
                           {{ center.name }}
-                        </v-card-title>
-                        <v-chip outlined class="caption">
+                        </v-input>
+                        <v-input outlined class="caption px-2" hide-details>
                           {{ center.type }}
-                        </v-chip>
-
-                        <v-card-actions class="pt-0">
-                          <v-btn>
+                        </v-input>
+                        <v-card-actions class="py-1">
+                          <v-spacer />
+                          <v-btn text class="primary--text" @click="getCenter(center._id)">
                             More Info
                           </v-btn>
                         </v-card-actions>
@@ -127,6 +126,12 @@ export default {
         const element = allCenters.data[Math.floor(Math.random() * allCenters.data.length)]
         this.$set(this.randomCenters, i, element)
       }
+    },
+    async getCenter (id) {
+      this.data = await this.$axios.get(`/center/${id}`)
+      const load = [this.data.data]
+      this.$store.commit('addCenters', load)
+      this.$router.push({ path: '/center/', query: { id }, component: 'CenterPage' })
     }
   }
 }

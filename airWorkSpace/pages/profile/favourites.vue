@@ -87,11 +87,11 @@
             <v-img
               :src="center.photos[0]"
               cover
-              @click="$router.push({ path:`/center/`, query:{id: center._id}, component:'CenterPage'})"
+              @click="getCenter(center._id)"
             />
           </v-list-item-avatar>
           <v-list-item-content style="height:300px">
-            <v-list-item-title class="headline font-weight-bold" @click="$router.push({ path:`/center/`, query:{id: center._id}, component:'CenterPage'})">
+            <v-list-item-title class="headline font-weight-bold" @click="getCenter(center._id)">
               {{ center.name }}
             </v-list-item-title>
             <v-list-item-title class="title">
