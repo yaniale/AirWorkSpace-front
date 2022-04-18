@@ -1,58 +1,143 @@
 <template>
-  <v-card elevation="0">
-    <v-card-title>Update profile</v-card-title>
-    <v-card-text>
-      <v-form>
-        <v-divider class="my-2" />
-        <v-card class="my-5" elevation="3">
-          <v-card-title class="px-2">
-            Basic Info
-          </v-card-title>
-          <v-card-text>
-            <v-text-field v-model="user.avatar" color="teal lighten-2" class="mx-2" label="Profile Picture URL" />
-            <v-text-field v-model="user.firstName" color="teal lighten-2" class="mx-2" label="First Name" />
-            <v-text-field v-model="user.lastName" color="teal lighten-2" class="mx-2" label="Last Name" />
-          </v-card-text>
+  <v-row>
+    <v-col v-if="$vuetify.breakpoint.smAndDown">
+      <v-card elevation="0">
+        <v-card-title>Update profile</v-card-title>
+        <v-card-text>
+          <v-form>
+            <v-divider class="my-2" />
+            <v-card class="my-5" flat>
+              <v-card-title class="px-2 py-0">
+                Basic Info
+              </v-card-title>
+              <v-card-text>
+                <v-text-field v-model="user.avatar" color="primary" class="mx-2" label="Profile Picture URL" />
+                <v-text-field v-model="user.firstName" color="primary" class="mx-2" label="First Name" />
+                <v-text-field v-model="user.lastName" color="primary" class="mx-2" label="Last Name" />
+              </v-card-text>
 
-          <v-card-title class="px-2">
-            Address
-          </v-card-title>
-          <v-card-text>
-            <v-text-field v-model="user.address" color="teal lighten-2" label="Address" />
-            <v-text-field v-model="user.postalCode" color="teal lighten-2" label="Postal Code" />
-            <v-text-field v-model="user.city" color="teal lighten-2" label="City" />
-            <v-text-field v-model="user.state" color="teal lighten-2" label="State/Province" />
-            <v-text-field v-model="user.country" color="teal lighten-2" label="Country" />
-          </v-card-text>
-          <span v-if="messageHandling.updated[0]" class="green--text mx-5">{{ messageHandling.updated[1] }}</span>
-          <v-card-actions>
-            <v-spacer />
-            <v-btn @click="updateProfile">
-              Update Profile
-            </v-btn>
-          </v-card-actions>
-        </v-card>
-        <v-card v-card class="my-5" elevation="3">
-          <v-card-title>
-            Login Details
-          </v-card-title>
-          <v-card-text>
-            <v-text-field v-model="user.email" color="teal lighten-2" label="Email" :rules="rules().emailValidator()" />
-            <v-text-field v-model="user.confirmEmail" color="teal lighten-2" label="Confirm Email" :rules="rules().emailValidator()" />
-            <v-text-field v-model="user.password" color="teal lighten-2" label="Password" type="password" :rules="rules().passwordValidator()" />
-            <v-text-field v-model="user.confirmPassword" color="teal lighten-2" label="Confirm Password" type="password" :rules="rules().passwordValidator()" />
-            <span v-if="errorHandling.noUpdateProfile[0]" class="red--text">{{ errorHandling.noUpdateProfile[1] }}</span>
-          </v-card-text>
-          <v-card-actions>
-            <v-spacer />
-            <v-btn @click="updateLogin">
-              Update Login
-            </v-btn>
-          </v-card-actions>
-        </v-card>
-      </v-form>
-    </v-card-text>
-  </v-card>
+              <v-card-title class="px-2 py-0">
+                Address
+              </v-card-title>
+              <v-card-text>
+                <v-text-field v-model="user.address" color="primary" label="Address" />
+                <v-text-field v-model="user.postalCode" color="primary" label="Postal Code" />
+                <v-text-field v-model="user.city" color="primary" label="City" />
+                <v-text-field v-model="user.state" color="primary" label="State/Province" />
+                <v-text-field v-model="user.country" color="primary" label="Country" />
+              </v-card-text>
+              <v-card-actions>
+                <span v-if="messageHandling.updated[0]" class="green--text">{{ messageHandling.updated[1] }}</span>
+                <v-spacer />
+                <v-btn color="primary" @click="updateProfile">
+                  Update Profile
+                </v-btn>
+              </v-card-actions>
+            </v-card>
+            <v-card v-card class="my-5" flat>
+              <v-card-title class="px-2 py-0">
+                Login Details
+              </v-card-title>
+              <v-card-text>
+                <v-text-field v-model="user.email" color="primary" label="Email" :rules="rules().emailValidator()" />
+                <v-text-field v-model="user.confirmEmail" color="primary" label="Confirm Email" :rules="rules().emailValidator()" />
+                <v-text-field v-model="user.password" color="primary" label="Password" type="password" :rules="rules().passwordValidator()" />
+                <v-text-field v-model="user.confirmPassword" color="primary" label="Confirm Password" type="password" :rules="rules().passwordValidator()" />
+              </v-card-text>
+              <v-card-actions>
+                <span v-if="errorHandling.noUpdateProfile[0]" class="red--text">{{ errorHandling.noUpdateProfile[1] }}</span>
+                <v-spacer />
+                <v-btn color="primary" @click="updateLogin">
+                  Update Login
+                </v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-form>
+        </v-card-text>
+      </v-card>
+    </v-col>
+    <v-col v-else cols="10" offset="1">
+      <v-card flat>
+        <v-card-title>Update profile</v-card-title>
+        <v-card-text>
+          <v-form>
+            <v-row>
+              <v-col cols="7" class="mr-5">
+                <v-card class="my-5" flat>
+                  <v-card-title class="px-2 py-0">
+                    Basic Info
+                  </v-card-title>
+                  <v-card-text class="py-0">
+                    <v-text-field v-model="user.avatar" color="primary" class="mx-2" label="Profile Picture URL" />
+                    <v-row>
+                      <v-col>
+                        <v-text-field v-model="user.firstName" color="primary" class="mx-2" label="First Name" />
+                      </v-col>
+                      <v-col>
+                        <v-text-field v-model="user.lastName" color="primary" class="mx-2" label="Last Name" />
+                      </v-col>
+                    </v-row>
+                  </v-card-text>
+
+                  <v-card-title class="px-2 py-0">
+                    Address
+                  </v-card-title>
+                  <v-card-text class="pb-0">
+                    <v-text-field v-model="user.address" color="primary" label="Address" />
+                    <v-row>
+                      <v-col cols="6">
+                        <v-text-field v-model="user.postalCode" color="primary" label="Postal Code" width="10%" />
+                      </v-col>
+                      <v-col cols="6">
+                        <v-text-field v-model="user.city" color="primary" label="City" />
+                      </v-col>
+                    </v-row>
+                    <v-row class="mt-0">
+                      <v-col cols="6" class="pt-0">
+                        <v-text-field v-model="user.state" color="primary" label="State/Province" />
+                      </v-col>
+                      <v-col cols="6" class="pt-0">
+                        <v-text-field v-model="user.country" color="primary" label="Country" />
+                      </v-col>
+                    </v-row>
+                  </v-card-text>
+                </v-card>
+
+                <v-card-actions class="pt-0">
+                  <span v-if="messageHandling.updated[0]" class="success--text mx-5">{{ messageHandling.updated[1] }}</span>
+                  <v-spacer />
+                  <v-btn color="primary" @click="updateProfile">
+                    Update Profile
+                  </v-btn>
+                </v-card-actions>
+              </v-col>
+              <v-col class="ml-5">
+                <v-card class="my-5" flat>
+                  <v-card-title class="px-2 py-0">
+                    Login Details
+                  </v-card-title>
+                  <v-card-text>
+                    <v-text-field v-model="user.email" color="primary" label="Email" :rules="rules().emailValidator()" />
+                    <v-text-field v-model="user.confirmEmail" color="primary" label="Confirm Email" :rules="rules().emailValidator()" />
+                    <v-text-field v-model="user.password" color="primary" label="Password" type="password" :rules="rules().passwordValidator()" />
+                    <v-text-field v-model="user.confirmPassword" color="primary" label="Confirm Password" type="password" :rules="rules().passwordValidator()" />
+                  </v-card-text>
+                  <v-card-actions class="mt-15 pt-12">
+                    <span v-if="errorHandling.noUpdateProfile[0]" class="red--text">{{ errorHandling.noUpdateProfile[1] }}</span>
+                    <v-spacer />
+                    <v-btn color="primary" @click="updateLogin">
+                      Update Login
+                    </v-btn>
+                  </v-card-actions>
+                </v-card>
+              </v-col>
+            </v-row>
+          </v-form>
+          <v-divider />
+        </v-card-text>
+      </v-card>
+    </v-col>
+  </v-row>
 </template>
 
 <script>
@@ -159,5 +244,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+.colstyle {
+  border-left:dotted 1px grey
+}
 </style>

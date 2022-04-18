@@ -18,21 +18,21 @@
       >
         <v-list-item three-line>
           <v-list-item-content>
-            <div :class="`text-overline mb-4 ${statusColor(booking.status)}--text`">
-              {{ capitalize(booking.status) }}
+            <div :class="`text-overline mb-4 text-capitalize ${statusColor(booking.status)}--text`">
+              {{ booking.status }}
             </div>
             <v-list-item-title class="text-h7 mb-1 text-wrap">
               {{ booking.center.name }}
             </v-list-item-title>
             <v-list-item-subtitle>{{ getType(booking.type) }}</v-list-item-subtitle>
             <v-list-item-subtitle v-if="booking.status === 'confirmed'">
-              Termina en: {{ formatDate(booking.toTime) }}
+              Finish on: {{ formatDate(booking.toTime) }}
             </v-list-item-subtitle>
             <v-list-item-subtitle v-if="booking.status === 'open'">
-              Pendiente hasta: {{ formatDate(booking.fromTime) }}
+              Pending until: {{ formatDate(booking.fromTime) }}
             </v-list-item-subtitle>
             <v-list-item-subtitle v-else>
-              Finalizado desde: {{ formatDate(booking.toTime) }}
+              Finished since: {{ formatDate(booking.toTime) }}
             </v-list-item-subtitle>
           </v-list-item-content>
 
@@ -54,7 +54,7 @@
         </v-card-actions>
       </v-card>
     </v-col>
-    <v-col v-else>
+    <v-col v-else offset="1">
       <v-card-title width="90%" class="px-16 mx-12 font-weight-bold headline">
         Bookings
       </v-card-title>
@@ -69,10 +69,10 @@
         width="90%"
       >
         <v-list-item three-line>
-          <v-col>
+          <v-col class="pr-0">
             <v-list-item-content style="height:300px">
-              <div :class="`text-overline mb-4 ${statusColor(booking.status)}--text`">
-                {{ capitalize(booking.status) }}
+              <div :class="`text-overline mb-4 text-capitalize ${statusColor(booking.status)}--text`">
+                {{ booking.status }}
               </div>
               <v-list-item-title class="headline font-weight-bold mb-1 text-wrap">
                 {{ booking.center.name }}
@@ -89,18 +89,18 @@
               <v-divider />
               <v-list-item-subtitle>{{ getType(booking.type) }}</v-list-item-subtitle>
               <v-list-item-subtitle v-if="booking.status === 'confirmed'">
-                Termina en: {{ formatDate(booking.toTime) }}
+                Finish on: {{ formatDate(booking.toTime) }}
               </v-list-item-subtitle>
               <v-list-item-subtitle v-if="booking.status === 'open'">
-                Pendiente hasta: {{ formatDate(booking.fromTime) }}
+                Pending until: {{ formatDate(booking.fromTime) }}
               </v-list-item-subtitle>
               <v-list-item-subtitle v-else>
-                Finalizado desde: {{ formatDate(booking.toTime) }}
+                Finished since: {{ formatDate(booking.toTime) }}
               </v-list-item-subtitle>
 
               <v-list-item-action>
                 <v-spacer />
-                <v-btn v-if="booking.status === 'rejected' ? false : true" class="mr-2" :to="`/profile/bookings/manage/?id=${booking._id}`" color="primary">
+                <v-btn v-if="booking.status === 'rejected' ? false : true" class="mr-5 px-2" :to="`/profile/bookings/manage/?id=${booking._id}`" color="primary">
                   Manage Booking
                 </v-btn>
               </v-list-item-action>
@@ -132,9 +132,6 @@ export default {
   methods: {
     getType (type) {
       return utils.getType(type)
-    },
-    capitalize (str) {
-      return utils.capitalize(str)
     },
     statusColor (status) {
       switch (status) {

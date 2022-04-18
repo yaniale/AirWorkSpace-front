@@ -1,51 +1,126 @@
 <template>
-  <v-card elevation="5">
-    <v-card-text>
-      <v-form>
-        <v-input>
-          <v-text-field
-            v-model="email"
+  <v-row>
+    <v-col v-if="$vuetify.breakpoint.smAndDown">
+      <v-row class="border">
+        <v-card width="100%" flat>
+          <v-card-title class="justify-center">
+            Log in or Sign up
+          </v-card-title>
+        </v-card>
+      </v-row>
+      <v-card width="100%" flat class="mt-10">
+        <v-card-title class="headline justify-center mb-5">
+          Welcome to AirWorkSpace!
+        </v-card-title>
+        <v-card-text>
+          <v-form>
+            <v-input>
+              <v-text-field
+                v-model="email"
+                color="primary"
+                label="Email"
+                type="email"
+                prepend-icon="mdi-email"
+                :rules="emailValidator()"
+                required
+              />
+            </v-input>
+            <v-input :messages="errorMessage">
+              <v-text-field
+                v-model="password"
+                :type="passVisible ? 'text' : 'password'"
+                color="primary"
+                label="Password"
+                prepend-icon="mdi-lock-outline"
+                required
+                :append-icon="
+                  passVisible ? 'mdi-eye-outline' : 'mdi-eye-off-outline'"
+                @click:append="passVisible = !passVisible"
+              />
+            </v-input>
+          </v-form>
+        </v-card-text>
+        <v-card-actions>
+          <v-btn
+            width="100%"
             color="primary"
-            label="Email"
-            type="email"
-            prepend-icon="mdi-email"
-            :rules="emailValidator()"
-            required
-          />
+            @click.prevent="login"
+          >
+            Login
+          </v-btn>
+        </v-card-actions>
+        <v-input class="mx-2">
+          Still not a member?
+          <v-btn v-if="$vuetify.breakpoint.smAndDown" depressed color="transparent" to="/auth/signup" class="text-capitalize primary--text">
+            Join now!
+          </v-btn>
+          <sign-up />
         </v-input>
-        <v-input :messages="errorMessage">
-          <v-text-field
-            v-model="password"
-            :type="passVisible ? 'text' : 'password'"
-            color="primary"
-            label="Password"
-            prepend-icon="mdi-lock-outline"
-            required
-            :append-icon="
-              passVisible ? 'mdi-eye-outline' : 'mdi-eye-off-outline'"
-            @click:append="passVisible = !passVisible"
-          />
-        </v-input>
-      </v-form>
-    </v-card-text>
-    <v-card-actions>
-      <v-spacer />
-      <v-btn
-        @click.prevent="login"
-      >
-        Login
-      </v-btn>
-    </v-card-actions>
-    <v-spacer />
-    <v-input class="mx-2">
-      Not a member?
-      <v-btn v-if="$vuetify.breakpoint.smAndDown" depressed color="transparent" to="/auth/signup" class="text-capitalize primary--text">
-        Register now!
-      </v-btn>
-      <sign-up />
-    </v-input>
-    <v-card />
-  </v-card>
+      </v-card>
+    </v-col>
+    <!-- breakpoint mdAndUp -->
+    <v-col v-else>
+      <v-row>
+        <v-col cols="5" offset="1">
+          <v-card>
+            <v-card-title>aquí el logo y el welcome</v-card-title>
+            <img src="../assets/logo3.png" alt="">
+          </v-card>
+        </v-col>
+        <v-col cols="4" offset="1" class="pl-0">
+          <v-card elevation="5" class="mt-15 rounded-xl">
+            <v-card-title class="justify-center">
+              Log in or Sign up
+            </v-card-title>
+            <v-card-text>
+              <v-form>
+                <v-input class="mx-5">
+                  <v-text-field
+                    v-model="email"
+                    color="primary"
+                    label="Email"
+                    type="email"
+                    prepend-icon="mdi-email"
+                    :rules="emailValidator()"
+                    required
+                  />
+                </v-input>
+                <v-input class="mx-5" :messages="errorMessage">
+                  <v-text-field
+                    v-model="password"
+                    :type="passVisible ? 'text' : 'password'"
+                    color="primary"
+                    label="Password"
+                    prepend-icon="mdi-lock-outline"
+                    required
+                    :append-icon="
+                      passVisible ? 'mdi-eye-outline' : 'mdi-eye-off-outline'"
+                    @click:append="passVisible = !passVisible"
+                  />
+                </v-input>
+              </v-form>
+            </v-card-text>
+            <v-card-actions class="justify-center">
+              <v-btn
+                width="70%"
+                color="primary"
+                @click.prevent="login"
+              >
+                Login
+              </v-btn>
+            </v-card-actions>
+            <v-input class="mx-16 px-8 pt-2">
+              Still not a member?
+              <v-btn v-if="$vuetify.breakpoint.smAndDown" depressed color="transparent" to="/auth/signup" class="text-capitalize primary--text">
+                Join now!
+              </v-btn>
+              <sign-up />
+            </v-input>
+          </v-card>
+        </v-col>
+      </v-row>
+    </v-col>
+  </v-row>
 </template>
 
 <script>
@@ -86,5 +161,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+.border {
+  border-bottom: 1px solid grey
+}
+.bg{
+  background-image: url(../assets/logo_size.jpg);
+}
 </style>

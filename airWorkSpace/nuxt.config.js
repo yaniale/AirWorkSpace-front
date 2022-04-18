@@ -87,7 +87,8 @@ export default {
       dark: false,
       themes: {
         light: {
-          primary: colors.teal.lighten2
+          primary: colors.teal.lighten2,
+          error: colors.red.lighten3
         },
         dark: {
           primary: colors.blue.darken2,
@@ -104,5 +105,7 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-  }
+  },
+  target: 'static',
+  ssr: false
 }

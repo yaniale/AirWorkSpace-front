@@ -14,7 +14,7 @@
                 </v-card-title>
               </v-card>
               <v-container v-else>
-                <v-card class="my-30" color="red lighten-2" light elevation="2" style="width:100em; height: 20em;display:flex; flex-direction: column;">
+                <v-card class="my-30 rounded-xl" color="red lighten-2" light elevation="2" style="width:100em; height: 20em;display:flex; flex-direction: column;">
                   <v-spacer />
                   <v-card-text class="text-h3 white--text" justify="end" align="center">
                     Tired of working at your own place? Try one of ours!
@@ -29,19 +29,33 @@
                   </v-card-actions>
                   <v-spacer />
                 </v-card>
-                <v-card style="margin-top: 50px" color="transparent" elevation="0">
+                <v-card style="margin-top: 50px" color="transparent" flat>
                   <v-row cols="12">
                     <v-col v-for="(center, idx) in randomCenters" :key="idx" cols="3">
-                      <v-card light>
-                        <v-card-title>
+                      <v-card light class="rounded-xl" height="230px">
+                        <!-- <v-list-item-avatar
+                            tile
+                            size="100"
+                            color="grey"
+                            class="rounded-xl mx-0"
+                          >
+                        </v-list-item-avatar> -->
+                        <v-img
+                          :src="center.photos[0]"
+                          cover
+                          height="130px"
+                          @click="getCenter(center._id)"
+                        />
+                        <v-input class="font-weight-bold px-2 pt-2" hide-details>
                           {{ center.name }}
-                        </v-card-title>
-                        <v-card-text>
-                          {{ center.description }}
-                        </v-card-text>
-                        <v-card-actions>
-                          <v-btn>
-                            Más info
+                        </v-input>
+                        <v-input outlined class="caption px-2" hide-details>
+                          {{ center.type }}
+                        </v-input>
+                        <v-card-actions class="py-1">
+                          <v-spacer />
+                          <v-btn text class="primary--text" @click="getCenter(center._id)">
+                            More Info
                           </v-btn>
                         </v-card-actions>
                       </v-card>
@@ -54,10 +68,10 @@
         </v-col>
       </v-row>
       <v-row v-else class="mx-0 px-0" style="max-height: 100vh; overflow: hidden; width:100%;">
-        <v-col class="mx-0 px-0" cols="12" sm="6" md="6" style="max-height: 100vh; overflow: auto;">
+        <v-col class="mx-0 px-0" cols="12" sm="6" md="7" style="max-height: 100vh; overflow: auto;">
           <SearchResult />
         </v-col>
-        <v-col cols="12" sm="6" md="6" class="px-0">
+        <v-col cols="12" sm="6" md="5" class="px-0">
           <GoogleMapsCenters :centers="$store.state.centers" />
         </v-col>
       </v-row>
@@ -112,6 +126,12 @@ export default {
         const element = allCenters.data[Math.floor(Math.random() * allCenters.data.length)]
         this.$set(this.randomCenters, i, element)
       }
+    },
+    async getCenter (id) {
+      this.data = await this.$axios.get(`/center/${id}`)
+      const load = [this.data.data]
+      this.$store.commit('addCenters', load)
+      this.$router.push({ path: '/center/', query: { id }, component: 'CenterPage' })
     }
   }
 }
