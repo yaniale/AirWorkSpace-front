@@ -1,7 +1,7 @@
 <template>
   <v-container fluid>
     <v-card class="my-2" elevation="0">
-      <v-card-title class="justify-center">
+      <v-card-title v-if="$vuetify.breakpoint.smAndDown" class="justify-center">
         Complete your booking
       </v-card-title>
       <v-card-text>

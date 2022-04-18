@@ -14,7 +14,7 @@
                 </v-card-title>
               </v-card>
               <v-container v-else>
-                <v-card class="my-30 rounded-xl" color="red lighten-2" light elevation="2" style="width:100em; height: 20em;display:flex; flex-direction: column;">
+                <v-card class="my-30 rounded-lg" color="red lighten-2" light elevation="2" style="width:100em; height: 20em;display:flex; flex-direction: column;">
                   <v-spacer />
                   <v-card-text class="text-h3 white--text" justify="end" align="center">
                     Tired of working at your own place? Try one of ours!
@@ -30,9 +30,12 @@
                   <v-spacer />
                 </v-card>
                 <v-card style="margin-top: 50px" color="transparent" flat>
+                  <v-card-title class="headline font-weight-black mt-0 pt-0">
+                    Take a look at our most popular centers!
+                  </v-card-title>
                   <v-row cols="12">
                     <v-col v-for="(center, idx) in randomCenters" :key="idx" cols="3">
-                      <v-card light class="rounded-xl" height="230px">
+                      <v-card light class="rounded-lg" height="230px">
                         <!-- <v-list-item-avatar
                             tile
                             size="100"

@@ -2,7 +2,7 @@
   <v-row justify="center" align="center">
     <v-col v-if="$vuetify.breakpoint.smAndDown">
       <v-card-title width="90%" class="px-10 font-weight-bold headline">
-        Bookings
+        My Bookings
       </v-card-title>
       <v-card v-if="$auth.$state.user.bookings.filter(e => e.status !== 'cancelled').length === 0">
         <v-card-text>You don't have any booking yet.</v-card-text>
@@ -56,7 +56,7 @@
     </v-col>
     <v-col v-else offset="1">
       <v-card-title width="90%" class="px-16 mx-12 font-weight-bold headline">
-        Bookings
+        My Bookings
       </v-card-title>
       <v-card v-if="$auth.$state.user.bookings.filter(e => e.status !== 'cancelled').length === 0">
         <v-card-text>You don't have any booking yet.</v-card-text>
