@@ -180,7 +180,13 @@ export default {
   methods: {
     getBookings () {
       this.center = this.$store.state.centers.find(e => e._id === this.$route.query.id)
-      this.bookings = this.center.bookings.filter(e => e.status === 'open')
+
+      for (let i = 0; i < this.center.bookings.length; i++) {
+        const element = this.center.bookings[i]
+        if (element.status === 'open') {
+          this.bookings.push(element)
+        }
+      }
     },
     getType (type) {
       return utils.getType(type)
@@ -198,17 +204,24 @@ export default {
     formatDate (date) {
       return utils.formatDate(date)
     },
+    async getOneCenter (id) {
+      this.data = await this.$axios.get(`/center/${id}`)
+      const load = [this.data.data]
+      this.$store.commit('addCenters', load)
+    },
     async rejectBooking (id) {
-      const confirmed = await this.$axios.put(`/center/${this.center._id}/bookings/${id}`, { status: 'confirmed' })
-      window.location.reload(true)
+      await this.$axios.put(`/center/${this.center._id}/bookings/${id}`, { status: 'rejected' })
+      await this.getOneCenter(this.center._id)
+      this.bookings = []
+      this.getBookings()
       this.$store.commit('checkHost', this.$auth.$state.user.role)
-      console.log(confirmed)
     },
     async acceptBooking (id) {
-      const confirmed = await this.$axios.put(`/center/${this.center._id}/bookings/${id}`, { status: 'confirmed' })
-      window.location.reload(true)
+      await this.$axios.put(`/center/${this.center._id}/bookings/${id}`, { status: 'confirmed' })
+      await this.getOneCenter(this.center._id)
+      this.bookings = []
+      this.getBookings()
       this.$store.commit('checkHost', this.$auth.$state.user.role)
-      console.log(confirmed)
     }
   }
 }
