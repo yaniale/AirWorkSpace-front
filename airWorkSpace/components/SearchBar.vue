@@ -9,7 +9,7 @@
       filled
       dark
       dense
-      class="teal darken-1"
+      :class="$store.state.centers.length !== 0 ? 'teal darken-1' : 'red darken-1'"
       hide-details
       append-icon="mdi-magnify"
       @keydown.enter.prevent="searchCenter"

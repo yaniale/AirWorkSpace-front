@@ -14,19 +14,22 @@
                 </v-card-title>
               </v-card>
               <v-container v-else>
-                <v-card class="my-30 rounded-lg" color="red lighten-2" light elevation="2" style="width:100em; height: 20em;display:flex; flex-direction: column;">
+                <v-card class="my-30 rounded-lg" color="red lighten-2" light elevation="2" style="width:100%; height: 20em;display:flex; flex-direction: column;">
                   <v-spacer />
                   <v-card-text class="text-h3 white--text" justify="end" align="center">
                     Tired of working at your own place? Try one of ours!
                   </v-card-text>
                   <v-spacer />
-                  <v-card-actions>
+                  <!-- <v-card-actions>
                     <v-spacer />
                     <v-btn color="primary">
                       Search around you
                     </v-btn>
                     <v-spacer />
-                  </v-card-actions>
+                  </v-card-actions> -->
+                  <div class="mx-auto">
+                    <SearchBar />
+                  </div>
                   <v-spacer />
                 </v-card>
                 <v-card style="margin-top: 50px" color="transparent" flat>

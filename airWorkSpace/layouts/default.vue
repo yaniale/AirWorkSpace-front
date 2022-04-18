@@ -9,7 +9,7 @@
     >
       <v-toolbar-title class="my-auto" @click="clearState" v-text="title" />
       <v-spacer />
-      <SearchBar v-if="$route.name === 'index'" class="my-auto" />
+      <SearchBar v-if="$route.name === 'index' && $store.state.centers.length !== 0" class="my-auto" />
       <v-spacer />
       <v-menu
         rounded="b-xl"
