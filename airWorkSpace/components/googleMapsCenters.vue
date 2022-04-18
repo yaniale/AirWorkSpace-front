@@ -115,7 +115,7 @@ export default {
         mapTypeId: window.google.maps.MapTypeId.ROADMAP,
         styles: myStyle
       })
-      map.fitBounds(bounds)
+      map.fitBounds(bounds, { top: 30, right: 10, left: 50 })
       let marker
       for (let i = 0; i < markers.length; i++) {
         const element = markers[i]
