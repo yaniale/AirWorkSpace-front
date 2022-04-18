@@ -48,12 +48,121 @@
         </v-list-item>
         <v-card-actions>
           <v-spacer />
-          <v-btn class="error" @click="rejectBooking(booking._id )">
-            Reject
-          </v-btn>
-          <v-btn class="primary mx-2" @click="acceptBooking(booking._id)">
-            Accept
-          </v-btn>
+          <v-dialog
+            transition="dialog-top-transition"
+            max-width="600"
+          >
+            <template #activator="{ on, attrs }">
+              <v-btn
+                color="error"
+                v-bind="attrs"
+                class="mx-5"
+                v-on="on"
+              >
+                Reject
+              </v-btn>
+            </template>
+            <template #default="dialog">
+              <v-card>
+                <v-toolbar
+                  color="primary"
+                  dark
+                  height="40px"
+                >
+                  Do you really want to reject?
+                </v-toolbar>
+                <v-card-text>
+                  <div class="px-4 pt-6 ">
+                    Reservation:
+                  </div>
+                  <v-list-item>
+                    <v-list-item-content>
+                      <v-list-item-subtitle class="pb-2 black--text">
+                        From: {{ formatDate(booking.fromTime) }} - To:
+                        {{ formatDate(booking.toTime) }}
+                      </v-list-item-subtitle>
+                      <v-list-item-subtitle class="black--text">
+                        Quantity {{ booking.bookedQuantity }}
+                      </v-list-item-subtitle>
+                    </v-list-item-content>
+                  </v-list-item>
+                </v-card-text>
+                <v-card-actions class="justify-end">
+                  <v-btn
+                    text
+                    @click="dialog.value = false"
+                  >
+                    No
+                  </v-btn>
+                  <v-btn
+                    text
+                    class="primary--text"
+                    @click="rejectBooking(booking._id); dialog.value = false"
+                  >
+                    <!-- @click="dialog.value = false" -->
+                    Yes
+                  </v-btn>
+                </v-card-actions>
+              </v-card>
+            </template>
+          </v-dialog>
+          <v-dialog
+            transition="dialog-top-transition"
+            max-width="600"
+          >
+            <template #activator="{ on, attrs }">
+              <v-btn
+                color="primary"
+                v-bind="attrs"
+                v-on="on"
+              >
+                Accept
+              </v-btn>
+            </template>
+            <template #default="dialog">
+              <v-card>
+                <v-toolbar
+                  color="primary"
+                  dark
+                  height="40px"
+                >
+                  Do you really want to accept?
+                </v-toolbar>
+                <v-card-text>
+                  <div class="px-4 pt-6 ">
+                    Reservation:
+                  </div>
+                  <v-list-item>
+                    <v-list-item-content>
+                      <v-list-item-subtitle class="pb-2 black--text">
+                        From: {{ formatDate(booking.fromTime) }} - To:
+                        {{ formatDate(booking.toTime) }}
+                      </v-list-item-subtitle>
+                      <v-list-item-subtitle class="black--text">
+                        Quantity {{ booking.bookedQuantity }}
+                      </v-list-item-subtitle>
+                    </v-list-item-content>
+                  </v-list-item>
+                </v-card-text>
+                <v-card-actions class="justify-end">
+                  <v-btn
+                    text
+                    @click="dialog.value = false"
+                  >
+                    No
+                  </v-btn>
+                  <v-btn
+                    text
+                    class="primary--text"
+                    @click="acceptBooking(booking._id); dialog.value = false"
+                  >
+                    <!-- @click="dialog.value = false" -->
+                    Yes
+                  </v-btn>
+                </v-card-actions>
+              </v-card>
+            </template>
+          </v-dialog>
         </v-card-actions>
       </v-card>
     </v-col>
@@ -114,12 +223,121 @@
             </v-list-item-content>
             <v-card-actions>
               <v-spacer />
-              <v-btn class="error" @click="rejectBooking(booking._id )">
-                Reject
-              </v-btn>
-              <v-btn class="primary mx-2" @click="acceptBooking(booking._id)">
-                Accept
-              </v-btn>
+              <v-dialog
+                transition="dialog-top-transition"
+                max-width="600"
+              >
+                <template #activator="{ on, attrs }">
+                  <v-btn
+                    color="error"
+                    v-bind="attrs"
+                    class="mx-5"
+                    v-on="on"
+                  >
+                    Reject
+                  </v-btn>
+                </template>
+                <template #default="dialog">
+                  <v-card>
+                    <v-toolbar
+                      color="primary"
+                      dark
+                      height="40px"
+                    >
+                      Do you really want to reject?
+                    </v-toolbar>
+                    <v-card-text>
+                      <div class="px-4 pt-6 ">
+                        Reservation:
+                      </div>
+                      <v-list-item>
+                        <v-list-item-content>
+                          <v-list-item-subtitle class="pb-2 black--text">
+                            From: {{ formatDate(booking.fromTime) }} - To:
+                            {{ formatDate(booking.toTime) }}
+                          </v-list-item-subtitle>
+                          <v-list-item-subtitle class="black--text">
+                            Quantity {{ booking.bookedQuantity }}
+                          </v-list-item-subtitle>
+                        </v-list-item-content>
+                      </v-list-item>
+                    </v-card-text>
+                    <v-card-actions class="justify-end">
+                      <v-btn
+                        text
+                        @click="dialog.value = false"
+                      >
+                        No
+                      </v-btn>
+                      <v-btn
+                        text
+                        class="primary--text"
+                        @click="rejectBooking(booking._id); dialog.value = false"
+                      >
+                        <!-- @click="dialog.value = false" -->
+                        Yes
+                      </v-btn>
+                    </v-card-actions>
+                  </v-card>
+                </template>
+              </v-dialog>
+              <v-dialog
+                transition="dialog-top-transition"
+                max-width="600"
+              >
+                <template #activator="{ on, attrs }">
+                  <v-btn
+                    color="primary"
+                    v-bind="attrs"
+                    v-on="on"
+                  >
+                    Accept
+                  </v-btn>
+                </template>
+                <template #default="dialog">
+                  <v-card>
+                    <v-toolbar
+                      color="primary"
+                      dark
+                      height="40px"
+                    >
+                      Do you really want to accept?
+                    </v-toolbar>
+                    <v-card-text>
+                      <div class="px-4 pt-6 ">
+                        Reservation:
+                      </div>
+                      <v-list-item>
+                        <v-list-item-content>
+                          <v-list-item-subtitle class="pb-2 black--text">
+                            From: {{ formatDate(booking.fromTime) }} - To:
+                            {{ formatDate(booking.toTime) }}
+                          </v-list-item-subtitle>
+                          <v-list-item-subtitle class="black--text">
+                            Quantity {{ booking.bookedQuantity }}
+                          </v-list-item-subtitle>
+                        </v-list-item-content>
+                      </v-list-item>
+                    </v-card-text>
+                    <v-card-actions class="justify-end">
+                      <v-btn
+                        text
+                        @click="dialog.value = false"
+                      >
+                        No
+                      </v-btn>
+                      <v-btn
+                        text
+                        class="primary--text"
+                        @click="acceptBooking(booking._id); dialog.value = false"
+                      >
+                        <!-- @click="dialog.value = false" -->
+                        Yes
+                      </v-btn>
+                    </v-card-actions>
+                  </v-card>
+                </template>
+              </v-dialog>
             </v-card-actions>
           </v-col>
           <v-col>
@@ -180,7 +398,13 @@ export default {
   methods: {
     getBookings () {
       this.center = this.$store.state.centers.find(e => e._id === this.$route.query.id)
-      this.bookings = this.center.bookings.filter(e => e.status === 'open')
+
+      for (let i = 0; i < this.center.bookings.length; i++) {
+        const element = this.center.bookings[i]
+        if (element.status === 'open') {
+          this.bookings.push(element)
+        }
+      }
     },
     getType (type) {
       return utils.getType(type)
@@ -198,17 +422,24 @@ export default {
     formatDate (date) {
       return utils.formatDate(date)
     },
+    async getOneCenter (id) {
+      this.data = await this.$axios.get(`/center/${id}`)
+      const load = [this.data.data]
+      this.$store.commit('addCenters', load)
+    },
     async rejectBooking (id) {
-      const confirmed = await this.$axios.put(`/center/${this.center._id}/bookings/${id}`, { status: 'confirmed' })
-      window.location.reload(true)
+      await this.$axios.put(`/center/${this.center._id}/bookings/${id}`, { status: 'rejected' })
+      await this.getOneCenter(this.center._id)
+      this.bookings = []
+      this.getBookings()
       this.$store.commit('checkHost', this.$auth.$state.user.role)
-      console.log(confirmed)
     },
     async acceptBooking (id) {
-      const confirmed = await this.$axios.put(`/center/${this.center._id}/bookings/${id}`, { status: 'confirmed' })
-      window.location.reload(true)
+      await this.$axios.put(`/center/${this.center._id}/bookings/${id}`, { status: 'confirmed' })
+      await this.getOneCenter(this.center._id)
+      this.bookings = []
+      this.getBookings()
       this.$store.commit('checkHost', this.$auth.$state.user.role)
-      console.log(confirmed)
     }
   }
 }

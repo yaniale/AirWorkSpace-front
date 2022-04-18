@@ -2,7 +2,7 @@
   <v-container fluid fill-height>
     <v-row v-if="$store.state.userView" style="max-height: 90vh; overflow: hidden;">
       <v-row v-if="$store.state.centers.length===0" justify="start" align="center" no-gutters>
-        <v-col cols="12" sm="8" md="6">
+        <v-col cols="12" sm="8" md="8">
           <v-card v-if="$store.state.centers.length === 0" elevation="0">
             <v-overlay class="indexPage" style="z-index:0">
               <v-card v-if="!$vuetify.breakpoint.mdAndUp" class="transparent" elevation="0">
@@ -16,7 +16,7 @@
               <v-container v-else>
                 <v-card class="my-30 rounded-lg" color="red lighten-2" light elevation="2" style="width:100%; height: 20em;display:flex; flex-direction: column;">
                   <v-spacer />
-                  <v-card-text class="text-h3 white--text" justify="end" align="center">
+                  <v-card-text class="text-h3 white--text px-10" justify="end" align="center">
                     Tired of working at your own place? Try one of ours!
                   </v-card-text>
                   <v-spacer />
@@ -77,7 +77,7 @@
         <v-col class="mx-0 px-0" cols="12" sm="6" md="7" style="max-height: 100vh; overflow: auto;">
           <SearchResult />
         </v-col>
-        <v-col cols="12" sm="6" md="5" class="px-0">
+        <v-col v-if="!$vuetify.breakpoint.xs" cols="12" sm="6" md="5" class="px-0">
           <GoogleMapsCenters :centers="$store.state.centers" />
         </v-col>
       </v-row>
