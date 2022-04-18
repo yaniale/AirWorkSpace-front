@@ -7,6 +7,7 @@
       fixed
       dark
     >
+      <img src="@/assets/logoblanco.png" height="45px" alt="logo" @click="clearState">
       <v-toolbar-title class="my-auto" @click="clearState" v-text="title" />
       <v-spacer />
       <SearchBar v-if="$route.name === 'index' && $store.state.centers.length !== 0" class="my-auto" />
