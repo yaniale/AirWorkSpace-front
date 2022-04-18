@@ -136,7 +136,6 @@
               </v-stepper>
             </v-card>
           </v-card-text>
-          </v-spacer>
         </v-card>
       </v-container>
     </v-col>
@@ -180,13 +179,13 @@
           <v-container fluid>
             <v-row>
               <v-col cols="8">
+                <GoogleMapsCenters :centers="centerMap" height="200px" />
                 <div class="text-h6 mb-5">
                   <v-icon>
                     mdi-map-marker-outline
                   </v-icon>
                   {{ center.address1 }} {{ center.address2 ? `- ${center.address2}` : '' }}, {{ center.postalCode }}
                 </div>
-                <GoogleMapsCenters :centers="centerMap" height="200px" />
                 <div class="text-h5 mt-5">
                   {{ center.description }}
                 </div>
@@ -247,9 +246,9 @@
                       >
                         Continue
                       </v-btn>
-                      <v-btn text @click="e6 -= e6">
+                      <!-- <v-btn text @click="e6 -= e6">
                         Back
-                      </v-btn>
+                      </v-btn> -->
                     </v-stepper-content>
 
                     <v-stepper-step
