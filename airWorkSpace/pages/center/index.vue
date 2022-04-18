@@ -161,20 +161,51 @@
             </v-col>
           </v-row>
         </v-card-subtitle>
-        <v-carousel
-          style="border-top-left-radius: 25px; border-top-right-radius: 25px"
+        <v-row class="center-images" style="height: 40%;">
+          <v-col cols="6">
+            <v-img :src="center.photos[0]" aspect-ratio="2" />
+          </v-col>
+          <v-col>
+            <v-row>
+              <v-col
+                v-for="n in 4"
+                :key="n"
+                class="d-flex child-flex"
+                cols="6"
+              >
+                <v-img
+                  :src="center.photos[n]"
+                  aspect-ratio="2.05"
+                  class="grey lighten-2"
+                >
+                  <template #placeholder>
+                    <v-row
+                      class="fill-height ma-0"
+                      align="center"
+                      justify="center"
+                    >
+                      <v-progress-circular
+                        indeterminate
+                        color="grey lighten-5"
+                      />
+                    </v-row>
+                  </template>
+                </v-img>
+              </v-col>
+            </v-row>
+          </v-col>
+        </v-row>
+        <!-- <v-carousel
+          style="border-top-left-radius: 25px; border-top-right-radius: 25px; height: 40%;"
           cycle
-          contain
-          size="300"
-          height="40vh"
           hide-delimiter-background
           hide-delimiters
           :show-arrows="false"
         >
           <v-carousel-item v-for="(photo, idx) in center.photos" :key="idx">
-            <v-img :src="photo" contain position="center" />
+            <v-img :src="photo" position="top top" />
           </v-carousel-item>
-        </v-carousel>
+        </v-carousel> -->
         <v-card-text>
           <v-container fluid>
             <v-row>
