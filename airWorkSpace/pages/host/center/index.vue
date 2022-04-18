@@ -232,12 +232,10 @@
     </v-col>
     <!-- Breakpoint mdAndUp -->
     <v-col v-if="$vuetify.breakpoint.mdAndUp" offset="1">
-      <Breadcrumb :items="items" />
-
       <v-card flat class="mb-0">
-        <!-- <v-card-title class="px-16 mx-12 font-weight-bold headline">
+        <v-card-title class="px-16 mx-12 font-weight-bold headline">
           My Centers
-        </v-card-title> -->
+        </v-card-title>
         <v-col cols="1" offset="9">
           <v-card-actions>
             <v-btn color="primary" to="/host/center/newcenter">
@@ -340,18 +338,7 @@ export default {
     return {
       centers: [],
       showDetails: [],
-      openBookings: '',
-      items: [
-        {
-          text: 'Home',
-          disabled: false,
-          href: '/'
-        },
-        {
-          text: 'My Centers',
-          disabled: true,
-          href: '/host/center'
-        }]
+      openBookings: ''
     }
   },
   mounted () {

@@ -48,14 +48,13 @@
     </v-col>
     <!-- breakpoint mdAndUp -->
     <v-col v-else offset="1">
-      <Breadcrumb :items="items" />
       <v-card flat>
-        <!-- <v-card-title class="px-16 mx-12 font-weight-bold headline">
+        <v-card-title class="px-16 mx-12 font-weight-bold headline">
           <v-icon class="mr-5" @click="$router.push({ path: '/host/center/', component:'MyCenterPage'})">
             mdi-chevron-left
           </v-icon>
           Confirmed Bookings in {{ center.name }}
-        </v-card-title> -->
+        </v-card-title>
       </v-card>
       <v-col offset="1">
         <v-card v-if="bookings.length === 0" flat>
@@ -129,24 +128,7 @@ export default {
   data () {
     return {
       center: {},
-      bookings: [],
-      items: [
-        {
-          text: 'Home',
-          disabled: false,
-          href: '/'
-        },
-        {
-          text: 'My Centers',
-          disabled: false,
-          href: '/host/center'
-        },
-        {
-          text: 'Confirmed Bookings',
-          disabled: true,
-          href: '/host/center/bookings'
-        }]
-
+      bookings: []
     }
   },
   mounted () {
