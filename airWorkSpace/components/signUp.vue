@@ -50,7 +50,7 @@
                 <v-text-field v-model="user.state" label="State/Province" class="py-2" />
               </v-col>
               <v-col cols="4">
-                <v-text-field v-model="user.state" label="Country" class="py-2" />
+                <v-text-field v-model="user.country" label="Country" class="py-2" />
               </v-col>
             </v-row>
             <v-card-title class="pa-0">
