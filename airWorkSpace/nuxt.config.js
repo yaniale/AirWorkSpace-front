@@ -19,10 +19,7 @@ export default {
     ],
     script: [
       {
-        src: 'https://maps.googleapis.com/maps/api/js?key=AIzaSyCw64feQUiXW63IUphR-PbYzkPwl61g2fA&callback=initMap&v=weekly'
-      },
-      {
-        src: 'https://maps.googleapis.com/maps/api/js?key=AIzaSyCw64feQUiXW63IUphR-PbYzkPwl61g2fA&libraries=places'
+        src: 'https://maps.googleapis.com/maps/api/js?key=AIzaSyCw64feQUiXW63IUphR-PbYzkPwl61g2fA&v=weekly&libraries=places'
       }]
   },
 
@@ -77,7 +74,6 @@ export default {
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-    // baseURL: 'http://localhost:3000/api'
     baseURL: 'https://airworkspace-api.herokuapp.com/api'
   },
 
