@@ -82,12 +82,12 @@
           </v-stepper-step>
           <v-divider />
 
-          <v-stepper-step
+          <!-- <v-stepper-step
             step="4"
             editable
           >
             Services
-          </v-stepper-step>
+          </v-stepper-step> -->
         </v-stepper-header>
         <v-stepper-items>
           <v-stepper-content step="1">
@@ -386,7 +386,6 @@ export default {
           } else {
             const center = await this.$axios.post('/center/', this.center)
             this.$router.push({ path: `/host/center/${center.data.data._id}`, component: 'AllotmentPage' })
-            console.log(center)
             await this.$auth.fetchUser()
           }
         }
